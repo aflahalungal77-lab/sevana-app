@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">സേവന app icon</title>
+  <desc id="desc">Deep green community care icon with Malayalam word സേവന.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#075b3b"/><stop offset="1" stop-color="#063b2c"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#b7f36b"/><stop offset="1" stop-color="#29b879"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="488" height="488" rx="104" fill="url(#bg)"/>
+  <path d="M256 282 C232 262 154 214 154 164 C154 122 202 103 235 132 L256 153 L277 132 C310 103 358 122 358 164 C358 214 280 262 256 282Z"
+        fill="none" stroke="url(#heart)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="164" r="19" fill="#fff"/>
+  <circle cx="208" cy="190" r="14" fill="#fff"/><circle cx="304" cy="190" r="14" fill="#fff"/>
+  <path d="M222 238 C223 213 237 200 256 200 C275 200 289 213 290 238 L290 246 L222 246Z" fill="#fff"/>
+  <path d="M181 242 C182 222 193 211 208 211 C219 211 227 218 232 229 L226 249 L181 249Z" fill="#e8fff1"/>
+  <path d="M331 242 C330 222 319 211 304 211 C293 211 285 218 280 229 L286 249 L331 249Z" fill="#e8fff1"/>
+  <path d="M126 238 C145 265 171 280 204 284 L235 288 C246 290 250 300 244 307 C239 313 231 313 222 311 L181 303 C157 298 140 285 125 266Z" fill="#fff"/>
+  <path d="M386 238 C367 265 341 280 308 284 L277 288 C266 290 262 300 268 307 C273 313 281 313 290 311 L331 303 C355 298 372 285 387 266Z" fill="#fff"/>
+  <text x="256" y="376" text-anchor="middle" font-family="Noto Sans Malayalam, Manjari, Kartika, sans-serif" font-size="61" font-weight="700" fill="#fff">സേവന</text>
+  <path d="M190 405 H322" stroke="#8ee7ad" stroke-width="5" stroke-linecap="round"/>
+</svg>

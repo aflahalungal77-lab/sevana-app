@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "Sevana - Local Services",
+  "short_name": "Sevana",
+  "description": "Find useful local services in your area.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7faf7",
+  "theme_color": "#17633a",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/sevana-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
