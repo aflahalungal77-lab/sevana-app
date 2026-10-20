@@ -157,55 +157,51 @@ export default function HomePage() {
         </span>
       </div>
 
-      {/* Hero */}
-      <section className="sevana-hero">
-        <div className="sevana-hero-copy">
-          <span className="sevana-hero-tag">
-            <HeartPulse size={15} />
-            {t.heroTag}
-          </span>
+     
+{/* Hero */}
+<section className="sevana-hero sevana-hero-image-layout">
+<img
+  className="sevana-hero-background"
+  src="/images/hero-bg.jpg"
+  alt=""
+  aria-hidden="true"
+/>
+  <div className="sevana-hero-image-shade" />
 
-          <h1>
-            {t.heroTitle}
-            <br />
-            <span>{t.heroSubtitle}</span>
-          </h1>
+  <div className="sevana-hero-copy">
+    <span className="sevana-hero-tag">
+      <HeartPulse size={15} />
+      {t.heroTag}
+    </span>
 
-          <p>{t.heroDescription}</p>
+    <h1>
+      {t.heroTitle}
+      <br />
+      <span>{t.heroSubtitle}</span>
+    </h1>
 
-          <div className="sevana-hero-trust">
-            <span className="sevana-hero-trust-icon">
-              <ShieldCheck size={23} />
-            </span>
-            <span>
-              <strong>
-                {language === "en"
-                  ? "Your community, your support"
-                  : "നിങ്ങളുടെ നാട്, നിങ്ങളുടെ സഹായം"}
-              </strong>
-              <small>
-                {language === "en"
-                  ? "Local services in one place"
-                  : "നാട്ടിലെ സേവനങ്ങൾ ഒരിടത്ത്"}
-              </small>
-            </span>
-          </div>
-        </div>
+    <p>{t.heroDescription}</p>
 
-        <div className="sevana-hero-art" aria-hidden="true">
-          <div className="sevana-hero-orbit sevana-orbit-one" />
-          <div className="sevana-hero-orbit sevana-orbit-two" />
-          <div className="sevana-hero-heart">
-            <Heart size={72} strokeWidth={1.5} fill="currentColor" />
-          </div>
-          <div className="sevana-hero-shield">
-            <ShieldCheck size={34} />
-          </div>
-          <span className="sevana-art-leaf leaf-one" />
-          <span className="sevana-art-leaf leaf-two" />
-          <span className="sevana-art-leaf leaf-three" />
-        </div>
-      </section>
+    <div className="sevana-hero-trust">
+      <span className="sevana-hero-trust-icon">
+        <ShieldCheck size={23} />
+      </span>
+      <span>
+        <strong>
+          {language === "en"
+            ? "Your community, your support"
+            : "നിങ്ങളുടെ നാട്, നിങ്ങളുടെ സഹായം"}
+        </strong>
+        <small>
+          {language === "en"
+            ? "Local services in one place"
+            : "നാട്ടിലെ സേവനങ്ങൾ ഒരിടത്ത്"}
+        </small>
+      </span>
+    </div>
+  </div>
+</section>
+
 
       {/* Services */}
       <section className="sevana-services-section">
