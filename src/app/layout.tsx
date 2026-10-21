@@ -1,6 +1,8 @@
+
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
+
 import { RegisterServiceWorker } from "@/components/register-sw";
 import { InstallPrompt } from "@/components/install-prompt";
 import { SplashScreen } from "@/components/splash-screen";
@@ -9,31 +11,43 @@ import { LanguageToggle } from "@/components/language-toggle";
 
 export const metadata: Metadata = {
   title: "Sevana — Local Services",
-  description: "Find useful local services, transport, workers and blood donors.",
+  description:
+    "Find useful local services, transport, workers and blood donors.",
   manifest: "/manifest.json",
   applicationName: "Sevana",
-  appleWebApp: { capable: true, statusBarStyle: "default", title: "Sevana" },
-  formatDetection: { telephone: false },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Sevana",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#17633a",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   viewportFit: "cover",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en">
-    <body>
-      <RegisterServiceWorker />
-      <InstallPrompt />
-      <SplashScreen />
-      <main className="app-shell">{children}</main>
-      <BottomNav />
-      <LanguageToggle />
-      <SpeedInsights />
-    </body>
-  </html>;
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>
+        <RegisterServiceWorker />
+        <InstallPrompt />
+        <SplashScreen />
+
+        <main className="app-shell">{children}</main>
+
+        <BottomNav />
+        <LanguageToggle />
+
+      </body>
+    </html>
+  );
 }
