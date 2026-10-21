@@ -6925,3 +6925,57 @@ select.field-control {
     scroll-behavior: auto;
   }
 }
+
+/* 3D service image cards */
+.sevana-home .sevana-image-service {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 108px;
+  padding: 16px;
+  color: #173d2d;
+  text-decoration: none;
+}
+
+.sevana-home .sevana-3d-icon {
+  display: block;
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.09));
+  transition: transform 180ms ease;
+}
+
+.sevana-home .sevana-image-service > span {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sevana-home .sevana-image-service > svg {
+  flex-shrink: 0;
+  color: #537361;
+}
+
+.sevana-home .sevana-image-service:hover .sevana-3d-icon {
+  transform: translateY(-3px) scale(1.04);
+}
+
+@media (max-width: 480px) {
+  .sevana-home .sevana-image-service {
+    gap: 9px;
+    padding: 11px;
+    min-height: 90px;
+  }
+
+  .sevana-home .sevana-3d-icon {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .sevana-home .sevana-image-service > span {
+    font-size: 13px;
+  }
+}

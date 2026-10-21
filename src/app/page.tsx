@@ -5,11 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   MapPin,
-  PhoneCall,
-  CarFront,
-  Droplet,
   HeartPulse,
-  Wrench,
   ArrowRight,
   ShieldCheck,
   ChevronRight,
@@ -94,6 +90,26 @@ const translations = {
   },
 } as const;
 
+
+function ServiceImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
+  return (
+    <img
+      className="sevana-3d-icon"
+      src={src}
+      alt={alt}
+      loading="lazy"
+      width={76}
+      height={76}
+    />
+  );
+}
+
 export default function HomePage() {
   const [language, setLanguage] = useState<Language>("en");
 
@@ -157,7 +173,7 @@ export default function HomePage() {
         </span>
       </div>
 
-     
+
 {/* Hero */}
 <section className="sevana-hero sevana-hero-image-layout">
 <img
@@ -166,6 +182,7 @@ export default function HomePage() {
   alt=""
   aria-hidden="true"
 />
+
   <div className="sevana-hero-image-shade" />
 
   <div className="sevana-hero-copy">
@@ -220,52 +237,55 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="sevana-service-grid">
-          <div className="sevana-service-item sevana-service-hotline">
-            <ServiceCard
-              href="/hotlines"
-              title={t.hotlines}
-              Icon={PhoneCall}
-              tone="rose"
-            />
-          </div>
+        
+<div className="sevana-service-grid">
+  <Link
+    href="/hotlines"
+    className="sevana-service-item sevana-service-hotline sevana-image-service"
+  >
+    <ServiceImage src="/images/hotlines-3d.png" alt="" />
+    <span>{t.hotlines}</span>
+    <ChevronRight size={18} />
+  </Link>
 
-          <div className="sevana-service-item sevana-service-transport">
-            <ServiceCard
-              href="/transport"
-              title={t.transport}
-              Icon={CarFront}
-              tone="amber"
-            />
-          </div>
+  <Link
+    href="/transport"
+    className="sevana-service-item sevana-service-transport sevana-image-service"
+  >
+    <ServiceImage src="/images/transport-3d.png" alt="" />
+    <span>{t.transport}</span>
+    <ChevronRight size={18} />
+  </Link>
 
-          <div className="sevana-service-item sevana-service-donor">
-            <ServiceCard
-              href="/donors"
-              title={t.findDonor}
-              Icon={Droplet}
-              tone="rose"
-            />
-          </div>
+  <Link
+    href="/donors"
+    className="sevana-service-item sevana-service-donor sevana-image-service"
+  >
+    <ServiceImage src="/images/donor-3d.png" alt="" />
+    <span>{t.findDonor}</span>
+    <ChevronRight size={18} />
+  </Link>
 
-          <div className="sevana-service-item sevana-service-blood">
-            <ServiceCard
-              href="/blood-request"
-              title={t.needBlood}
-              Icon={HeartPulse}
-              tone="rose"
-            />
-          </div>
+  <Link
+    href="/blood-request"
+    className="sevana-service-item sevana-service-blood sevana-image-service"
+  >
+    <ServiceImage src="/images/blood-3d.png" alt="" />
+    <span>{t.needBlood}</span>
+    <ChevronRight size={18} />
+  </Link>
 
-          <div className="sevana-service-item sevana-service-workers">
-            <ServiceCard
-              href="/workers"
-              title={t.workers}
-              Icon={Wrench}
-              tone="blue"
-            />
-          </div>
-        </div>
+  <Link
+    href="/workers"
+    className="sevana-service-item sevana-service-workers sevana-image-service"
+  >
+    <ServiceImage src="/images/localworkers-3d.png" alt="" />
+    <span>{t.workers}</span>
+    <ChevronRight size={18} />
+  </Link>
+</div>
+
+        
       </section>
 
       {/* Emergency */}
