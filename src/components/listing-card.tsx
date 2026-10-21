@@ -1,21 +1,11 @@
 
+import Image from "next/image";
 import {
   MapPin,
   Phone,
-  CarFront,
   Building2,
   Navigation,
   HeartPulse,
-  Ambulance,
-  Shield,
-  Flame,
-  Baby,
-  Pill,
-  Stethoscope,
-  BusFront,
-  KeyRound,
-  Zap, Paintbrush, HardHat, Wrench, Hospital,
-  Hammer, House, Flower2, Sprout, Truck, Layers,
 } from "lucide-react";
 
 import type { ServiceListing, Donor } from "@/lib/types";
@@ -28,23 +18,56 @@ export function ListingCard({
   label?: string;
 }) {
   const phone = item.phone.replace(/[^\d+]/g, "");
-  const iconMap: Record<string, typeof Building2> = {
-    hospital: Hospital, ambulance: Ambulance, "police-station": Shield,
-    "fire-station": Flame, "blood-banks": HeartPulse, "child-line": Baby,
-    "medical-shop": Pill, "doctors-clinic": Stethoscope, cars: CarFront,
-    auto: CarFront, "tourist-bus": BusFront, "rent-a-car": KeyRound, "goods-lorry": Truck, kseb: Zap,
-    "plumbing-wiring": Zap, "masonry-work": Layers, carpenter: Hammer, "tiles-marble": Layers,
-    painters: Paintbrush, welders: Hammer, "home-workers": House, "garden-services": Flower2,
-    "agricultural-works": Sprout, repair: Wrench, construction: HardHat, painting: Paintbrush,
+
+  const slug = item.category_slug || "";
+
+  const imageMap: Record<string, string> = {
+    hospital: "hospital",
+    ambulance: "ambulance",
+    "police-station": "police-station",
+    "fire-station": "fire-station",
+    "blood-banks": "blood-banks",
+    "child-line": "child-line",
+    "medical-shop": "medical-shop",
+    "doctors-clinic": "doctors-clinic",
+    cars: "cars",
+    auto: "auto",
+    "tourist-bus": "tourist-bus",
+    "rent-a-car": "rent-a-car",
+    "goods-lorry": "goods-lorry",
+    kseb: "kseb",
+    "plumbing-wiring": "plumbing-wiring",
+    "masonry-work": "masonry-work",
+    carpenter: "carpenter",
+    "tiles-marble": "tiles-marble",
+    painters: "painters",
+    welders: "welders",
+    "home-workers": "home-workers",
+    "garden-services": "garden-services",
+    "agricultural-works": "agricultural-works",
+    repair: "repair",
+    construction: "construction",
+    painting: "painting",
   };
-  const ListingIcon = item.category_slug
-    ? iconMap[item.category_slug] || (item.vehicle_type ? CarFront : Building2)
-    : item.vehicle_type ? CarFront : Building2;
+
+  const imageName = imageMap[slug];
 
   return (
     <article className="listing-card premium-listing-card">
-      <div className={`listing-icon premium-listing-icon category-${item.category_slug || "general"}`}>
-        <ListingIcon size={22} strokeWidth={2} />
+      <div
+        className={`listing-icon premium-listing-icon category-${slug || "general"}`}
+      >
+        {imageName ? (
+          <Image
+            src={`/emojis/${imageName}.png`}
+            alt={item.category_slug || "Service"}
+            width={48}
+            height={48}
+            className="listing-emoji"
+          />
+        ) : (
+          <Building2 size={22} strokeWidth={2} />
+        )}
       </div>
 
       <div className="listing-main premium-listing-main">
@@ -66,7 +89,6 @@ export function ListingCard({
 
           {item.vehicle_type && (
             <span>
-              <CarFront size={14} />
               {item.vehicle_type}
             </span>
           )}
@@ -114,7 +136,9 @@ export function DonorCard({ donor }: { donor: Donor }) {
 
         <p className="privacy-note premium-privacy-note">
           <HeartPulse size={13} />
-          <span>Contact for blood donation coordination</span>
+          <span>
+            Contact for blood donation coordination
+          </span>
         </p>
       </div>
 

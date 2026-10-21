@@ -6979,3 +6979,48 @@ select.field-control {
     font-size: 13px;
   }
 }
+
+
+.category-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hotline-emoji {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+
+
+.transport-emoji {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+
+
+.listing-emoji {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.premium-listing-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
