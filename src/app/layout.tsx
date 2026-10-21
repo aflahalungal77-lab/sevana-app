@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { RegisterServiceWorker } from "@/components/register-sw";
 import { InstallPrompt } from "@/components/install-prompt";
 import { SplashScreen } from "@/components/splash-screen";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <main className="app-shell">{children}</main>
       <BottomNav />
       <LanguageToggle />
+      <SpeedInsights />
     </body>
   </html>;
 }
