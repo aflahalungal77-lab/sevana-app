@@ -1,4 +1,7 @@
 
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -13,6 +16,7 @@ import {
   Flower2,
   Sprout,
   Tractor,
+  LoaderCircle,
 } from "lucide-react";
 import { workerCategories } from "@/lib/data";
 
@@ -61,12 +65,15 @@ const groups = [
 ];
 
 export default function WorkersPage() {
+  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
+
   return (
     <main className="page workers-page">
       <header className="back-header">
         <Link href="/" className="back-button" aria-label="Back">
           <ArrowLeft size={20} />
         </Link>
+
         <div>
           <h1>Local Workers</h1>
           <p>Find skilled help around you</p>
@@ -77,6 +84,7 @@ export default function WorkersPage() {
         <div className="intro-icon">
           <Wrench size={22} />
         </div>
+
         <div>
           <h2>What do you need help with?</h2>
           <p>Select a service to view worker contacts.</p>
@@ -86,11 +94,11 @@ export default function WorkersPage() {
       <div className="worker-category-groups">
         {groups.map((group) => (
           <section className="worker-parent-card" key={group.title}>
-            {/* Parent card */}
             <div className="worker-parent-heading">
               <span className="worker-parent-icon">
                 <group.Icon size={23} />
               </span>
+
               <div className="worker-parent-copy">
                 <h2>{group.title}</h2>
                 <p>{group.subtitle}</p>
@@ -98,18 +106,24 @@ export default function WorkersPage() {
               </div>
             </div>
 
-            {/* Child cards */}
             <div className="worker-child-grid">
               {group.items.map(({ slug, Icon, description }) => {
                 const category = categoryMap.get(slug);
 
                 if (!category) return null;
 
+                const isLoading = loadingSlug === slug;
+
                 return (
                   <Link
                     key={slug}
                     href={`/workers/${slug}`}
-                    className="worker-child-card"
+                    prefetch={true}
+                    onClick={() => setLoadingSlug(slug)}
+                    aria-busy={isLoading}
+                    className={`worker-child-card ${
+                      isLoading ? "category-row-loading" : ""
+                    }`}
                   >
                     <span className={`category-icon icon-${slug}`}>
                       <Icon size={21} />
@@ -120,7 +134,15 @@ export default function WorkersPage() {
                       <small>{description}</small>
                     </span>
 
-                    <ChevronRight size={18} className="row-chevron" />
+                    {isLoading ? (
+                      <LoaderCircle
+                        size={20}
+                        className="hotline-loading-spinner"
+                        aria-label="Loading"
+                      />
+                    ) : (
+                      <ChevronRight size={18} className="row-chevron" />
+                    )}
                   </Link>
                 );
               })}

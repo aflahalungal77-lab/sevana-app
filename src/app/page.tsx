@@ -1,6 +1,5 @@
 
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
@@ -178,7 +177,7 @@ export default function HomePage() {
 <section className="sevana-hero sevana-hero-image-layout">
 <img
   className="sevana-hero-background"
-  src="/images/hero-bg.jpg"
+  src="/images/hero-bg.webp"
   alt=""
   aria-hidden="true"
 />

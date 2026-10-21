@@ -1,8 +1,6 @@
 
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-
-
 import { RegisterServiceWorker } from "@/components/register-sw";
 import { InstallPrompt } from "@/components/install-prompt";
 import { SplashScreen } from "@/components/splash-screen";

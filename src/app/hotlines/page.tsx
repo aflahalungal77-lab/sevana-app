@@ -1,14 +1,22 @@
 
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
   ChevronRight,
   PhoneCall,
+  LoaderCircle,
 } from "lucide-react";
 import { hotlineCategories } from "@/lib/data";
 
 export default function HotlinesPage() {
+  const [loadingSlug, setLoadingSlug] = useState<string | null>(
+    null
+  );
+
   return (
     <div className="page">
       <header className="back-header">
@@ -38,34 +46,51 @@ export default function HotlinesPage() {
       </div>
 
       <div className="category-list">
-        {hotlineCategories.map((category) => (
-          <Link
-            key={category.id}
-            href={`/hotlines/${category.slug}`}
-            className="category-row"
-          >
-            <span
-              className={`category-icon icon-${category.slug}`}
+        {hotlineCategories.map((category) => {
+          const isLoading = loadingSlug === category.slug;
+
+          return (
+            <Link
+              key={category.id}
+              href={`/hotlines/${category.slug}`}
+              prefetch={true}
+              onClick={() => setLoadingSlug(category.slug)}
+              aria-busy={isLoading}
+              className={`category-row ${
+                isLoading ? "category-row-loading" : ""
+              }`}
             >
-              <Image
-                src={`/emojis/${category.slug}.png`}
-                alt={category.name}
-                width={40}
-                height={40}
-                className="hotline-emoji"
-              />
-            </span>
+              <span
+                className={`category-icon icon-${category.slug}`}
+              >
+                <Image
+                  src={`/emojis/${category.slug}.png`}
+                  alt={category.name}
+                  width={40}
+                  height={40}
+                  className="hotline-emoji"
+                />
+              </span>
 
-            <span className="category-title">
-              {category.name}
-            </span>
+              <span className="category-title">
+                {category.name}
+              </span>
 
-            <ChevronRight
-              size={18}
-              className="row-chevron"
-            />
-          </Link>
-        ))}
+              {isLoading ? (
+                <LoaderCircle
+                  size={20}
+                  className="hotline-loading-spinner"
+                  aria-label="Loading"
+                />
+              ) : (
+                <ChevronRight
+                  size={18}
+                  className="row-chevron"
+                />
+              )}
+            </Link>
+          );
+        })}
       </div>
 
       <p className="notice">

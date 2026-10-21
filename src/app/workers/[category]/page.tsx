@@ -13,6 +13,6 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
   return <div className="page">
     <header className="back-header"><Link href="/workers" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link><div><h1>{category.name}</h1><p>Local worker directory</p></div></header>
     {listings.length ? <div className="listing-list">{listings.map((item) => <ListingCard key={item.id} item={item}/>)}</div> :
-      <div className="empty-state"><div className="empty-icon"><Wrench size={25}/></div><h2>No workers listed yet</h2><p>Worker details will appear here when added by the admin.</p><Link className="button button-secondary" href="/admin/login">Admin login</Link></div>}
+      <div className="empty-state"><div className="empty-icon"><Wrench size={25}/></div><h2>No workers listed yet</h2><p>Worker details will appear here when added by the admin.</p></div>}
   </div>;
 }

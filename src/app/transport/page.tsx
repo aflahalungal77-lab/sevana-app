@@ -1,10 +1,14 @@
 
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
   CarFront,
   ChevronRight,
+  LoaderCircle,
 } from "lucide-react";
 import { transportCategories } from "@/lib/data";
 
@@ -17,14 +21,12 @@ const descriptions: Record<string, string> = {
 };
 
 export default function TransportPage() {
+  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
+
   return (
     <div className="page">
       <header className="back-header">
-        <Link
-          href="/"
-          className="back-button"
-          aria-label="Back"
-        >
+        <Link href="/" className="back-button" aria-label="Back">
           <ArrowLeft size={20} />
         </Link>
 
@@ -44,45 +46,55 @@ export default function TransportPage() {
 
         <div>
           <h2>Where do you need to go?</h2>
-          <p>
-            Choose a transport category to find local contacts.
-          </p>
+          <p>Choose a transport category to find local contacts.</p>
         </div>
       </div>
 
       <div className="category-list">
-        {transportCategories.map((category) => (
-          <Link
-            key={category.id}
-            href={`/transport/${category.slug}`}
-            className="category-row"
-          >
-            <span
-              className={`category-icon icon-${category.slug}`}
+        {transportCategories.map((category) => {
+          const isLoading = loadingSlug === category.slug;
+
+          return (
+            <Link
+              key={category.id}
+              href={`/transport/${category.slug}`}
+              prefetch={true}
+              onClick={() => setLoadingSlug(category.slug)}
+              aria-busy={isLoading}
+              className={`category-row ${
+                isLoading ? "category-row-loading" : ""
+              }`}
             >
-              <Image
-                src={`/emojis/${category.slug}.png`}
-                alt={category.name}
-                width={40}
-                height={40}
-                className="transport-emoji"
-              />
-            </span>
+              <span className={`category-icon icon-${category.slug}`}>
+                <Image
+                  src={`/emojis/${category.slug}.png`}
+                  alt={category.name}
+                  width={40}
+                  height={40}
+                  className="transport-emoji"
+                />
+              </span>
 
-            <span className="category-text">
-              <strong>{category.name}</strong>
-              <small>
-                {descriptions[category.slug] ||
-                  "Local transport services"}
-              </small>
-            </span>
+              <span className="category-text">
+                <strong>{category.name}</strong>
+                <small>
+                  {descriptions[category.slug] ||
+                    "Local transport services"}
+                </small>
+              </span>
 
-            <ChevronRight
-              size={18}
-              className="row-chevron"
-            />
-          </Link>
-        ))}
+              {isLoading ? (
+                <LoaderCircle
+                  size={20}
+                  className="hotline-loading-spinner"
+                  aria-label="Loading"
+                />
+              ) : (
+                <ChevronRight size={18} className="row-chevron" />
+              )}
+            </Link>
+          );
+        })}
       </div>
 
       <p className="notice">
