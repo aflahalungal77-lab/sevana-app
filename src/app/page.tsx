@@ -243,7 +243,7 @@ export default function HomePage() {
     href="/hotlines"
     className="sevana-service-item sevana-service-hotline sevana-image-service"
   >
-    <ServiceImage src="/images/hotlines-3d.png" alt="" />
+    <ServiceImage src="/images/hotlines-3d.webp" alt="" />
     <span>{t.hotlines}</span>
     <ChevronRight size={18} />
   </Link>
@@ -252,7 +252,7 @@ export default function HomePage() {
     href="/transport"
     className="sevana-service-item sevana-service-transport sevana-image-service"
   >
-    <ServiceImage src="/images/transport-3d.png" alt="" />
+    <ServiceImage src="/images/transport-3d.webp" alt="" />
     <span>{t.transport}</span>
     <ChevronRight size={18} />
   </Link>
@@ -261,7 +261,7 @@ export default function HomePage() {
     href="/donors"
     className="sevana-service-item sevana-service-donor sevana-image-service"
   >
-    <ServiceImage src="/images/donor-3d.png" alt="" />
+    <ServiceImage src="/images/donor-3d.webp" alt="" />
     <span>{t.findDonor}</span>
     <ChevronRight size={18} />
   </Link>
@@ -270,7 +270,7 @@ export default function HomePage() {
     href="/blood-request"
     className="sevana-service-item sevana-service-blood sevana-image-service"
   >
-    <ServiceImage src="/images/blood-3d.png" alt="" />
+    <ServiceImage src="/images/blood-3d.webp" alt="" />
     <span>{t.needBlood}</span>
     <ChevronRight size={18} />
   </Link>
@@ -279,7 +279,7 @@ export default function HomePage() {
     href="/workers"
     className="sevana-service-item sevana-service-workers sevana-image-service"
   >
-    <ServiceImage src="/images/localworkers-3d.png" alt="" />
+    <ServiceImage src="/images/localworkers-3d.webp" alt="" />
     <span>{t.workers}</span>
     <ChevronRight size={18} />
   </Link>
