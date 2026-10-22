@@ -2,20 +2,12 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
   Wrench,
-  Zap,
-  Home,
-  Hammer,
-  Layers,
-  Paintbrush,
   ChevronRight,
-  House,
-  Flower2,
-  Sprout,
-  Tractor,
   LoaderCircle,
 } from "lucide-react";
 import { workerCategories } from "@/lib/data";
@@ -28,38 +20,65 @@ const groups = [
   {
     title: "Construction",
     subtitle: "Building and finishing work",
-    Icon: Home,
+    slug: "construction",
     items: [
-      { slug: "masonry-work", Icon: Layers, description: "Masonry and brick work" },
-      { slug: "carpenter", Icon: Hammer, description: "Doors, furniture and wood work" },
-      { slug: "tiles-marble", Icon: Layers, description: "Tiles and marble fitting" },
+      {
+        slug: "masonry-work",
+        description: "Masonry and brick work",
+      },
+      {
+        slug: "carpenter",
+        description: "Doors, furniture and wood work",
+      },
+      {
+        slug: "tiles-marble",
+        description: "Tiles and marble fitting",
+      },
     ],
   },
   {
     title: "Plumbing & Wiring",
     subtitle: "Plumbing and electrical services",
-    Icon: Zap,
+    slug: "plumbing-wiring",
     items: [
-      { slug: "plumbing-wiring", Icon: Zap, description: "Plumbers and electricians" },
+      {
+        slug: "plumbing-wiring",
+        description: "Plumbers and electricians",
+      },
     ],
   },
   {
     title: "Home Maintenance",
     subtitle: "Help to maintain your home",
-    Icon: House,
+    slug: "home-maintenance",
     items: [
-      { slug: "painters", Icon: Paintbrush, description: "Interior and exterior painting" },
-      { slug: "welders", Icon: Hammer, description: "Welding and metal work" },
-      { slug: "home-workers", Icon: Wrench, description: "General home help" },
-      { slug: "garden-services", Icon: Flower2, description: "Garden care and maintenance" },
+      {
+        slug: "painters",
+        description: "Interior and exterior painting",
+      },
+      {
+        slug: "welders",
+        description: "Welding and metal work",
+      },
+      {
+        slug: "home-workers",
+        description: "General home help",
+      },
+      {
+        slug: "garden-services",
+        description: "Garden care and maintenance",
+      },
     ],
   },
   {
     title: "Agricultural Works",
     subtitle: "Agriculture and local farm work",
-    Icon: Tractor,
+    slug: "agricultural-works",
     items: [
-      { slug: "agricultural-works", Icon: Sprout, description: "Agricultural and farming work" },
+      {
+        slug: "agricultural-works",
+        description: "Agricultural and farming work",
+      },
     ],
   },
 ];
@@ -93,21 +112,32 @@ export default function WorkersPage() {
 
       <div className="worker-category-groups">
         {groups.map((group) => (
-          <section className="worker-parent-card" key={group.title}>
+          <section
+            className="worker-parent-card"
+            key={group.title}
+          >
             <div className="worker-parent-heading">
               <span className="worker-parent-icon">
-                <group.Icon size={23} />
+                <Image
+                  src={`/emojis/${group.slug}.png`}
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="worker-emoji"
+                />
               </span>
 
               <div className="worker-parent-copy">
                 <h2>{group.title}</h2>
                 <p>{group.subtitle}</p>
-                <small>{group.items.length} service categories</small>
+                <small>
+                  {group.items.length} service categories
+                </small>
               </div>
             </div>
 
             <div className="worker-child-grid">
-              {group.items.map(({ slug, Icon, description }) => {
+              {group.items.map(({ slug, description }) => {
                 const category = categoryMap.get(slug);
 
                 if (!category) return null;
@@ -126,7 +156,13 @@ export default function WorkersPage() {
                     }`}
                   >
                     <span className={`category-icon icon-${slug}`}>
-                      <Icon size={21} />
+                      <Image
+                        src={`/emojis/${slug}.png`}
+                        alt=""
+                        width={36}
+                        height={36}
+                        className="worker-emoji"
+                      />
                     </span>
 
                     <span className="worker-child-text">
@@ -141,7 +177,10 @@ export default function WorkersPage() {
                         aria-label="Loading"
                       />
                     ) : (
-                      <ChevronRight size={18} className="row-chevron" />
+                      <ChevronRight
+                        size={18}
+                        className="row-chevron"
+                      />
                     )}
                   </Link>
                 );
