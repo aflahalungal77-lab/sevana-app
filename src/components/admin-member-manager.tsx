@@ -2,7 +2,7 @@
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, Pencil, Trash2, Users, Upload, Phone, LoaderCircle } from "lucide-react";
+import { ArrowLeft, Plus, Pencil, Trash2, Users, LoaderCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
 type Member = { id: string; name: string; ward_number: number; photo_url: string | null; contact_number: string; is_active: boolean };
