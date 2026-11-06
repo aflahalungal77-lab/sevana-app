@@ -466,3 +466,14 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 .sevana-members-home-icon{display:grid;width:54px;height:54px;place-items:center;border-radius:16px;background:#e7f6ec;color:#17633a;}
 @media(min-width:560px){.members-page .members-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:360px){.member-card{gap:10px;padding:11px;}.member-photo{width:68px;height:68px;flex-basis:68px;}.member-details h2{font-size:14px;}}
+
+/* Panchayat and ward member sections */
+.members-group{margin-top:22px;}
+.members-group-title{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:18px;font-weight:850;}
+.members-group-title svg{color:var(--green);}
+.member-designation{font-size:11px!important;color:var(--muted)!important;}
+.admin-record-member-photo{display:grid;width:48px;height:48px;flex:0 0 48px;place-items:center;overflow:hidden;border-radius:13px;background:var(--green-soft);color:var(--green);}
+.admin-record-member-photo img{width:100%;height:100%;object-fit:cover;}
+.admin-record-member-copy{flex:1;min-width:0;}
+.admin-record-member-copy strong{display:block;overflow-wrap:anywhere;}
+.admin-record-member-copy p{margin:3px 0 0;color:var(--muted);font-size:11px;overflow-wrap:anywhere;}
