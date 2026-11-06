@@ -67,7 +67,7 @@ export default function MembersPage() {
                 <span className="member-ward"><MapPin size={13} /> Ward {member.ward_number}</span>
                 <h2>{member.name}</h2>
                 <p><Phone size={13} /> {member.contact_number}</p>
-                <a className="call-button member-call" href={`tel:${member.contact_number.replace(/[^+\\d]/g, "")}`}><Phone size={15} /> Call</a>
+                <a className="call-button member-call" href={`tel:${member.contact_number.replace(/[^+\d]/g, "")}`}><Phone size={15} /> Call</a>
               </div>
             </article>
           ))}
