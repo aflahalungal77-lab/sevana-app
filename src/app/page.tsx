@@ -13,6 +13,7 @@ import {
   Sparkles,
   Languages,
   Heart,
+  Users,
 } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 
@@ -36,6 +37,7 @@ const translations = {
     findDonor: "Find a Donor",
     needBlood: "Need Blood?",
     workers: "Local Workers",
+    members: "Members",
     emergencyTitle: "Need urgent help?",
     emergencyDescription: "Find emergency contacts quickly.",
     charity: "MEENARKUZHI SHIHAB THANGAL CHARITY",
@@ -70,6 +72,7 @@ const translations = {
     findDonor: "രക്തദാതാക്കളെ കണ്ടെത്താം",
     needBlood: "രക്തം ആവശ്യമുണ്ടോ?",
     workers: "പ്രാദേശിക തൊഴിലാളികൾ",
+    members: "ജനപ്രതിനിധികൾ",
     emergencyTitle: "അടിയന്തര സഹായം വേണോ?",
     emergencyDescription: "അടിയന്തര കോൺടാക്ടുകൾ വേഗത്തിൽ കണ്ടെത്താം.",
     charity: "മീനാർകുഴി ശിഹാബ് തങ്ങൾ ചാരിറ്റി",
@@ -280,6 +283,15 @@ export default function HomePage() {
   >
     <ServiceImage src="/images/localworkers-3d.webp" alt="" />
     <span>{t.workers}</span>
+    <ChevronRight size={18} />
+  </Link>
+
+  <Link
+    href="/members"
+    className="sevana-service-item sevana-image-service sevana-service-members"
+  >
+    <span className="sevana-members-home-icon"><Users size={34} /></span>
+    <span>{t.members}</span>
     <ChevronRight size={18} />
   </Link>
 </div>
