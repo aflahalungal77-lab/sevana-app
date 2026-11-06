@@ -1,5 +1,5 @@
-const CACHE_NAME = "sevana-shell-v1";
-const APP_SHELL = ["/", "/manifest.json", "/sevana-icon.svg"];
+const CACHE_NAME = "sevana-shell-v2";
+const APP_SHELL = ["/", "/manifest.json", "/logo.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
