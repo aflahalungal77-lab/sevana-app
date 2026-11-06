@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   PhoneCall, CarFront, Wrench, Droplet, Plus, LogOut, RefreshCw,
-  LayoutGrid, ArrowUpRight, ShieldCheck
+  LayoutGrid, ArrowUpRight, ShieldCheck, Users
 } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
@@ -16,6 +16,7 @@ const modules = [
   { title: "Taxi & Transport", kind: "transport", href: "/admin/listings?kind=transport", Icon: CarFront, description: "Cars, autos, buses and rentals", tone: "amber" },
   { title: "Local Workers", kind: "worker", href: "/admin/listings?kind=worker", Icon: Wrench, description: "Plumbing, wiring, repairs and more", tone: "blue" },
   { title: "Blood Donors", kind: "donor", href: "/admin/donors", Icon: Droplet, description: "Manage consenting donor listings", tone: "red" },
+  { title: "Members", kind: "members", href: "/admin/members", Icon: Users, description: "Manage ward representatives", tone: "green" },
 ];
 
 export function AdminDashboard({ email }: { email: string }) {
