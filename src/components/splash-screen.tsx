@@ -24,7 +24,7 @@ export function SplashScreen() {
   return (
     <div className="splash-screen" aria-label="Sevana loading">
       <div className="splash-mark">
-        <img src="/logo.png" alt="Sevana logo" />
+        <img src="/sevana-logo.png" alt="Sevana logo" />
       </div>
       <h1>sevana<span>.</span></h1>
       <p>Local services. Connected.</p>
