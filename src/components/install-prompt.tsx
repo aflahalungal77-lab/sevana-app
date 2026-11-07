@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Download, X, Smartphone } from "lucide-react";
 
 type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
 
 export function InstallPrompt() {
-  const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
+  const router = useRouter();
   const [show, setShow] = useState(false);
-  const [ios, setIos] = useState(false);
 
   useEffect(() => {
     const standalone = window.matchMedia("(display-mode: standalone)").matches ||
@@ -16,22 +16,19 @@ export function InstallPrompt() {
     if (standalone) return;
 
     const dismissed = sessionStorage.getItem("sevana-install-dismissed");
-    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    setIos(isIos);
     if (!dismissed) setShow(true);
 
     const handler = (event: Event) => {
       event.preventDefault();
       const promptEvent = event as InstallEvent;
       (window as Window & { __sevanaInstallPrompt?: InstallEvent }).__sevanaInstallPrompt = promptEvent;
-      setInstallEvent(promptEvent);
     };
     window.addEventListener("beforeinstallprompt", handler);
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
   function install() {
-    window.location.href = "/install";
+    router.push("/install");
   }
 
   function continueOnWebsite() {
