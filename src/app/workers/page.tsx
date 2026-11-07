@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -37,21 +36,14 @@ const groups = [
     ],
   },
   {
-    title: "Plumbing & Wiring",
-    subtitle: "Plumbing and electrical services",
-    slug: "plumbing-wiring",
+    title: "Home Maintenance",
+    subtitle: "Help to maintain your home",
+    slug: "home-maintenance",
     items: [
       {
         slug: "plumbing-wiring",
         description: "Plumbers and electricians",
       },
-    ],
-  },
-  {
-    title: "Home Maintenance",
-    subtitle: "Help to maintain your home",
-    slug: "home-maintenance",
-    items: [
       {
         slug: "painters",
         description: "Interior and exterior painting",
