@@ -140,7 +140,7 @@ export default function HomePage() {
       <header className="sevana-header">
         <Link href="/" className="sevana-brand" aria-label="Sevana home">
           <span className="sevana-brand-mark">
-            <HeartPulse size={28} strokeWidth={2.2} />
+            <img src="/logo.png" alt="Sevana logo" />
           </span>
           <span className="sevana-brand-copy">
             <strong>
