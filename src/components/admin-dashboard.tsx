@@ -47,7 +47,9 @@ export function AdminDashboard({ email }: { email: string }) {
     <div className="page admin-page premium-admin">
       <header className="admin-topbar">
         <Link href="/" className="admin-brand" aria-label="Back to Sevana">
-          <span className="admin-brand-mark"><ShieldCheck size={22} /></span>
+          <span className="admin-brand-mark">
+            <img src="/logo.png" alt="Sevana logo" />
+          </span>
           <span><strong>sevana<span>.</span></strong><small>ADMIN WORKSPACE</small></span>
         </Link>
         <button className="icon-button" onClick={logout} aria-label="Sign out" title="Sign out"><LogOut size={18} /></button>
