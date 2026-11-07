@@ -22,27 +22,16 @@ export function InstallPrompt() {
 
     const handler = (event: Event) => {
       event.preventDefault();
-      setInstallEvent(event as InstallEvent);
+      const promptEvent = event as InstallEvent;
+      (window as Window & { __sevanaInstallPrompt?: InstallEvent }).__sevanaInstallPrompt = promptEvent;
+      setInstallEvent(promptEvent);
     };
     window.addEventListener("beforeinstallprompt", handler);
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
-  async function install() {
-    if (installEvent) {
-      await installEvent.prompt();
-      const choice = await installEvent.userChoice;
-      if (choice.outcome === "accepted") { setShow(false); window.dispatchEvent(new Event("sevana:start-splash")); }
-      setInstallEvent(null);
-    } else if (ios) {
-      setShow(false);
-      alert('To install Sevana on iPhone: tap Share, then "Add to Home Screen".');
-      window.dispatchEvent(new Event("sevana:start-splash"));
-    } else {
-      setShow(false);
-      alert("If installation is supported, use your browser menu and choose Install app or Add to Home screen.");
-      window.dispatchEvent(new Event("sevana:start-splash"));
-    }
+  function install() {
+    window.location.href = "/install";
   }
 
   function continueOnWebsite() {
