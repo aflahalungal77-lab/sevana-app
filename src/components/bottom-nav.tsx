@@ -13,7 +13,7 @@ const links = [
 
 export function BottomNav() {
   const pathname = usePathname();
-  if (pathname.startsWith("/admin") || pathname.startsWith("/install")) return null;
+  if (pathname.startsWith("/admin")) return null;
   return (
     <nav className="bottom-nav" aria-label="Main navigation">
       {links.map(({ href, label, Icon }) => {
