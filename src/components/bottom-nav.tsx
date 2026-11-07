@@ -8,7 +8,7 @@ const links = [
   { href: "/", label: "Home", Icon: Home },
   { href: "/services", label: "Services", Icon: LayoutGrid },
   { href: "/donors", label: "Blood", Icon: Droplet },
-  { href: "/about", label: "About", Icon: UserRound },
+  { href: "/about", label: "About", Icon: Info },
 ];
 
 export function BottomNav() {
