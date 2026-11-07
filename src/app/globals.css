@@ -477,3 +477,16 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 .admin-record-member-copy{flex:1;min-width:0;}
 .admin-record-member-copy strong{display:block;overflow-wrap:anywhere;}
 .admin-record-member-copy p{margin:3px 0 0;color:var(--muted);font-size:11px;overflow-wrap:anywhere;}
+
+
+/* Official Sevana logo sizing across brand placements. */
+.sevana-brand-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:inherit;}
+.sevana-about-page .sevana-about-brand-icon{padding:5px;}
+.sevana-about-page .sevana-about-brand-icon img{display:block;width:100%;height:100%;object-fit:contain;border-radius:18px;}
+.sevana-about-page .sevana-about-footer-brand img{display:block;width:27px;height:27px;object-fit:contain;border-radius:8px;}
+.splash-mark{overflow:hidden;padding:7px;background:#fff;}
+.splash-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:18px;}
+.install-logo{overflow:hidden;padding:6px;background:#fff;}
+.install-logo img{display:block;width:100%;height:100%;object-fit:contain;border-radius:16px;}
+.admin-brand-mark{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;overflow:hidden;border-radius:13px;background:#fff;}
+.admin-brand-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:inherit;}
