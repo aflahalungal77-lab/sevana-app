@@ -108,5 +108,5 @@ Community members can contribute by sharing accurate service information, report
 </p>
 
 <p align="center">
-  <a href="https://sevana.vercel.app/">Explore Sevana</a>
+  <a href="https://sevana-app.vercel.app/">Explore Sevana</a>
 </p>
