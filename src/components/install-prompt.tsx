@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Download, X, Smartphone } from "lucide-react";
+import { Download, X } from "lucide-react";
 
 type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
 
@@ -56,7 +56,9 @@ export function InstallPrompt() {
     <div className="modal-backdrop" role="presentation">
       <section className="install-modal" role="dialog" aria-modal="true" aria-labelledby="install-title">
         <button className="icon-button modal-close" aria-label="Close" onClick={continueOnWebsite}><X size={18} /></button>
-        <div className="install-logo"><Smartphone size={28} /></div>
+        <div className="install-logo">
+          <img src="/logo.png" alt="Sevana logo" />
+        </div>
         <p className="eyebrow">YOUR LOCAL SERVICES, ONE APP</p>
         <h2 id="install-title">Install Sevana</h2>
         <p className="muted">Quick access to useful services around your area, right from your home screen.</p>
