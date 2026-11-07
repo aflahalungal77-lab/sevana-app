@@ -64,7 +64,7 @@ export default async function WorkerCategoryPage({
         <div className="empty-state">
           <div className="empty-icon">
             <Image
-              src={`/emojis/${slug}.png`}
+              src={`/emojis/${slug === "laterite-stone-quarrying" ? "stone" : slug}.png`}
               alt={category.name}
               width={56}
               height={56}
