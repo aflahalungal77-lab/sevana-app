@@ -6,7 +6,7 @@ import {
   ArrowLeft, Plus, Trash2, Pencil, Save, X, GripVertical, Eye,
   Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital,
   Ambulance, Shield, Flame, Droplet, Baby, Pill, Stethoscope,
-  BusFront, KeyRound, Zap, Paintbrush, HardHat, RefreshCw, Truck, Hammer, House, Flower2, Sprout, Layers
+  BusFront, KeyRound, Zap, Paintbrush, HardHat, RefreshCw, Truck, Hammer, House, Flower2, Sprout, Layers, Cog
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
@@ -27,7 +27,9 @@ const categoryIcons: Record<string, LucideIcon> = {
   auto: CarFront, "tourist-bus": BusFront, "rent-a-car": KeyRound, "goods-lorry": Truck,
   "plumbing-wiring": Zap, "masonry-work": Layers, carpenter: Hammer, "tiles-marble": Layers,
   painters: Paintbrush, welders: Hammer, "home-workers": House, "garden-services": Flower2,
-  "agricultural-works": Sprout, repair: Wrench, construction: HardHat, painting: Paintbrush,
+  "agricultural-works": Sprout, "laterite-stone-quarrying": Hammer,
+  "automobile-mechanical-works": CarFront, "machinery-repair-maintenance": Cog,
+  "mechanical-installation": Wrench, repair: Wrench, construction: HardHat, painting: Paintbrush,
 };
 
 export function AdminListingManager({
