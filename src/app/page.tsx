@@ -180,7 +180,7 @@ export default function HomePage() {
 <section className="sevana-hero sevana-hero-image-layout">
 <img
   className="sevana-hero-background"
-  src="/images/hero.jpg"
+  src="/images/hero.webp"
   alt=""
   aria-hidden="true"
 />
