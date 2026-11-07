@@ -34,7 +34,7 @@ export default function ProfilePage() {
       {/* Brand hero */}
       <section className="profile-hero sevana-about-hero">
         <div className="sevana-about-brand-icon">
-          <img src="/logo.png" alt="Sevana logo" />
+          <img src="/sevana-logo.png" alt="Sevana logo" />
         </div>
 
         <p className="sevana-about-overline">YOUR COMMUNITY, CONNECTED</p>
@@ -215,7 +215,7 @@ export default function ProfilePage() {
       {/* Footer */}
       <footer className="sevana-about-footer">
         <div className="sevana-about-footer-brand">
-          <img src="/logo.png" alt="Sevana logo" />
+          <img src="/sevana-logo.png" alt="Sevana logo" />
           <strong>
             sevana<span className="brand-dot">.</span>
           </strong>
