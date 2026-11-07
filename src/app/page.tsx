@@ -53,7 +53,7 @@ const translations = {
     services: "Services",
     donors: "Donors",
     notifications: "Notifications",
-    profile: "Profile",
+    profile: "About",
   },
   ml: {
     about: "ആമുഖം",
@@ -88,7 +88,7 @@ const translations = {
     services: "സേവനങ്ങൾ",
     donors: "ദാതാക്കൾ",
     notifications: "അറിയിപ്പുകൾ",
-    profile: "പ്രൊഫൈൽ",
+    profile: "ആമുഖം",
   },
 } as const;
 
@@ -153,7 +153,7 @@ export default function HomePage() {
         <div className="sevana-header-actions">
 
 
-          <Link href="/profile" className="sevana-about-button">
+          <Link href="/about" className="sevana-about-button">
             <Building2 size={18} />
             <span>{t.about}</span>
             <ChevronRight size={16} />
@@ -350,7 +350,7 @@ export default function HomePage() {
             <ChevronRight size={20} />
           </Link>
 
-          <Link href="/profile" className="sevana-quick-link sevana-quick-link-blue">
+          <Link href="/about" className="sevana-quick-link sevana-quick-link-blue">
             <span className="sevana-quick-link-icon">
               <HeartPulse size={22} />
             </span>
