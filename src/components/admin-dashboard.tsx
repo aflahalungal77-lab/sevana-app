@@ -48,7 +48,7 @@ export function AdminDashboard({ email }: { email: string }) {
       <header className="admin-topbar">
         <Link href="/" className="admin-brand" aria-label="Back to Sevana">
           <span className="admin-brand-mark">
-            <img src="/logo.png" alt="Sevana logo" />
+            <img src="/sevana-logo.png" alt="Sevana logo" />
           </span>
           <span><strong>sevana<span>.</span></strong><small>ADMIN WORKSPACE</small></span>
         </Link>
