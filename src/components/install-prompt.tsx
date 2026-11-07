@@ -28,6 +28,7 @@ export function InstallPrompt() {
   }, []);
 
   function install() {
+    setShow(false);
     router.push("/install");
   }
 
