@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LayoutGrid, Droplet, UserRound } from "lucide-react";
+import { Home, LayoutGrid, Droplet, Info } from "lucide-react";
 
 const links = [
   { href: "/", label: "Home", Icon: Home },
   { href: "/services", label: "Services", Icon: LayoutGrid },
   { href: "/donors", label: "Blood", Icon: Droplet },
-  { href: "/profile", label: "About", Icon: UserRound },
+  { href: "/about", label: "About", Icon: UserRound },
 ];
 
 export function BottomNav() {
