@@ -41,7 +41,7 @@ export default async function WorkerCategoryPage({
         </Link>
 
         <Image
-          src={`/emojis/${slug}.png`}
+          src={`/emojis/${slug === "laterite-stone-quarrying" ? "stone" : slug}.png`}
           alt={category.name}
           width={48}
           height={48}
