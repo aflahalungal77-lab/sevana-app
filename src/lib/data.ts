@@ -27,12 +27,16 @@ export const workerCategories: ServiceCategory[] = [
   { id: "masonry-work", name: "Masonry Work", slug: "masonry-work", kind: "worker" },
   { id: "carpenter", name: "Carpenter", slug: "carpenter", kind: "worker" },
   { id: "tiles-marble", name: "Tiles & Marble Work", slug: "tiles-marble", kind: "worker" },
+  { id: "laterite-stone-quarrying", name: "Laterite Stone Quarrying", slug: "laterite-stone-quarrying", kind: "worker" },
   { id: "plumbing-wiring", name: "Plumbing & Wiring", slug: "plumbing-wiring", kind: "worker" },
   { id: "painters", name: "Painters", slug: "painters", kind: "worker" },
   { id: "welders", name: "Welders", slug: "welders", kind: "worker" },
   { id: "home-workers", name: "Home Workers", slug: "home-workers", kind: "worker" },
   { id: "garden-services", name: "Garden Services", slug: "garden-services", kind: "worker" },
   { id: "agricultural-works", name: "Agricultural Works", slug: "agricultural-works", kind: "worker" },
+  { id: "automobile-mechanical-works", name: "Automobile Mechanical Works", slug: "automobile-mechanical-works", kind: "worker" },
+  { id: "machinery-repair-maintenance", name: "Machinery Repair & Maintenance", slug: "machinery-repair-maintenance", kind: "worker" },
+  { id: "mechanical-installation", name: "Mechanical Installation", slug: "mechanical-installation", kind: "worker" },
 ];
 
 export async function getListings(kind: "hotline" | "transport" | "worker", categorySlug?: string): Promise<ServiceListing[]> {
