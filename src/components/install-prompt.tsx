@@ -57,7 +57,7 @@ export function InstallPrompt() {
       <section className="install-modal" role="dialog" aria-modal="true" aria-labelledby="install-title">
         <button className="icon-button modal-close" aria-label="Close" onClick={continueOnWebsite}><X size={18} /></button>
         <div className="install-logo">
-          <img src="/logo.png" alt="Sevana logo" />
+          <img src="/sevana-logo.png" alt="Sevana logo" />
         </div>
         <p className="eyebrow">YOUR LOCAL SERVICES, ONE APP</p>
         <h2 id="install-title">Install Sevana</h2>
