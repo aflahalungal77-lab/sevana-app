@@ -1,7 +1,7 @@
 # 💚 Sevana — Local Services Platform
 
 <p align="center">
-  <img src="public/sevana-icon.svg" alt="Sevana Logo" width="110" />
+  <img src="public/logo.png" alt="Sevana Logo" width="110" />
 </p>
 
 <h3 align="center">സേവന — നാടിനായി, നാട്ടുകാർക്കായി.</h3>
