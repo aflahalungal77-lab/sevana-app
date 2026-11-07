@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Leaf } from "lucide-react";
 
 export function SplashScreen() {
   const [visible, setVisible] = useState(false);
@@ -24,7 +23,9 @@ export function SplashScreen() {
   if (!visible) return null;
   return (
     <div className="splash-screen" aria-label="Sevana loading">
-      <div className="splash-mark"><Leaf size={34} strokeWidth={2.2} /></div>
+      <div className="splash-mark">
+        <img src="/logo.png" alt="Sevana logo" />
+      </div>
       <h1>sevana<span>.</span></h1>
       <p>Local services. Connected.</p>
       <div className="splash-loader" />
