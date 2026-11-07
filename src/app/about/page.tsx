@@ -106,6 +106,14 @@ export default function AboutPage() {
         .developer-socials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 19px; }
         .developer-socials a { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 42px; border: 1px solid #e1ebe4; border-radius: 12px; color: #355844; background: #fff; text-decoration: none; font-size: 10px; font-weight: 750; transition: .2s ease; }
         .developer-socials a:hover { transform: translateY(-2px); border-color: #acd2b8; background: #f4faf5; }
+        .supporter-card { overflow: hidden; margin-top: 14px; padding: 20px; border: 1px solid #dce9e0; border-radius: 24px; background: linear-gradient(150deg, #fff 0%, #f3f9f5 100%); box-shadow: 0 12px 32px rgba(23, 74, 48, .06); }
+        .supporter-top { display: flex; align-items: center; gap: 16px; }
+        .supporter-photo { width: 82px; height: 82px; flex: 0 0 82px; overflow: hidden; padding: 3px; border: 2px solid #c8e5d2; border-radius: 23px; background: #eaf5ed; box-shadow: 0 7px 18px rgba(22,115,75,.12); }
+        .supporter-photo img { width: 100%; height: 100%; border-radius: 18px; object-fit: cover; }
+        .supporter-badge { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 999px; color: #16734b; background: #e9f5ed; font-size: 9px; font-weight: 800; letter-spacing: .5px; }
+        .supporter-identity h3 { margin: 9px 0 3px; font-size: 19px; line-height: 1.2; font-weight: 900; letter-spacing: -.5px; }
+        .supporter-identity p { margin: 0; color: #708077; font-size: 11px; font-weight: 600; }
+        .supporter-note { margin: 17px 0 0; padding-top: 14px; border-top: 1px solid #e3eee6; color: #637269; font-size: 12px; line-height: 1.8; }
         .about-community { display: flex; align-items: center; gap: 13px; margin-top: 24px; padding: 17px; border: 1px solid #dcebe1; border-radius: 18px; background: #eef7f1; }
         .about-community-icon { display: grid; place-items: center; width: 42px; height: 42px; flex: 0 0 42px; border-radius: 13px; color: var(--about-green); background: #fff; }
         .about-community strong { display: block; font-size: 12px; font-weight: 850; }
@@ -189,6 +197,18 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+        <div className="supporter-card">
+          <div className="supporter-top">
+            <div className="supporter-photo"><img src="/supporter.png" alt="Musthafa Meenarkuzhi" loading="lazy" /></div>
+            <div className="supporter-identity">
+              <span className="supporter-badge"><Heart size={11} /> SUPPORTER</span>
+              <h3>Musthafa Meenarkuzhi</h3>
+              <p>Supporter of Sevana</p>
+            </div>
+          </div>
+          <p className="supporter-note">With gratitude for the encouragement and support that help community initiatives grow.</p>
+        </div>
 
       <section className="about-community">
         <span className="about-community-icon"><Globe size={19} /></span>
