@@ -83,9 +83,9 @@ const groups = [
     subtitle: "Mechanical repair, installation and machine services",
     slug: "mechanical-engineering",
     items: [
-      { slug: "automobile-mechanical-works", description: "Vehicle mechanical repair and servicing" },
-      { slug: "machinery-repair-maintenance", description: "Industrial and agricultural machinery repair" },
-      { slug: "mechanical-installation", description: "Mechanical equipment installation" },
+      { slug: "automobile-mechanical-works", icon: "engineering", description: "Vehicle mechanical repair and servicing" },
+      { slug: "machinery-repair-maintenance", icon: "engineering", description: "Industrial and agricultural machinery repair" },
+      { slug: "mechanical-installation", icon: "engineering", description: "Mechanical equipment installation" },
     ],
   },
 ];
