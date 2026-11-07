@@ -33,6 +33,11 @@ const groups = [
         slug: "tiles-marble",
         description: "Tiles and marble fitting",
       },
+      {
+        slug: "laterite-stone-quarrying",
+        icon: "stone",
+        description: "Laterite stone cutting and quarrying",
+      },
     ],
   },
   {
@@ -73,6 +78,16 @@ const groups = [
       },
     ],
   },
+  {
+    title: "Mechanical Engineering",
+    subtitle: "Mechanical repair, installation and machine services",
+    slug: "mechanical-engineering",
+    items: [
+      { slug: "automobile-mechanical-works", description: "Vehicle mechanical repair and servicing" },
+      { slug: "machinery-repair-maintenance", description: "Industrial and agricultural machinery repair" },
+      { slug: "mechanical-installation", description: "Mechanical equipment installation" },
+    ],
+  },
 ];
 
 export default function WorkersPage() {
@@ -111,7 +126,7 @@ export default function WorkersPage() {
             <div className="worker-parent-heading">
               <span className="worker-parent-icon">
                 <Image
-                  src={`/emojis/${group.slug}.png`}
+                  src={`/emojis/${group.slug === "mechanical-engineering" ? "engineering" : group.slug}.png`}
                   alt=""
                   width={32}
                   height={32}
@@ -129,7 +144,7 @@ export default function WorkersPage() {
             </div>
 
             <div className="worker-child-grid">
-              {group.items.map(({ slug, description }) => {
+              {group.items.map(({ slug, description, icon }) => {
                 const category = categoryMap.get(slug);
 
                 if (!category) return null;
@@ -149,7 +164,7 @@ export default function WorkersPage() {
                   >
                     <span className={`category-icon icon-${slug}`}>
                       <Image
-                        src={`/emojis/${slug}.png`}
+                        src={`/emojis/${icon || slug}.png`}
                         alt=""
                         width={36}
                         height={36}
