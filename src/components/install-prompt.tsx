@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Download, X, Smartphone } from "lucide-react";
 
 type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
 
 export function InstallPrompt() {
-  const router = useRouter();
   const [show, setShow] = useState(false);
+  const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
+  const [ios, setIos] = useState(false);
 
   useEffect(() => {
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    setIos(isIos);
     const standalone = window.matchMedia("(display-mode: standalone)").matches ||
       (navigator as Navigator & { standalone?: boolean }).standalone === true;
     if (standalone) return;
@@ -20,16 +22,27 @@ export function InstallPrompt() {
 
     const handler = (event: Event) => {
       event.preventDefault();
-      const promptEvent = event as InstallEvent;
-      (window as Window & { __sevanaInstallPrompt?: InstallEvent }).__sevanaInstallPrompt = promptEvent;
+      setInstallEvent(event as InstallEvent);
     };
     window.addEventListener("beforeinstallprompt", handler);
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
-  function install() {
-    setShow(false);
-    router.push("/install");
+  async function install() {
+    if (installEvent) {
+      await installEvent.prompt();
+      const choice = await installEvent.userChoice;
+      if (choice.outcome === "accepted") { setShow(false); window.dispatchEvent(new Event("sevana:start-splash")); }
+      setInstallEvent(null);
+    } else if (ios) {
+      setShow(false);
+      alert('To install Sevana on iPhone: tap Share, then "Add to Home Screen".');
+      window.dispatchEvent(new Event("sevana:start-splash"));
+    } else {
+      setShow(false);
+      alert("If installation is supported, use your browser menu and choose Install app or Add to Home screen.");
+      window.dispatchEvent(new Event("sevana:start-splash"));
+    }
   }
 
   function continueOnWebsite() {
