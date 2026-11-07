@@ -490,3 +490,292 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 .install-logo img{display:block;width:100%;height:100%;object-fit:contain;border-radius:16px;}
 .admin-brand-mark{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;overflow:hidden;border-radius:13px;background:#fff;}
 .admin-brand-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:inherit;}
+
+
+/* =========================================
+   SEVANA — PREMIUM QUICK ACTIONS
+   Emerald / White Design
+========================================= */
+
+.quick-actions-section {
+  width: 100%;
+  padding: 36px 0;
+  background: transparent;
+}
+
+.quick-actions-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.quick-actions-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.quick-actions-heading h2 {
+  color: #123c2b;
+  font-size: clamp(21px, 3vw, 28px);
+  font-weight: 750;
+  letter-spacing: -0.8px;
+}
+
+.quick-actions-heading p {
+  color: #718078;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* GRID */
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+}
+
+/* CARD */
+
+.quick-action-card {
+  position: relative;
+  min-width: 0;
+  min-height: 155px;
+  padding: 23px 19px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  overflow: hidden;
+  text-decoration: none;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    #f7fbf8
+  );
+
+  border: 1px solid #e5eee8;
+  border-radius: 19px;
+
+  box-shadow:
+    0 4px 15px rgba(16, 65, 42, 0.045),
+    0 1px 3px rgba(16, 65, 42, 0.035);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Decorative glow */
+
+.quick-action-card::before {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  right: -45px;
+  top: -45px;
+  border-radius: 50%;
+  background: rgba(20, 125, 75, 0.055);
+  transition: transform 0.4s ease;
+  pointer-events: none;
+}
+
+/* ICON */
+
+.quick-action-icon {
+  width: 49px;
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background: #e9f6ed;
+  color: #087b45;
+
+  font-size: 24px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+/* TEXT */
+
+.quick-action-content {
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.quick-action-title {
+  color: #173e2d;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.quick-action-description {
+  margin-top: 6px;
+  color: #84928a;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ARROW */
+
+.quick-action-arrow {
+  position: absolute;
+  right: 19px;
+  bottom: 20px;
+
+  color: #16834d;
+  font-size: 19px;
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+/* HOVER */
+
+@media (hover: hover) {
+  .quick-action-card:hover {
+    transform: translateY(-5px);
+    border-color: #a9d7b8;
+
+    box-shadow:
+      0 14px 30px rgba(16, 91, 52, 0.10),
+      0 3px 8px rgba(16, 91, 52, 0.04);
+  }
+
+  .quick-action-card:hover::before {
+    transform: scale(1.5);
+  }
+
+  .quick-action-card:hover .quick-action-icon {
+    transform: scale(1.08);
+    background: #d8f0e0;
+  }
+
+  .quick-action-card:hover .quick-action-arrow {
+    transform: translate(3px, -3px);
+    color: #075b34;
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .quick-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px;
+  }
+}
+
+/* MOBILE — EXACTLY 2 PER ROW */
+
+@media (max-width: 600px) {
+  .quick-actions-section {
+    padding: 25px 0;
+  }
+
+  .quick-actions-container {
+    padding: 0 15px;
+  }
+
+  .quick-actions-heading {
+    margin-bottom: 17px;
+  }
+
+  .quick-actions-heading h2 {
+    font-size: 21px;
+  }
+
+  .quick-actions-heading p {
+    font-size: 11px;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .quick-action-card {
+    min-height: 137px;
+    padding: 15px 13px;
+    border-radius: 16px;
+  }
+
+  .quick-action-icon {
+    width: 41px;
+    height: 41px;
+    border-radius: 12px;
+    font-size: 21px;
+  }
+
+  .quick-action-content {
+    margin-top: 16px;
+  }
+
+  .quick-action-title {
+    font-size: 13px;
+  }
+
+  .quick-action-description {
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  .quick-action-arrow {
+    right: 12px;
+    bottom: 13px;
+    font-size: 15px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 360px) {
+  .quick-actions-container {
+    padding: 0 11px;
+  }
+
+  .quick-actions {
+    gap: 9px;
+  }
+
+  .quick-action-card {
+    padding: 13px 11px;
+    min-height: 128px;
+  }
+
+  .quick-action-title {
+    font-size: 12px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-action-card,
+  .quick-action-card::before,
+  .quick-action-icon,
+  .quick-action-arrow {
+    transition: none;
+  }
+
+  .quick-action-card:hover {
+    transform: none;
+  }
+}
+
