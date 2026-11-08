@@ -49,7 +49,6 @@ export function ListingCard({
     others: "others",
     "mechanical-engineering": "others",
     "videography-editing": "others",
-    "curtain-carpet-works": "others",
     repair: "repair",
     construction: "construction",
     painting: "painting",
