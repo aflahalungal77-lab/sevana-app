@@ -28,7 +28,7 @@ export default async function WorkerCategoryPage({
   }
 
   const listings = await getListings("worker", slug);
-  const categoryIcon = slug === "plastering-work" ? "masonry-work" : slug === "laterite-stone-quarrying" ? "stone" : slug === "mechanical-engineering" || slug === "videography-editing" ? "others" : slug;
+  const categoryIcon = slug === "plastering-work" ? "masonry-work" : slug === "laterite-stone-quarrying" ? "stone" : slug === "videography-editing" ? "others" : slug;
 
   return (
     <div className="page">
