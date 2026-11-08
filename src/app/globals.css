@@ -591,3 +591,15 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 @media(prefers-reduced-motion:reduce){
   .local-worker-category-modal{animation:none;}
 }
+
+/* Donor search loading state */
+.donor-results-skeleton{display:grid;gap:11px;margin-top:14px;}
+.donor-skeleton-card{display:flex;align-items:center;gap:13px;min-height:86px;padding:15px;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);}
+.donor-skeleton-badge{width:48px;height:48px;flex:0 0 48px;border-radius:15px;background:linear-gradient(90deg,#f2e8e7 25%,#f9f2f1 50%,#f2e8e7 75%);background-size:200% 100%;animation:donor-skeleton-shimmer 1.35s ease-in-out infinite;}
+.donor-skeleton-copy{display:grid;flex:1;gap:9px;}
+.donor-skeleton-line{display:block;height:9px;border-radius:999px;background:linear-gradient(90deg,#edf1ed 25%,#f7f9f7 50%,#edf1ed 75%);background-size:200% 100%;animation:donor-skeleton-shimmer 1.35s ease-in-out infinite;}
+.donor-skeleton-line-title{width:46%;height:12px;}
+.donor-skeleton-line-short{width:68%;}
+.donor-skeleton-line-meta{width:36%;height:7px;}
+@keyframes donor-skeleton-shimmer{to{background-position:-200% 0;}}
+@media(prefers-reduced-motion:reduce){.donor-skeleton-badge,.donor-skeleton-line{animation:none;background:#edf1ed;}}
