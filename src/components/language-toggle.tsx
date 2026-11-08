@@ -20,6 +20,8 @@ const enToMl: Record<string, string> = {
   "What do you need help with?": "എന്ത് സഹായമാണ് വേണ്ടത്?", "Select a service to view worker contacts.": "തൊഴിലാളികളുടെ കോൺടാക്ടുകൾ കാണാൻ ഒരു സേവനം തിരഞ്ഞെടുക്കുക.",
   "Construction": "നിർമാണം", "Building and finishing work": "കെട്ടിട നിർമാണവും ഫിനിഷിങ്ങും", "Masonry Work": "കൽപ്പണി", "Masonry and brick work": "കൽപ്പണിയും ഇഷ്ടികപ്പണിയും",
   "Carpenter": "മരപ്പണി", "Doors, furniture and wood work": "വാതിൽ, ഫർണിച്ചർ, മരപ്പണികൾ", "Tiles & Marble Work": "ടൈൽസ് & മാർബിൾ പണി", "Tiles and marble fitting": "ടൈൽസ്, മാർബിൾ പാകൽ",
+  "Plastering Work": "തേപ്പ് പണി",
+  "Wall plastering and finishing work": "ചുമർ തേയ്ക്കലും ഫിനിഷിങ് ജോലികളും",
   "Laterite Stone Quarrying": "ചെങ്കല്ല് കോരൽ",
   "Laterite stone cutting and quarrying": "ചെങ്കല്ല് വെട്ടിയെടുക്കുന്ന ജോലി",
   "Mechanical Engineering": "മെക്കാനിക്കൽ എൻജിനീയറിങ്",
