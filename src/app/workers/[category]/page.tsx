@@ -40,7 +40,7 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
       </header>
       {listings.length ? <div className="listing-list">{listings.map(item=><ListingCard key={item.id} item={item}/>)}</div> : (
         <div className="empty-state">
-          <div className="empty-icon"><img src={categoryIcon} alt={category.name} width={56} height={56} className="transport-emoji" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = "/emojis/others.png"; }}/></div>
+          <div className="empty-icon"><img src={categoryIcon} alt={category.name} width={56} height={56} className="transport-emoji"/></div>
           <h2>No workers listed yet</h2>
           <p>Worker details will appear here when added by the admin.</p>
         </div>
