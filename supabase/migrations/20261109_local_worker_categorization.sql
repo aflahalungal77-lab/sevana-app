@@ -11,7 +11,8 @@ create table if not exists public.worker_category_groups (
 
 alter table public.service_categories
   add column if not exists parent_group_id uuid references public.worker_category_groups(id) on delete set null,
-  add column if not exists icon_path text;
+  add column if not exists icon_path text,
+  add column if not exists sort_order integer not null default 0;
 
 create index if not exists worker_category_groups_sort_idx
   on public.worker_category_groups(sort_order, name);
@@ -60,8 +61,8 @@ drop policy if exists "Admins update worker categories" on public.service_catego
 create policy "Admins update worker categories"
 on public.service_categories for all
 to authenticated
-using (kind <> 'worker' or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'))
-with check (kind <> 'worker' or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+using (kind = 'worker' and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'))
+with check (kind = 'worker' and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
 
 -- Existing service_categories read policies are retained. Add an explicit public
 -- read policy for worker categories so the public directory can load dynamic data.
