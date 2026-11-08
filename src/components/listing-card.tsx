@@ -53,7 +53,6 @@ export function ListingCard({
     "videography-editing": "videography-editing",
     repair: "repair",
     construction: "construction",
-    painting: "painting",
   };
 
   const imageName = imageMap[slug];
