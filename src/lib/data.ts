@@ -30,12 +30,13 @@ export const workerCategories: ServiceCategory[] = [
   { id: "plastering-work", name: "Plastering Work", slug: "plastering-work", kind: "worker" },
   { id: "laterite-stone-quarrying", name: "Laterite Stone Quarrying", slug: "laterite-stone-quarrying", kind: "worker" },
   { id: "plumbing-wiring", name: "Plumbing & Wiring", slug: "plumbing-wiring", kind: "worker" },
-  { id: "painters", name: "Painters", slug: "painters", kind: "worker" },
+  { id: "painting-wood-polishing", name: "Painting & Wood Polishing", slug: "painting-wood-polishing", kind: "worker" },
   { id: "welders", name: "Welders", slug: "welders", kind: "worker" },
-  { id: "home-workers", name: "Home Workers", slug: "home-workers", kind: "worker" },
+  { id: "curtain-carpet-works", name: "Curtain & Carpet Works", slug: "curtain-carpet-works", kind: "worker" },
   { id: "garden-services", name: "Garden Services", slug: "garden-services", kind: "worker" },
-  { id: "agricultural-works", name: "Agricultural Works", slug: "agricultural-works", kind: "worker" },
-  { id: "others", name: "Others", slug: "others", kind: "worker" },
+  { id: "agricultural-works", name: "Agricultural Workers", slug: "agricultural-works", kind: "worker" },
+  { id: "mechanical-engineering", name: "Mechanical Engineering", slug: "mechanical-engineering", kind: "worker" },
+  { id: "videography-editing", name: "Videography & Editing", slug: "videography-editing", kind: "worker" },
 ];
 
 export async function getListings(kind: "hotline" | "transport" | "worker", categorySlug?: string): Promise<ServiceListing[]> {
