@@ -28,6 +28,7 @@ export default async function WorkerCategoryPage({
   }
 
   const listings = await getListings("worker", slug);
+  const categoryIcon = slug === "plastering-work" ? "masonry-work" : slug === "laterite-stone-quarrying" ? "stone" : slug === "mechanical-engineering" || slug === "videography-editing" ? "others" : slug;
 
   return (
     <div className="page">
@@ -64,7 +65,7 @@ export default async function WorkerCategoryPage({
         <div className="empty-state">
           <div className="empty-icon">
             <Image
-              src={`/emojis/${slug === "laterite-stone-quarrying" ? "stone" : slug}.png`}
+              src={`/emojis/${categoryIcon}.png`}
               alt={category.name}
               width={56}
               height={56}
