@@ -22,19 +22,6 @@ export function LocalWorkerCategorization() {
   const [childForm, setChildForm] = useState<Child | null>(null);
   const [dragged, setDragged] = useState<string | null>(null);
   const [iconFile, setIconFile] = useState<File | null>(null);
-  const [popupPosition, setPopupPosition] = useState<{ top: number; left: number } | null>(null);
-
-  function openPopupAt(element: HTMLElement) {
-    const rect = element.getBoundingClientRect();
-    const width = Math.min(520, window.innerWidth - 28);
-    const estimatedHeight = parentForm ? 420 : 500;
-    const left = Math.max(14, Math.min(rect.left, window.innerWidth - width - 14));
-    const top = rect.bottom + 8 + estimatedHeight < window.innerHeight
-      ? rect.bottom + 8
-      : Math.max(14, rect.top - estimatedHeight - 8);
-    setPopupPosition({ top, left });
-  }
-
   const load = useCallback(async () => {
     if (!supabase) { setMessage("Supabase is not configured."); setLoading(false); return; }
     setLoading(true);
@@ -112,7 +99,7 @@ export function LocalWorkerCategorization() {
       <header className="admin-subpage-header">
         <Link href="/admin" className="admin-back-link" aria-label="Back to dashboard"><ArrowLeft size={19}/></Link>
         <div><p className="eyebrow">LOCAL WORKERS · DIRECTORY STRUCTURE</p><h1>Categorization</h1><p>Create and organise main and sub categories.</p></div>
-        <button className="admin-add-button" onClick={e => {setIconFile(null);setChildForm(null);setParentForm({id:"",name:"",slug:"",icon_path:"/emojis/others.png",sort_order:parents.length+1});openPopupAt(e.currentTarget);}}><Plus size={17}/> Main</button>
+        <button className="admin-add-button" onClick={e => {setIconFile(null);setChildForm(null);setParentForm({id:"",name:"",slug:"",icon_path:"/emojis/others.png",sort_order:parents.length+1});}}><Plus size={17}/> Main</button>
       </header>
 
       <div className="admin-category-intro"><span className="admin-category-intro-icon"><FolderTree size={23}/></span><div><h2>Local Workers structure</h2><p>Add categories, set image paths, or drag a sub category into another main category.</p></div></div>
@@ -122,7 +109,7 @@ export function LocalWorkerCategorization() {
       {(parentForm || childForm) && (
         <div className="local-worker-modal-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget && !busy){setParentForm(null);setChildForm(null);setIconFile(null);}}}>
           <form className="form-card admin-edit-form premium-admin-form local-worker-category-modal" role="dialog" aria-modal="true" aria-labelledby="local-worker-modal-title" onSubmit={parentForm ? saveParent : saveChild}>
-            <div className="section-heading"><div><p className="eyebrow">CATEGORY SETTINGS</p><h2 id="local-worker-modal-title">{parentForm ? (parentForm.id ? "Edit main category" : "New main category") : (childForm?.id ? "Edit sub category" : "New sub category")}</h2></div><button type="button" className="icon-button" disabled={busy} aria-label="Close" onClick={() => {setParentForm(null);setChildForm(null);setIconFile(null);setPopupPosition(null);}}><X size={18}/></button></div>
+            <div className="section-heading"><div><p className="eyebrow">CATEGORY SETTINGS</p><h2 id="local-worker-modal-title">{parentForm ? (parentForm.id ? "Edit main category" : "New main category") : (childForm?.id ? "Edit sub category" : "New sub category")}</h2></div><button type="button" className="icon-button" disabled={busy} aria-label="Close" onClick={() => {setParentForm(null);setChildForm(null);setIconFile(null);}}><X size={18}/></button></div>
             <div className="field"><label className="field-label">Category name</label><input className="field-control" required maxLength={80} value={parentForm?.name ?? childForm?.name ?? ""} onChange={e => parentForm ? setParentForm({...parentForm,name:e.target.value}) : setChildForm({...childForm!,name:e.target.value})} placeholder="Enter category name"/></div>
             {!parentForm && <div className="field"><label className="field-label">Main category</label><select className="field-control" required value={childForm?.parent_group_id || ""} onChange={e=>setChildForm({...childForm!,parent_group_id:e.target.value})}><option value="">Choose main category</option>{parents.map(p=><option key={p.id} value={p.id}>{p.name}</option>)}</select></div>}
             <div className="field"><label className="field-label">Upload icon image</label><div className="admin-icon-path-input"><ImageIcon size={17}/><input className="field-control" type="file" accept="image/png,image/jpeg,image/webp" onChange={e=>setIconFile(e.target.files?.[0] || null)}/></div><small>PNG, JPG or WebP · Maximum 2 MB. Uploaded icons are stored securely in Sevana storage.</small><label className="field-label" style={{marginTop:10}}>Or use an existing image path</label><input className="field-control" value={parentForm?.icon_path ?? childForm?.icon_path ?? ""} onChange={e=>parentForm?setParentForm({...parentForm,icon_path:e.target.value}):setChildForm({...childForm!,icon_path:e.target.value})} placeholder="/emojis/category-name.png"/></div>
@@ -138,9 +125,9 @@ export function LocalWorkerCategorization() {
               <div className="local-worker-parent-heading">
                 <img src={parent.icon_path} alt="" onError={e=>{e.currentTarget.src="/emojis/others.png";}}/>
                 <div><strong>{parent.name}</strong><small>{children.filter(c=>c.parent_group_id===parent.id).length} sub categories · Drop here to move</small></div>
-                <button className="icon-button" onClick={e=>{setIconFile(null);setChildForm(null);setParentForm(parent);openPopupAt(e.currentTarget);}} aria-label="Edit main category"><Pencil size={16}/></button>
+                <button className="icon-button" onClick={e=>{setIconFile(null);setChildForm(null);setParentForm(parent);}} aria-label="Edit main category"><Pencil size={16}/></button>
                 <button className="icon-button danger-icon" onClick={()=>void removeParent(parent)} aria-label="Delete main category"><Trash2 size={16}/></button>
-                <button className="admin-add-button" onClick={e=>{setIconFile(null);setParentForm(null);setChildForm({id:"",name:"",slug:"",icon_path:"/emojis/others.png",sort_order:children.length+1,parent_group_id:parent.id});openPopupAt(e.currentTarget);}}><Plus size={16}/> Sub</button>
+                <button className="admin-add-button" onClick={e=>{setIconFile(null);setParentForm(null);setChildForm({id:"",name:"",slug:"",icon_path:"/emojis/others.png",sort_order:children.length+1,parent_group_id:parent.id});}}><Plus size={16}/> Sub</button>
               </div>
               <div className="local-worker-sub-list">
                 {children.filter(c=>c.parent_group_id===parent.id).map(child=>(
@@ -148,7 +135,7 @@ export function LocalWorkerCategorization() {
                     <GripVertical size={17} className="local-worker-sub-grip"/>
                     <img src={child.icon_path || "/emojis/others.png"} alt="" onError={e=>{e.currentTarget.src="/emojis/others.png";}}/>
                     <div><strong>{child.name}</strong><small>{child.slug}</small></div>
-                    <button className="icon-button" onClick={e=>{setIconFile(null);setParentForm(null);setChildForm(child);openPopupAt(e.currentTarget);}} aria-label="Edit sub category"><Pencil size={15}/></button>
+                    <button className="icon-button" onClick={e=>{setIconFile(null);setParentForm(null);setChildForm(child);}} aria-label="Edit sub category"><Pencil size={15}/></button>
                     <button className="icon-button danger-icon" onClick={()=>void removeChild(child)} aria-label="Delete sub category"><Trash2 size={15}/></button>
                   </article>
                 ))}
