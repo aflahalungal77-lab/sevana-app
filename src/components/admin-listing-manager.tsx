@@ -27,7 +27,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   auto: CarFront, "tourist-bus": BusFront, "rent-a-car": KeyRound, "goods-lorry": Truck,
   "plumbing-wiring": Zap, "masonry-work": Layers, carpenter: Hammer, "tiles-marble": Layers,
   painters: Paintbrush, welders: Hammer, "home-workers": House, "garden-services": Flower2,
-  "agricultural-works": Sprout, "laterite-stone-quarrying": Hammer,
+  "agricultural-works": Sprout, "laterite-stone-quarrying": Hammer, "plastering-work": Layers,
   "automobile-mechanical-works": CarFront, "machinery-repair-maintenance": Cog,
   "mechanical-installation": Wrench, repair: Wrench, construction: HardHat, painting: Paintbrush,
 };
