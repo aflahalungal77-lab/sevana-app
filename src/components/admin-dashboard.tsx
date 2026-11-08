@@ -14,7 +14,8 @@ type Counts = { listings: number; donors: number };
 const modules = [
   { title: "Hotlines", kind: "hotline", href: "/admin/listings?kind=hotline", Icon: PhoneCall, description: "Hospitals, doctors and emergency contacts", tone: "rose" },
   { title: "Taxi & Transport", kind: "transport", href: "/admin/listings?kind=transport", Icon: CarFront, description: "Cars, autos, buses and rentals", tone: "amber" },
-  { title: "Local Workers", kind: "worker", href: "/admin/listings?kind=worker", Icon: Wrench, description: "Plumbing, wiring, repairs and more", tone: "blue" },
+  { title: "Local Workers", kind: "worker", href: "/admin/listings?kind=worker", Icon: Wrench, description: "Manage worker listings", tone: "blue" },
+  { title: "Categorization – Local Workers", kind: "worker-categories", href: "/admin/categorization/local-workers", Icon: LayoutGrid, description: "Create main categories, sub categories and icons", tone: "green" },
   { title: "Blood Donors", kind: "donor", href: "/admin/donors", Icon: Droplet, description: "Manage consenting donor listings", tone: "red" },
   { title: "Members", kind: "members", href: "/admin/members", Icon: Users, description: "Manage ward representatives", tone: "green" },
 ];
