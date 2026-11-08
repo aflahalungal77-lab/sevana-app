@@ -41,7 +41,7 @@ export default async function WorkerCategoryPage({
         </Link>
 
         <Image
-          src={`/emojis/${slug === "plastering-work" ? "masonry-work" : slug === "laterite-stone-quarrying" ? "stone" : slug}.png`}
+          src={`/emojis/${slug === "plastering-work" ? "masonry-work" : slug === "laterite-stone-quarrying" ? "stone" : slug === "mechanical-engineering" || slug === "videography-editing" ? "others" : slug}.png`}
           alt={category.name}
           width={48}
           height={48}
