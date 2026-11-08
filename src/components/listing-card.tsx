@@ -41,6 +41,7 @@ export function ListingCard({
     carpenter: "carpenter",
     "tiles-marble": "tiles-marble",
     "laterite-stone-quarrying": "stone",
+    "plastering-work": "masonry-work",
     painters: "painters",
     welders: "welders",
     "home-workers": "home-workers",
