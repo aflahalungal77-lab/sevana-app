@@ -11,6 +11,12 @@ type Parent = { id: string; name: string; slug: string; icon_path: string; sort_
 type Child = { id: string; name: string; slug: string; icon_path: string | null; sort_order: number; parent_group_id: string | null };
 
 const slugify = (value: string) => value.toLowerCase().trim().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const normalizeIconPath = (path: string | null | undefined) => {
+  if (!path?.trim()) return "/emojis/others.png";
+  const value = path.trim();
+  if (/^(https?:\\/\\/|data:)/i.test(value)) return value;
+  return "/" + value.replace(/^public\\//, "").replace(/^\\/+/, "");
+};
 
 export function LocalWorkerCategorization() {
   const [parents, setParents] = useState<Parent[]>([]);
@@ -22,6 +28,13 @@ export function LocalWorkerCategorization() {
   const [childForm, setChildForm] = useState<Child | null>(null);
   const [dragged, setDragged] = useState<string | null>(null);
   const [iconFile, setIconFile] = useState<File | null>(null);
+  const [iconPreview, setIconPreview] = useState("");
+  useEffect(() => {
+    if (!iconFile) { setIconPreview(""); return; }
+    const objectUrl = URL.createObjectURL(iconFile);
+    setIconPreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [iconFile]);
   const load = useCallback(async () => {
     if (!supabase) { setMessage("Supabase is not configured."); setLoading(false); return; }
     setLoading(true);
@@ -49,7 +62,7 @@ export function LocalWorkerCategorization() {
   async function saveParent(e: React.FormEvent) {
     e.preventDefault(); if (!supabase || !parentForm) return;
     setBusy(true);
-    let iconPath = parentForm.icon_path.trim() || "/emojis/others.png";
+    let iconPath = normalizeIconPath(parentForm.icon_path);
     try { iconPath = await resolveIconPath(parentForm.name, iconPath); } catch (error) { setBusy(false); setMessage(error instanceof Error ? error.message : "Icon upload failed."); return; }
     const payload = { name: parentForm.name.trim(), slug: slugify(parentForm.name), icon_path: iconPath, sort_order: parentForm.sort_order };
     const result = parentForm.id
@@ -64,7 +77,7 @@ export function LocalWorkerCategorization() {
     e.preventDefault(); if (!supabase || !childForm) return;
     if (!childForm.parent_group_id) { setMessage("Choose a Main Category."); return; }
     setBusy(true);
-    let iconPath = childForm.icon_path?.trim() || "/emojis/others.png";
+    let iconPath = normalizeIconPath(childForm.icon_path);
     try { iconPath = await resolveIconPath(childForm.name, iconPath); } catch (error) { setBusy(false); setMessage(error instanceof Error ? error.message : "Icon upload failed."); return; }
     const payload = { name: childForm.name.trim(), slug: slugify(childForm.name), kind: "worker", parent_group_id: childForm.parent_group_id, icon_path: iconPath, sort_order: childForm.sort_order };
     const result = childForm.id
@@ -112,7 +125,7 @@ export function LocalWorkerCategorization() {
             <div className="section-heading"><div><p className="eyebrow">CATEGORY SETTINGS</p><h2 id="local-worker-modal-title">{parentForm ? (parentForm.id ? "Edit main category" : "New main category") : (childForm?.id ? "Edit sub category" : "New sub category")}</h2></div><button type="button" className="icon-button" disabled={busy} aria-label="Close" onClick={() => {setParentForm(null);setChildForm(null);setIconFile(null);}}><X size={18}/></button></div>
             <div className="field"><label className="field-label">Category name</label><input className="field-control" required maxLength={80} value={parentForm?.name ?? childForm?.name ?? ""} onChange={e => parentForm ? setParentForm({...parentForm,name:e.target.value}) : setChildForm({...childForm!,name:e.target.value})} placeholder="Enter category name"/></div>
             {!parentForm && <div className="field"><label className="field-label">Main category</label><select className="field-control" required value={childForm?.parent_group_id || ""} onChange={e=>setChildForm({...childForm!,parent_group_id:e.target.value})}><option value="">Choose main category</option>{parents.map(p=><option key={p.id} value={p.id}>{p.name}</option>)}</select></div>}
-            <div className="field"><label className="field-label">Upload icon image</label><div className="admin-icon-path-input"><ImageIcon size={17}/><input className="field-control" type="file" accept="image/png,image/jpeg,image/webp" onChange={e=>setIconFile(e.target.files?.[0] || null)}/></div><small>PNG, JPG or WebP · Maximum 2 MB. Uploaded icons are stored securely in Sevana storage.</small><label className="field-label" style={{marginTop:10}}>Or use an existing image path</label><input className="field-control" value={parentForm?.icon_path ?? childForm?.icon_path ?? ""} onChange={e=>parentForm?setParentForm({...parentForm,icon_path:e.target.value}):setChildForm({...childForm!,icon_path:e.target.value})} placeholder="/emojis/category-name.png"/></div>
+            <div className="field"><label className="field-label">Upload icon image</label><div className="admin-icon-path-input"><ImageIcon size={17}/><input className="field-control" type="file" accept="image/png,image/jpeg,image/webp" onChange={e=>setIconFile(e.target.files?.[0] || null)}/></div><small>PNG, JPG or WebP · Maximum 2 MB. Uploaded icons are stored securely in Sevana storage.</small><div style={{display:"flex",alignItems:"center",gap:12,marginTop:10,padding:10,border:"1px solid #e6eee8",borderRadius:12,background:"#f8fbf8"}}><img src={iconPreview || normalizeIconPath(parentForm?.icon_path ?? childForm?.icon_path)} alt="Category icon preview" width={48} height={48} style={{width:48,height:48,objectFit:"contain",borderRadius:9,background:"#fff"}} onError={e=>{e.currentTarget.onerror=null;e.currentTarget.src="/emojis/others.png";}}/><span style={{fontSize:11,color:"#647469"}}>{iconFile ? iconFile.name : "Current icon preview"}</span></div><label className="field-label" style={{marginTop:10}}>Or use an existing image path</label><input className="field-control" value={parentForm?.icon_path ?? childForm?.icon_path ?? ""} onChange={e=>parentForm?setParentForm({...parentForm,icon_path:e.target.value}):setChildForm({...childForm!,icon_path:e.target.value})} placeholder="/emojis/category-name.png"/></div>
             <button className="button button-primary button-full" type="submit" disabled={busy}><Save size={17}/>{busy ? "Saving…" : "Save category"}</button>
           </form>
         </div>
@@ -123,7 +136,7 @@ export function LocalWorkerCategorization() {
           {parents.map(parent => (
             <section className="local-worker-parent-panel" key={parent.id} onDragOver={e=>{if(dragged){e.preventDefault();e.dataTransfer.dropEffect="move";}}} onDrop={e=>{e.preventDefault();const id=e.dataTransfer.getData("text/plain")||dragged;if(id)void moveChild(id,parent.id);}}>
               <div className="local-worker-parent-heading">
-                <img src={parent.icon_path} alt="" onError={e=>{e.currentTarget.src="/emojis/others.png";}}/>
+                <img src={normalizeIconPath(parent.icon_path)} alt="" onError={e=>{e.currentTarget.onerror=null;e.currentTarget.src="/emojis/others.png";}}/>
                 <div><strong>{parent.name}</strong><small>{children.filter(c=>c.parent_group_id===parent.id).length} sub categories · Drop here to move</small></div>
                 <button className="icon-button" onClick={e=>{setIconFile(null);setChildForm(null);setParentForm(parent);}} aria-label="Edit main category"><Pencil size={16}/></button>
                 <button className="icon-button danger-icon" onClick={()=>void removeParent(parent)} aria-label="Delete main category"><Trash2 size={16}/></button>
@@ -133,7 +146,7 @@ export function LocalWorkerCategorization() {
                 {children.filter(c=>c.parent_group_id===parent.id).map(child=>(
                   <article key={child.id} className={`local-worker-sub-card ${dragged===child.id?"is-dragging":""}`} draggable onDragStart={e=>{setDragged(child.id);e.dataTransfer.setData("text/plain",child.id);e.dataTransfer.effectAllowed="move";}} onDragEnd={()=>setDragged(null)}>
                     <GripVertical size={17} className="local-worker-sub-grip"/>
-                    <img src={child.icon_path || "/emojis/others.png"} alt="" onError={e=>{e.currentTarget.src="/emojis/others.png";}}/>
+                    <img src={normalizeIconPath(child.icon_path)} alt="" onError={e=>{e.currentTarget.onerror=null;e.currentTarget.src="/emojis/others.png";}}/>
                     <div><strong>{child.name}</strong><small>{child.slug}</small></div>
                     <button className="icon-button" onClick={e=>{setIconFile(null);setParentForm(null);setChildForm(child);}} aria-label="Edit sub category"><Pencil size={15}/></button>
                     <button className="icon-button danger-icon" onClick={()=>void removeChild(child)} aria-label="Delete sub category"><Trash2 size={15}/></button>
