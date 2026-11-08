@@ -41,7 +41,7 @@ export default async function WorkerCategoryPage({
         </Link>
 
         <Image
-          src={`/emojis/${slug === "laterite-stone-quarrying" ? "stone" : slug.startsWith("automobile-mechanical-") || slug.startsWith("machinery-") || slug.startsWith("mechanical-") ? "engineering" : slug}.png`}
+          src={`/emojis/${slug === "plastering-work" ? "masonry-work" : slug === "laterite-stone-quarrying" ? "stone" : slug.startsWith("automobile-mechanical-") || slug.startsWith("machinery-") || slug.startsWith("mechanical-") ? "engineering" : slug}.png`}
           alt={category.name}
           width={48}
           height={48}
