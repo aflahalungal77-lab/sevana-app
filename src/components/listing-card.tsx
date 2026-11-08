@@ -49,7 +49,7 @@ export function ListingCard({
     "garden-services": "garden-services",
     "agricultural-works": "agricultural-works",
     others: "others",
-    "mechanical-engineering": "others",
+    "mechanical-engineering": "mechanical-engineering",
     "videography-editing": "videography-editing",
     repair: "repair",
     construction: "construction",
