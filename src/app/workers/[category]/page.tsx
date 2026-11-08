@@ -35,7 +35,7 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
     <div className="page">
       <header className="back-header">
         <Link href="/workers" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link>
-        <img src={categoryIcon} alt={category.name} width={48} height={48} className="transport-emoji" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = "/emojis/others.png"; }} />
+        <img src={categoryIcon} alt={category.name} width={48} height={48} className="transport-emoji" />
         <div><h1>{category.name}</h1><p>Local worker directory</p></div>
       </header>
       {listings.length ? <div className="listing-list">{listings.map(item=><ListingCard key={item.id} item={item}/>)}</div> : (
