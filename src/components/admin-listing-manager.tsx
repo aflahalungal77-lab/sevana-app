@@ -66,7 +66,7 @@ export function AdminListingManager({
       .from("service_categories").select("id,name,slug").eq("kind", kind).order("name");
     if (categoryError) setMessage("Could not load categories. Check the database and admin permissions.");
     const allowedSlugs = new Set(staticCategories.map((category) => category.slug));
-    const catsList = ((cats || []) as Category[]).filter((category) => allowedSlugs.has(category.slug));
+    const catsList = ((cats || []) as Category[]).filter((category) => kind === "worker" || allowedSlugs.has(category.slug));
     setCategories(catsList);
 
     const { data, error } = await supabase
