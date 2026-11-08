@@ -27,6 +27,7 @@ export const workerCategories: ServiceCategory[] = [
   { id: "masonry-work", name: "Masonry Work", slug: "masonry-work", kind: "worker" },
   { id: "carpenter", name: "Carpenter", slug: "carpenter", kind: "worker" },
   { id: "tiles-marble", name: "Tiles & Marble Work", slug: "tiles-marble", kind: "worker" },
+  { id: "plastering-work", name: "Plastering Work", slug: "plastering-work", kind: "worker" },
   { id: "laterite-stone-quarrying", name: "Laterite Stone Quarrying", slug: "laterite-stone-quarrying", kind: "worker" },
   { id: "plumbing-wiring", name: "Plumbing & Wiring", slug: "plumbing-wiring", kind: "worker" },
   { id: "painters", name: "Painters", slug: "painters", kind: "worker" },
