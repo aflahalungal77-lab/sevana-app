@@ -26,9 +26,9 @@ const categoryIcons: Record<string, LucideIcon> = {
   "medical-shop": Pill, "doctors-clinic": Stethoscope, kseb: Zap, cars: CarFront,
   auto: CarFront, "tourist-bus": BusFront, "rent-a-car": KeyRound, "goods-lorry": Truck,
   "plumbing-wiring": Zap, "masonry-work": Layers, carpenter: Hammer, "tiles-marble": Layers,
-  painters: Paintbrush, welders: Hammer, "home-workers": House, "garden-services": Flower2,
+  "painting-wood-polishing": Paintbrush, welders: Hammer, "curtain-carpet-works": House, "garden-services": Flower2,
   "agricultural-works": Sprout, "laterite-stone-quarrying": Hammer, "plastering-work": Layers,
-  others: BriefcaseBusiness, repair: Wrench, construction: HardHat, painting: Paintbrush,
+  others: BriefcaseBusiness, "mechanical-engineering": Wrench, "videography-editing": BriefcaseBusiness, repair: Wrench, construction: HardHat, painting: Paintbrush,
 };
 
 export function AdminListingManager({
@@ -65,7 +65,8 @@ export function AdminListingManager({
     const { data: cats, error: categoryError } = await supabase
       .from("service_categories").select("id,name,slug").eq("kind", kind).order("name");
     if (categoryError) setMessage("Could not load categories. Check the database and admin permissions.");
-    const catsList = (cats || []) as Category[];
+    const allowedSlugs = new Set(staticCategories.map((category) => category.slug));
+    const catsList = ((cats || []) as Category[]).filter((category) => allowedSlugs.has(category.slug));
     setCategories(catsList);
 
     const { data, error } = await supabase
