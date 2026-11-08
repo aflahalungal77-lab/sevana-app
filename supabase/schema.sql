@@ -138,3 +138,109 @@ on conflict (slug) do nothing;
 -- insert into public.profiles (id, full_name, role)
 -- values ('YOUR-AUTH-USER-UUID', 'Admin Name', 'admin')
 -- on conflict (id) do update set role = 'admin';
+
+
+-- Dynamic Local Workers category groups.
+create table if not exists public.worker_category_groups (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  slug text not null unique,
+  icon_path text not null default '/emojis/others.png',
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+alter table public.service_categories
+  add column if not exists parent_group_id uuid references public.worker_category_groups(id) on delete set null,
+  add column if not exists icon_path text,
+  add column if not exists sort_order integer not null default 0;
+
+create index if not exists worker_category_groups_sort_idx
+  on public.worker_category_groups(sort_order, name);
+create index if not exists service_categories_parent_group_idx
+  on public.service_categories(parent_group_id, sort_order);
+
+alter table public.worker_category_groups enable row level security;
+drop policy if exists "Public can read worker category groups" on public.worker_category_groups;
+create policy "Public can read worker category groups"
+  on public.worker_category_groups for select using (true);
+drop policy if exists "Admins manage worker category groups" on public.worker_category_groups;
+create policy "Admins manage worker category groups"
+  on public.worker_category_groups for all
+  using (public.is_admin()) with check (public.is_admin());
+
+drop policy if exists "Admins update worker categories" on public.service_categories;
+create policy "Admins update worker categories"
+  on public.service_categories for all
+  to authenticated
+  using (kind = 'worker' and public.is_admin())
+  with check (kind = 'worker' and public.is_admin());
+
+drop policy if exists "Public can read worker service categories" on public.service_categories;
+create policy "Public can read worker service categories"
+  on public.service_categories for select using (kind = 'worker');
+
+insert into public.worker_category_groups (name, slug, icon_path, sort_order) values
+  ('Construction', 'construction', '/emojis/construction.png', 1),
+  ('Home Maintenance', 'home-maintenance', '/emojis/home-maintenance.png', 2),
+  ('Agriculture & Farming', 'agriculture-farming', '/emojis/agricultural-works.png', 3),
+  ('Others', 'others', '/emojis/others.png', 4)
+on conflict (slug) do update
+set name = excluded.name, icon_path = excluded.icon_path;
+
+insert into public.service_categories (name, slug, kind, parent_group_id, icon_path, sort_order)
+select seed.name, seed.slug, 'worker', groups.id, seed.icon_path, seed.sort_order
+from (values
+  ('Masonry Work', 'masonry-work', '/emojis/masonry-work.png', 1, 'construction'),
+  ('Carpenter', 'carpenter', '/emojis/carpenter.png', 2, 'construction'),
+  ('Tiles & Marble Work', 'tiles-marble', '/emojis/tiles-marble.png', 3, 'construction'),
+  ('Plastering Work', 'plastering-work', '/emojis/masonry-work.png', 4, 'construction'),
+  ('Laterite Stone Quarrying', 'laterite-stone-quarrying', '/emojis/stone.png', 5, 'construction'),
+  ('Plumbing & Wiring', 'plumbing-wiring', '/emojis/plumbing-wiring.png', 1, 'home-maintenance'),
+  ('Painting & Wood Polishing', 'painting-wood-polishing', '/emojis/painting-wood-polishing.png', 2, 'home-maintenance'),
+  ('Welders', 'welders', '/emojis/welders.png', 3, 'home-maintenance'),
+  ('Curtain & Carpet Works', 'curtain-carpet-works', '/emojis/curtain-carpet-works.png', 4, 'home-maintenance'),
+  ('Garden Services', 'garden-services', '/emojis/garden-services.png', 5, 'home-maintenance'),
+  ('Agricultural Workers', 'agricultural-works', '/emojis/agricultural-works.png', 1, 'agriculture-farming'),
+  ('Mechanical Engineering', 'mechanical-engineering', '/emojis/mechanical-engineering.png', 1, 'others'),
+  ('Videography & Editing', 'videography-editing', '/emojis/videography-editing.png', 2, 'others'),
+  ('Others', 'others', '/emojis/others.png', 3, 'others')
+) as seed(name, slug, icon_path, sort_order, parent_slug)
+join public.worker_category_groups groups on groups.slug = seed.parent_slug
+on conflict (slug) do update
+set name = excluded.name,
+    kind = excluded.kind,
+    parent_group_id = excluded.parent_group_id,
+    icon_path = excluded.icon_path,
+    sort_order = excluded.sort_order;
+
+update public.service_categories categories
+set parent_group_id = groups.id
+from public.worker_category_groups groups
+where categories.kind = 'worker'
+  and categories.parent_group_id is null
+  and groups.slug = 'others';
+
+update public.service_categories
+set icon_path = '/emojis/' || slug || '.png'
+where kind = 'worker' and (icon_path is null or icon_path = '');
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('worker-category-icons', 'worker-category-icons', true, 2097152, array['image/png','image/jpeg','image/webp'])
+on conflict (id) do update
+set public = true, file_size_limit = 2097152,
+    allowed_mime_types = array['image/png','image/jpeg','image/webp'];
+
+drop policy if exists "Admins upload worker category icons" on storage.objects;
+create policy "Admins upload worker category icons"
+  on storage.objects for insert to authenticated
+  with check (bucket_id = 'worker-category-icons' and public.is_admin());
+drop policy if exists "Admins update worker category icons" on storage.objects;
+create policy "Admins update worker category icons"
+  on storage.objects for update to authenticated
+  using (bucket_id = 'worker-category-icons' and public.is_admin())
+  with check (bucket_id = 'worker-category-icons' and public.is_admin());
+drop policy if exists "Admins delete worker category icons" on storage.objects;
+create policy "Admins delete worker category icons"
+  on storage.objects for delete to authenticated
+  using (bucket_id = 'worker-category-icons' and public.is_admin());
