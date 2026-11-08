@@ -46,6 +46,7 @@ export function ListingCard({
     painters: "painting-wood-polishing",
     painting: "painting-wood-polishing",
     welders: "welders",
+    "curtain-carpet-works": "curtain-carpet-works",
     "garden-services": "garden-services",
     "agricultural-works": "agricultural-works",
     others: "others",
