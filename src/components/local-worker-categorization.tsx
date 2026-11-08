@@ -14,8 +14,9 @@ const slugify = (value: string) => value.toLowerCase().trim().replace(/&/g, "and
 const normalizeIconPath = (path: string | null | undefined) => {
   if (!path?.trim()) return "/emojis/others.png";
   const value = path.trim();
-  if (/^(https?:\\/\\/|data:)/i.test(value)) return value;
-  return "/" + value.replace(/^public\\//, "").replace(/^\\/+/, "");
+  if (value.startsWith("https://") || value.startsWith("http://") || value.startsWith("data:")) return value;
+  const withoutPublic = value.startsWith("public/") ? value.slice(7) : value;
+  return "/" + withoutPublic.replace(/^\/+/, "");
 };
 
 export function LocalWorkerCategorization() {
