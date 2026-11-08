@@ -34,6 +34,11 @@ const groups = [
         description: "Tiles and marble fitting",
       },
       {
+        slug: "plastering-work",
+        icon: "masonry-work",
+        description: "Wall plastering and finishing work",
+      },
+      {
         slug: "laterite-stone-quarrying",
         icon: "stone",
         description: "Laterite stone cutting and quarrying",
