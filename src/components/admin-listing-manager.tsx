@@ -49,6 +49,7 @@ export function AdminListingManager({
 
   const title = kind === "hotline" ? "Hotlines" : kind === "transport" ? "Taxi & Transport" : "Local Workers";
   const staticCategories = kind === "hotline" ? hotlineCategories : kind === "transport" ? transportCategories : workerCategories;
+  const displayCategories = kind === "worker" ? categories : staticCategories;
   const activeCategory = categories.find((c) => c.slug === selectedCategory);
   const filteredRows = useMemo(() => rows.filter((r) => {
     const matchesSearch = `${r.name} ${r.phone} ${r.area || ""}`.toLowerCase().includes(search.toLowerCase());
@@ -172,7 +173,7 @@ export function AdminListingManager({
         <>
           <div className="admin-category-intro"><span className="admin-category-intro-icon">{kind === "hotline" ? <PhoneCall size={23}/> : kind === "transport" ? <CarFront size={23}/> : <Wrench size={23}/>}</span><div><h2>{title}</h2><p>Select a category to add, view, edit or reorder its records.</p></div></div>
           <div className="admin-category-grid">
-            {staticCategories.map((cat) => {
+            {displayCategories.map((cat) => {
               const Icon = categoryIcons[cat.slug] || PhoneCall;
               const category = categories.find((c) => c.slug === cat.slug);
               const count = category ? rows.filter((r) => r.category_id === category.id).length : 0;
