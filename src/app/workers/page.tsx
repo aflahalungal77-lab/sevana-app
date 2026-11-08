@@ -53,8 +53,8 @@ const groups = [
     subtitle: "Other skilled professions",
     slug: "others",
     items: [
-      { slug: "mechanical-engineering", icon: "others", description: "Mechanical engineering services" },
-      { slug: "videography-editing", icon: "others", description: "Videography and video editing" },
+      { slug: "mechanical-engineering", icon: "mechanical-engineering", description: "Mechanical engineering services" },
+      { slug: "videography-editing", icon: "videography-editing", description: "Videography and video editing" },
     ],
   },
 ];
