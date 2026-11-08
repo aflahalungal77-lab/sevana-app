@@ -84,13 +84,11 @@ const groups = [
     ],
   },
   {
-    title: "Mechanical Engineering",
-    subtitle: "Mechanical repair, installation and machine services",
-    slug: "mechanical-engineering",
+    title: "Others",
+    subtitle: "Other local skills and services",
+    slug: "others",
     items: [
-      { slug: "automobile-mechanical-works", icon: "engineering", description: "Vehicle mechanical repair and servicing" },
-      { slug: "machinery-repair-maintenance", icon: "engineering", description: "Industrial and agricultural machinery repair" },
-      { slug: "mechanical-installation", icon: "engineering", description: "Mechanical equipment installation" },
+      { slug: "others", icon: "others", description: "Other professions and local services" },
     ],
   },
 ];
@@ -131,7 +129,7 @@ export default function WorkersPage() {
             <div className="worker-parent-heading">
               <span className="worker-parent-icon">
                 <Image
-                  src={`/emojis/${group.slug === "mechanical-engineering" ? "engineering" : group.slug}.png`}
+                  src={`/emojis/${group.slug}.png`}
                   alt=""
                   width={32}
                   height={32}
