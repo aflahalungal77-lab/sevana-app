@@ -1,5 +1,7 @@
 "use client";
 
+import "./local-worker-categorization-modal.css";
+
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft, Plus, Save, Trash2, Pencil, GripVertical, FolderTree, Image as ImageIcon, RefreshCw, X } from "lucide-react";
