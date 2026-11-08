@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Wrench, ChevronRight, LoaderCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
@@ -9,12 +8,19 @@ import { supabase } from "@/lib/supabase/client";
 type Parent = { id: string; name: string; slug: string; icon_path: string };
 type Child = { id: string; name: string; slug: string; icon_path: string | null; parent_group_id: string | null };
 
-// Use known local assets for these categories instead of stale/broken DB icon paths.
+function normalizeIconPath(path: string | null | undefined, fallback = "/emojis/others.png") {
+  if (!path?.trim()) return fallback;
+  const value = path.trim();
+  if (/^(https?:\/\/|data:)/i.test(value)) return value;
+  const clean = value.replace(/^public\//, "").replace(/^\/+/, "");
+  return "/" + clean;
+}
+
 function getWorkerIconPath(slug: string, name: string, iconPath: string | null) {
-  const key = `${slug} ${name}`.toLowerCase().replace(/[_-]+/g, " ");
+  const key = (slug + " " + name).toLowerCase().replace(/[_-]+/g, " ");
   if (key.includes("laterite") || key.includes("stone quarry")) return "/emojis/stone.png";
   if (key.includes("plaster")) return "/emojis/masonry-work.png";
-  return iconPath || `/emojis/${slug}.png`;
+  return normalizeIconPath(iconPath || ("/emojis/" + slug + ".png"));
 }
 
 export default function WorkersPage() {
@@ -58,15 +64,15 @@ export default function WorkersPage() {
             return (
               <section className="worker-parent-card" key={group.id}>
                 <div className="worker-parent-heading">
-                  <span className="worker-parent-icon"><Image src={group.icon_path || "/emojis/others.png"} alt="" width={32} height={32} className="worker-emoji"/></span>
+                  <span className="worker-parent-icon"><img src={normalizeIconPath(group.icon_path)} alt="" width={32} height={32} className="worker-emoji" loading="lazy" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = "/emojis/others.png"; }}/></span>
                   <div className="worker-parent-copy"><h2>{group.name}</h2><p>Local services and skilled professionals</p><small>{items.length} service categories</small></div>
                 </div>
                 <div className="worker-child-grid">
                   {items.map(category => {
                     const isLoading = loadingSlug === category.slug;
                     return (
-                      <Link key={category.id} href={`/workers/${category.slug}`} onClick={()=>setLoadingSlug(category.slug)} aria-busy={isLoading} className={`worker-child-card ${isLoading ? "category-row-loading" : ""}`}>
-                        <span className={`category-icon icon-${category.slug}`}><Image src={getWorkerIconPath(category.slug, category.name, category.icon_path)} alt="" width={36} height={36} className="worker-emoji"/></span>
+                      <Link key={category.id} href={"/workers/" + category.slug} onClick={()=>setLoadingSlug(category.slug)} aria-busy={isLoading} className={"worker-child-card " + (isLoading ? "category-row-loading" : "")}>
+                        <span className={"category-icon icon-" + category.slug}><img src={getWorkerIconPath(category.slug, category.name, category.icon_path)} alt="" width={36} height={36} className="worker-emoji" loading="lazy" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = "/emojis/others.png"; }}/></span>
                         <span className="worker-child-text"><strong>{category.name}</strong><small>View available workers</small></span>
                         {isLoading ? <LoaderCircle size={20} className="hotline-loading-spinner" aria-label="Loading"/> : <ChevronRight size={18} className="row-chevron"/>}
                       </Link>
