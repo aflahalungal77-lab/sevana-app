@@ -17,7 +17,12 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
   if (!category) return <div className="page"><h1>Category not found</h1><Link href="/workers">Back to Workers</Link></div>;
 
   const listings = await getListings("worker", slug);
-  const categoryIcon = category.icon_path || `/emojis/${slug}.png`;
+  const categoryKey = `${slug} ${category.name}`.toLowerCase().replace(/[_-]+/g, " ");
+  const categoryIcon = categoryKey.includes("laterite") || categoryKey.includes("stone quarry")
+    ? "/emojis/stone.png"
+    : categoryKey.includes("plaster")
+      ? "/emojis/masonry-work.png"
+      : category.icon_path || `/emojis/${slug}.png`;
 
   return (
     <div className="page">
