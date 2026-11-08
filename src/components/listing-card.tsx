@@ -50,7 +50,7 @@ export function ListingCard({
     "agricultural-works": "agricultural-works",
     others: "others",
     "mechanical-engineering": "others",
-    "videography-editing": "others",
+    "videography-editing": "videography-editing",
     repair: "repair",
     construction: "construction",
     painting: "painting",
