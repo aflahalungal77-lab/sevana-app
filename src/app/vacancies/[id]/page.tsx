@@ -33,7 +33,6 @@ export default function VacancyDetailsPage() {
     return () => { active = false; };
   }, [params.id]);
 
-  const phone = job?.contact_phone?.replace(/[^+\d]/g, "");
   return (
     <main className="page vacancy-detail-page">
       <header className="back-header"><Link href="/vacancies" className="back-button" aria-label="Back to vacancies"><ArrowLeft size={20} /></Link><div><h1>Job details</h1><p>Sevana Vacancies</p></div></header>
