@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { ArrowLeft, BriefcaseBusiness, Plus, Pencil, Trash2, Eye, EyeOff, CheckCircle2, LoaderCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
@@ -38,7 +37,6 @@ function toLocalDate(value: string | null) {
 }
 
 export function AdminVacancyManager() {
-  const router = useRouter();
   const [items, setItems] = useState<Vacancy[]>([]);
   const [form, setForm] = useState<FormState>(emptyForm);
   const [editingId, setEditingId] = useState<string | null>(null);
