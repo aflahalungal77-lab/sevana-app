@@ -70,7 +70,7 @@ export function AdminVacancyManager() {
       ? await supabase.from("vacancies").update(payload).eq("id", editingId)
       : await (async () => {
           const { data: { user } } = await supabase!.auth.getUser();
-          return supabase!.from("vacancies").insert({ ...payload, created_by: user?.id ?? null, status: "draft" });
+          return supabase!.from("vacancies").insert({ ...payload, created_by: user?.id ?? null, status: "published" });
         })();
     if (result.error) setError(result.error.message);
     else {
@@ -95,7 +95,6 @@ export function AdminVacancyManager() {
   }
 
   const published = items.filter((item) => item.status === "published").length;
-  const drafts = items.filter((item) => item.status === "draft").length;
   const filled = items.filter((item) => item.status === "filled").length;
 
   return (
@@ -108,7 +107,6 @@ export function AdminVacancyManager() {
       <section className="vacancy-admin-stats">
         <article><strong>{items.length}</strong><span>Total</span></article>
         <article><strong>{published}</strong><span>Published</span></article>
-        <article><strong>{drafts}</strong><span>Drafts</span></article>
         <article><strong>{filled}</strong><span>Filled</span></article>
       </section>
 
@@ -124,7 +122,7 @@ export function AdminVacancyManager() {
             <label className="field"><span className="field-label">Location *</span><input className="field-control" required maxLength={160} value={form.location} onChange={(e) => change("location", e.target.value)} placeholder="e.g. Koottilangadi" /></label>
             <label className="field full"><span className="field-label">Short description *</span><textarea className="field-control" required minLength={10} maxLength={3000} value={form.description} onChange={(e) => change("description", e.target.value)} placeholder="What is the work? Add the important details…" /></label>
           </div>
-          <p className="privacy-note">New listings are saved as drafts. Verify the employer and job details before publishing. Never publish jobs that ask applicants for advance fees.</p>
+          <p className="privacy-note">New vacancies are published immediately and become visible on the public Vacancies page. Verify the employer and job details before adding a listing. Never publish jobs that ask applicants for advance fees.</p>
           {error && <p className="status-message" role="alert">{error}</p>}
           {message && <p className="status-message" role="status">{message}</p>}
           <button className="button button-primary button-full" type="submit" disabled={saving}>{saving ? <LoaderCircle size={17} className="hotline-loading-spinner" /> : <Plus size={17} />}{saving ? "Saving…" : editingId ? "Save changes" : "Add vacancy"}</button>
@@ -143,7 +141,7 @@ export function AdminVacancyManager() {
               </div>
               <div className="vacancy-admin-actions">
                 <button type="button" className="icon-button" title="Edit" aria-label="Edit vacancy" onClick={() => startEdit(item)}><Pencil size={17} /></button>
-                {item.status === "published" ? <button type="button" className="icon-button" title="Unpublish" aria-label="Unpublish" onClick={() => void setStatus(item, "draft")}><EyeOff size={17} /></button> : item.status !== "filled" && <button type="button" className="icon-button" title="Publish" aria-label="Publish" onClick={() => void setStatus(item, "published")}><Eye size={17} /></button>}
+                {item.status === "draft" && <button type="button" className="icon-button" title="Publish" aria-label="Publish" onClick={() => void setStatus(item, "published")}><Eye size={17} /></button>}
                 {item.status !== "filled" && <button type="button" className="icon-button" title="Mark filled" aria-label="Mark as filled" onClick={() => void setStatus(item, "filled")}><CheckCircle2 size={17} /></button>}
                 <button type="button" className="icon-button danger" title="Delete" aria-label="Delete vacancy" onClick={() => void remove(item)}><Trash2 size={17} /></button>
               </div>
