@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, BriefcaseBusiness, MapPin, Phone, CalendarDays, LoaderCircle } from "lucide-react";
+import { ArrowLeft, BriefcaseBusiness, MapPin, CalendarDays, LoaderCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
 type Vacancy = {
   id: string; title: string; company_name: string; description: string;
-  job_type: string; location: string; contact_phone: string | null; created_at: string;
+  location: string; created_at: string;
 };
 
 export default function VacancyDetailsPage() {
@@ -22,7 +22,7 @@ export default function VacancyDetailsPage() {
     async function load() {
       if (!supabase || !params.id) { setError("This vacancy is unavailable."); setLoading(false); return; }
       const { data, error: queryError } = await supabase.from("vacancies")
-        .select("id,title,company_name,description,job_type,location,contact_phone,created_at")
+        .select("id,title,company_name,description,location,created_at")
         .eq("id", params.id).eq("status", "published").maybeSingle();
       if (!active) return;
       if (queryError || !data) setError("This vacancy is no longer available.");
@@ -40,9 +40,8 @@ export default function VacancyDetailsPage() {
       {loading ? <div className="empty-inline"><LoaderCircle size={24} className="hotline-loading-spinner" /><span>Loading job details…</span></div>
         : error || !job ? <div className="empty-state"><h2>Vacancy unavailable</h2><p>{error}</p><Link href="/vacancies" className="button button-primary">Browse vacancies</Link></div>
         : <>
-          <section className="vacancy-detail-hero"><span className="vacancy-card-icon"><BriefcaseBusiness size={24} /></span><span className="vacancy-type">{job.job_type}</span><h1>{job.title}</h1><p>{job.company_name}</p><div className="vacancy-meta"><span><MapPin size={14} />{job.location}</span><span><CalendarDays size={14} />Posted {new Date(job.created_at).toLocaleDateString("en-IN")}</span></div></section>
+          <section className="vacancy-detail-hero"><span className="vacancy-card-icon"><BriefcaseBusiness size={24} /></span><h1>{job.title}</h1><p>{job.company_name}</p><div className="vacancy-meta"><span><MapPin size={14} />{job.location}</span><span><CalendarDays size={14} />Posted {new Date(job.created_at).toLocaleDateString("en-IN")}</span></div></section>
           <section className="vacancy-detail-section"><h2>About this role</h2><p>{job.description}</p></section>
-          {phone && <section className="vacancy-contact-actions"><a className="button button-primary" href={"tel:" + phone}><Phone size={17} /> Contact employer</a></section>}
           <p className="notice">Sevana shares these listings for community information. Confirm the employer and job conditions independently. Never pay an advance fee to get a job.</p>
         </>}
     </main>
