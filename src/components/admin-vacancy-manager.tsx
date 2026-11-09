@@ -76,8 +76,8 @@ export function AdminVacancyManager() {
         })();
     if (result.error) setError(result.error.message);
     else {
-      setMessage(editingId ? "Vacancy updated." : "Vacancy saved as draft. Review it before publishing.");
-      resetForm(); await load();
+      const successMessage = editingId ? "Vacancy updated." : "Vacancy saved as draft. Review it before publishing.";
+      resetForm(); setMessage(successMessage); await load();
     }
     setSaving(false);
   }
