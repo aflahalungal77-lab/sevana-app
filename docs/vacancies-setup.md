@@ -22,8 +22,7 @@ The policies use the existing Sevana admin convention:
 
 ## 3. Listing workflow
 
-1. Admin adds a job title, employer, location, job type and short description.
-2. Contact number is optional.
+1. Admin adds a job title, employer, location and short description.
 3. New listings are saved as drafts.
 4. Admin verifies the employer and details, then publishes the listing.
 5. Admin can edit, unpublish, mark filled or delete a listing.
