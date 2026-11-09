@@ -9,14 +9,14 @@ type Status = "draft" | "published" | "filled";
 type Vacancy = {
   id: string; title: string; company_name: string; description: string;
   job_type: string; location: string;
-  status: Status; created_at: string;
+  contact_phone: string | null; status: Status; created_at: string;
 };
 type FormState = {
   title: string; company_name: string; location: string;
-  description: string;
+  description: string; contact_phone: string;
 };
 const emptyForm: FormState = {
-  title: "", company_name: "", location: "", description: "",
+  title: "", company_name: "", location: "", description: "", contact_phone: "",
 };
 
 export function AdminVacancyManager() {
@@ -32,7 +32,7 @@ export function AdminVacancyManager() {
     if (!supabase) { setError("Supabase is not configured."); setLoading(false); return; }
     setLoading(true);
     const { data, error: queryError } = await supabase.from("vacancies")
-      .select("id,title,company_name,description,job_type,location,status,created_at")
+      .select("id,title,company_name,description,job_type,location,contact_phone,status,created_at")
       .order("created_at", { ascending: false });
     if (queryError) setError(queryError.message);
     else { setItems((data || []) as Vacancy[]); setError(""); }
@@ -51,7 +51,7 @@ export function AdminVacancyManager() {
     setEditingId(item.id);
     setForm({
       title: item.title, company_name: item.company_name, location: item.location,
-      description: item.description,
+      description: item.description, contact_phone: item.contact_phone || "",
     });
     setMessage(""); setError("");
     document.getElementById("vacancy-editor")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -64,7 +64,7 @@ export function AdminVacancyManager() {
     const payload = {
       title: form.title.trim(), company_name: form.company_name.trim(),
       location: form.location.trim(), job_type: "Full-time",
-      description: form.description.trim(),
+      description: form.description.trim(), contact_phone: form.contact_phone.trim() || null,
     };
     const result = editingId
       ? await supabase.from("vacancies").update(payload).eq("id", editingId)
@@ -74,7 +74,7 @@ export function AdminVacancyManager() {
         })();
     if (result.error) setError(result.error.message);
     else {
-      const successMessage = editingId ? "Vacancy updated." : "Vacancy saved as draft. Review it before publishing.";
+      const successMessage = editingId ? "Vacancy updated." : "Vacancy published and is now live.";
       resetForm(); setMessage(successMessage); await load();
     }
     setSaving(false);
@@ -121,6 +121,7 @@ export function AdminVacancyManager() {
             <label className="field"><span className="field-label">Company / employer *</span><input className="field-control" required maxLength={120} value={form.company_name} onChange={(e) => change("company_name", e.target.value)} placeholder="Employer name" /></label>
             <label className="field"><span className="field-label">Location *</span><input className="field-control" required maxLength={160} value={form.location} onChange={(e) => change("location", e.target.value)} placeholder="e.g. Koottilangadi" /></label>
             <label className="field full"><span className="field-label">Short description *</span><textarea className="field-control" required minLength={10} maxLength={3000} value={form.description} onChange={(e) => change("description", e.target.value)} placeholder="What is the work? Add the important details…" /></label>
+            <label className="field"><span className="field-label">Contact phone number</span><input className="field-control" type="tel" inputMode="tel" maxLength={20} value={form.contact_phone} onChange={(e) => change("contact_phone", e.target.value)} placeholder="Employer phone number" /></label>
           </div>
           <p className="privacy-note">New vacancies are published immediately and become visible on the public Vacancies page. Verify the employer and job details before adding a listing. Never publish jobs that ask applicants for advance fees.</p>
           {error && <p className="status-message" role="alert">{error}</p>}
