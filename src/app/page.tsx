@@ -13,8 +13,6 @@ import {
   Sparkles,
   Languages,
   Heart,
-  Users,
-  BriefcaseBusiness,
 } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 
@@ -293,7 +291,7 @@ export default function HomePage() {
     href="/members"
     className="sevana-service-item sevana-image-service sevana-service-members"
   >
-    <span className="sevana-members-home-icon"><Users size={34} /></span>
+    <ServiceImage src="/emojis/members.png" alt="" />
     <span>{t.members}</span>
     <ChevronRight size={18} />
   </Link>
@@ -302,7 +300,7 @@ export default function HomePage() {
     href="/vacancies"
     className="sevana-service-item sevana-image-service sevana-service-vacancies"
   >
-    <span className="sevana-members-home-icon"><BriefcaseBusiness size={32} /></span>
+    <ServiceImage src="/emojis/vacancies.png" alt="" />
     <span>{t.vacancies}</span>
     <ChevronRight size={18} />
   </Link>
