@@ -28,7 +28,6 @@ function salaryLabel(min: number | null, max: number | null) {
 export default function VacanciesPage() {
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [search, setSearch] = useState("");
-  const [jobType, setJobType] = useState("All");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -59,12 +58,11 @@ export default function VacanciesPage() {
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase();
     return vacancies.filter((job) => {
-      const matchesType = jobType === "All" || job.job_type === jobType;
       const matchesSearch = !query || [job.title, job.company_name, job.location, job.category]
         .some((value) => value?.toLowerCase().includes(query));
-      return matchesType && matchesSearch;
+      return matchesSearch;
     });
-  }, [vacancies, search, jobType]);
+  }, [vacancies, search]);
 
   return (
     <main className="page vacancies-page">
@@ -83,15 +81,9 @@ export default function VacanciesPage() {
         <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search job, company or location" aria-label="Search vacancies" />
       </label>
 
-      <div className="vacancy-filters" aria-label="Filter by job type">
-        {["All", "Full-time", "Part-time", "Temporary", "Internship", "Contract"].map((type) => (
-          <button key={type} type="button" className={jobType === type ? "vacancy-filter active" : "vacancy-filter"} onClick={() => setJobType(type)}>{type === "All" ? "All jobs" : type}</button>
-        ))}
-      </div>
-
       {loading ? <div className="empty-inline"><LoaderCircle size={24} className="hotline-loading-spinner" /><span>Loading vacancies…</span></div>
         : error ? <div className="empty-state"><h2>Vacancies unavailable</h2><p>{error}</p></div>
-        : filtered.length === 0 ? <div className="empty-state"><div className="empty-icon"><BriefcaseBusiness size={25} /></div><h2>No vacancies found</h2><p>{vacancies.length ? "Try another search or job type." : "New local job opportunities will appear here when published."}</p></div>
+        : filtered.length === 0 ? <div className="empty-state"><div className="empty-icon"><BriefcaseBusiness size={25} /></div><h2>No vacancies found</h2><p>{vacancies.length ? "Try another search." : "New local job opportunities will appear here when published."}</p></div>
         : <section className="vacancy-list" aria-label="Available vacancies">
           <p className="result-count">{filtered.length} {filtered.length === 1 ? "opportunity" : "opportunities"} available</p>
           {filtered.map((job) => (
