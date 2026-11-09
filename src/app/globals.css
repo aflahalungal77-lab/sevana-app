@@ -603,3 +603,54 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 .donor-skeleton-line-meta{width:36%;height:7px;}
 @keyframes donor-skeleton-shimmer{to{background-position:-200% 0;}}
 @media(prefers-reduced-motion:reduce){.donor-skeleton-badge,.donor-skeleton-line{animation:none;background:#edf1ed;}}
+
+
+/* Sevana Vacancies */
+.vacancy-search{display:flex;align-items:center;gap:10px;min-height:50px;margin:0 0 13px;padding:0 14px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--muted);}
+.vacancy-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:13px;}
+.vacancy-filters{display:flex;gap:8px;overflow-x:auto;padding:2px 0 13px;scrollbar-width:none;}
+.vacancy-filters::-webkit-scrollbar{display:none;}
+.vacancy-filter{flex:0 0 auto;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-soft);font-size:11px;font-weight:750;}
+.vacancy-filter.active{border-color:var(--green);background:var(--green);color:#fff;}
+.vacancy-list{display:grid;gap:12px;}
+.vacancy-card{display:block;padding:17px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-sm);transition:transform .18s,border-color .18s,box-shadow .18s;}
+.vacancy-card:hover{transform:translateY(-2px);border-color:#c5ddcb;box-shadow:var(--shadow);}
+.vacancy-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.vacancy-card-icon{display:grid;width:44px;height:44px;place-items:center;border-radius:14px;background:var(--green-soft);color:var(--green);}
+.vacancy-type{padding:6px 10px;border-radius:999px;background:#eff6f0;color:var(--green);font-size:10px;font-weight:800;}
+.vacancy-card h2{margin:13px 0 4px;font-size:17px;font-weight:850;letter-spacing:-.3px;}
+.vacancy-company{margin:0 0 12px;color:var(--muted);font-size:12px;}
+.vacancy-meta{display:flex;flex-wrap:wrap;gap:8px 15px;color:var(--muted);font-size:11px;}
+.vacancy-meta span{display:inline-flex;align-items:center;gap:5px;}
+.vacancy-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;padding-top:12px;border-top:1px solid var(--line);}
+.vacancy-card-bottom strong{font-size:13px;color:var(--green);}
+.vacancy-card-bottom span{font-size:11px;font-weight:800;color:var(--green);}
+.vacancy-detail-hero{padding:22px;border:1px solid #dcecdf;border-radius:20px;background:linear-gradient(140deg,#f0f8f1,#e6f3e9);}
+.vacancy-detail-hero h1{margin:15px 0 5px;font-size:clamp(25px,5vw,34px);font-weight:900;letter-spacing:-1px;}
+.vacancy-detail-hero>p{margin:0 0 14px;color:var(--muted);}
+.vacancy-salary{display:block;margin-top:17px;color:var(--green);font-size:20px;}
+.vacancy-detail-section{margin-top:18px;padding:18px;border:1px solid var(--line);border-radius:17px;background:#fff;}
+.vacancy-detail-section h2{margin:0 0 9px;font-size:15px;font-weight:850;}
+.vacancy-detail-section p{margin:0;color:var(--ink-soft);font-size:13px;line-height:1.8;white-space:pre-wrap;}
+.vacancy-contact-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;}
+.vacancy-admin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:4px 0 23px;}
+.vacancy-admin-stats article{display:flex;min-width:0;flex-direction:column;gap:3px;padding:13px 10px;border:1px solid var(--line);border-radius:14px;background:#fff;}
+.vacancy-admin-stats strong{font-size:22px;font-weight:900;color:var(--green);}
+.vacancy-admin-stats span{color:var(--muted);font-size:10px;font-weight:700;}
+.vacancy-admin-page .admin-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 0 13px;}
+.vacancy-admin-page .admin-section-title h2{margin:0;font-size:19px;font-weight:850;}
+.vacancy-admin-list{display:grid;gap:10px;}
+.vacancy-admin-card{display:flex;align-items:center;gap:12px;min-width:0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff;}
+.vacancy-admin-card-main{flex:1;min-width:0;}
+.vacancy-admin-card-heading{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.vacancy-admin-card-heading h3{margin:0;font-size:13px;font-weight:850;}
+.vacancy-admin-card-main p{margin:5px 0;color:var(--muted);font-size:11px;overflow-wrap:anywhere;}
+.vacancy-admin-card-main small{color:var(--muted-light);font-size:10px;}
+.vacancy-admin-status{padding:4px 7px;border-radius:999px;background:#f2f4f2;color:#66736a;font-size:9px;font-weight:850;text-transform:capitalize;}
+.vacancy-admin-status.is-published{background:#e8f5eb;color:#17633a;}
+.vacancy-admin-status.is-closed{background:#fff0ef;color:#a33d3d;}
+.vacancy-admin-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;}
+.vacancy-admin-actions .icon-button{width:34px;height:34px;}
+.vacancy-admin-actions .danger{color:#b63b3b;}
+.vacancy-editor-section{scroll-margin-top:15px;}
+@media(max-width:480px){.vacancy-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr));}.vacancy-admin-card{align-items:flex-start;flex-direction:column;}.vacancy-admin-actions{width:100%;justify-content:flex-start;}.vacancy-admin-actions .icon-button{width:38px;height:38px;}}

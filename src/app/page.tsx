@@ -14,6 +14,7 @@ import {
   Languages,
   Heart,
   Users,
+  BriefcaseBusiness,
 } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 
@@ -38,6 +39,7 @@ const translations = {
     needBlood: "Need Blood?",
     workers: "Local Workers",
     members: "Members",
+    vacancies: "Vacancies",
     emergencyTitle: "Need urgent help?",
     emergencyDescription: "Find emergency contacts quickly.",
     charity: "MEENARKUZHI SHIHAB THANGAL CHARITY",
@@ -73,6 +75,7 @@ const translations = {
     needBlood: "രക്തം ആവശ്യമുണ്ടോ?",
     workers: "പ്രാദേശിക തൊഴിലാളികൾ",
     members: "ജനപ്രതിനിധികൾ",
+    vacancies: "തൊഴിൽ അവസരങ്ങൾ",
     emergencyTitle: "അടിയന്തര സഹായം വേണോ?",
     emergencyDescription: "അടിയന്തര കോൺടാക്ടുകൾ വേഗത്തിൽ കണ്ടെത്താം.",
     charity: "മീനാർകുഴി ശിഹാബ് തങ്ങൾ ചാരിറ്റി",
@@ -292,6 +295,15 @@ export default function HomePage() {
   >
     <span className="sevana-members-home-icon"><Users size={34} /></span>
     <span>{t.members}</span>
+    <ChevronRight size={18} />
+  </Link>
+
+  <Link
+    href="/vacancies"
+    className="sevana-service-item sevana-image-service sevana-service-vacancies"
+  >
+    <span className="sevana-members-home-icon"><BriefcaseBusiness size={32} /></span>
+    <span>{t.vacancies}</span>
     <ChevronRight size={18} />
   </Link>
 </div>

@@ -1,4 +1,4 @@
-import { PhoneCall, CarFront, Droplet, HeartPulse, Wrench } from "lucide-react";
+import { PhoneCall, CarFront, Droplet, HeartPulse, Wrench, BriefcaseBusiness } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 
 export default function ServicesPage() {
@@ -10,6 +10,7 @@ export default function ServicesPage() {
       <ServiceCard href="/donors" title="Find a blood donor" description="Search available donors by blood group" Icon={Droplet} tone="rose" />
       <ServiceCard href="/blood-request" title="Need Blood" description="Send a blood request through WhatsApp" Icon={HeartPulse} tone="green" />
       <ServiceCard href="/workers" title="Workers" description="Plumbing, wiring, repairs and more" Icon={Wrench} tone="amber" />
+      <ServiceCard href="/vacancies" title="Vacancies" description="Explore local job opportunities" Icon={BriefcaseBusiness} tone="green" />
     </div>
   </div>;
 }
