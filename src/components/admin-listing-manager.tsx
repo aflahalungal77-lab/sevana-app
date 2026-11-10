@@ -5,15 +5,15 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft, Plus, Trash2, Pencil, Save, X, GripVertical, Eye,
-  Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital, ShieldCheck,
+  Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital, ShieldCheck, Building2,
   Ambulance, Shield, Flame, Droplet, Baby, Pill, Stethoscope,
   BusFront, KeyRound, Zap, Paintbrush, HardHat, RefreshCw, Truck, Hammer, House, Flower2, Sprout, Layers, BriefcaseBusiness
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
-import { hotlineCategories, transportCategories, workerCategories } from "@/lib/data";
+import { hotlineCategories, transportCategories, workerCategories, hotelCategories } from "@/lib/data";
 
-type Kind = "hotline" | "transport" | "worker";
+type Kind = "hotline" | "transport" | "worker" | "hotel";
 type Row = {
   id: string; name: string; phone: string; area: string | null;
   description: string | null; address: string | null; vehicle_type: string | null;
@@ -29,7 +29,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   "plumbing-wiring": Zap, "masonry-work": Layers, carpenter: Hammer, "tiles-marble": Layers,
   "painting-wood-polishing": Paintbrush, welders: Hammer, "curtain-carpet-works": House, "garden-services": Flower2,
   "agricultural-works": Sprout, "laterite-stone-quarrying": Hammer, "plastering-work": Layers,
-  others: BriefcaseBusiness, "mechanical-engineering": Wrench, "videography-editing": BriefcaseBusiness, repair: Wrench, construction: HardHat, painting: Paintbrush,
+  others: BriefcaseBusiness, "mechanical-engineering": Wrench, "videography-editing": BriefcaseBusiness, hotels: Building2, repair: Wrench, construction: HardHat, painting: Paintbrush,
 };
 
 export function AdminListingManager({
@@ -48,8 +48,8 @@ export function AdminListingManager({
   const [message, setMessage] = useState("");
   const [draggedId, setDraggedId] = useState<string | null>(null);
 
-  const title = kind === "hotline" ? "Hotlines" : kind === "transport" ? "Taxi & Transport" : "Local Workers";
-  const staticCategories = kind === "hotline" ? hotlineCategories : kind === "transport" ? transportCategories : workerCategories;
+  const title = kind === "hotline" ? "Hotlines" : kind === "transport" ? "Taxi & Transport" : kind === "hotel" ? "Hotels" : "Local Workers";
+  const staticCategories = kind === "hotline" ? hotlineCategories : kind === "transport" ? transportCategories : kind === "hotel" ? hotelCategories : workerCategories;
   const displayCategories = kind === "worker" ? categories : staticCategories;
   const activeCategory = categories.find((c) => c.slug === selectedCategory);
   const filteredRows = useMemo(() => rows.filter((r) => {
