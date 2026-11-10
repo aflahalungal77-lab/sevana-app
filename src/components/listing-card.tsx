@@ -38,6 +38,7 @@ export function ListingCard({
     "goods-lorry": "goods-lorry",
     kseb: "kseb",
     women: "women",
+    "cyber-crime": "cyber",
     "plumbing-wiring": "plumbing-wiring",
     "masonry-work": "masonry-work",
     carpenter: "carpenter",
@@ -73,8 +74,6 @@ export function ListingCard({
             height={48}
             className="listing-emoji"
           />
-        ) : slug === "cyber-crime" ? (
-          <ShieldCheck size={22} strokeWidth={2} />
         ) : (
           <Building2 size={22} strokeWidth={2} />
         )}
