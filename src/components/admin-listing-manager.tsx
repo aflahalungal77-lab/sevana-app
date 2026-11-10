@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft, Plus, Trash2, Pencil, Save, X, GripVertical, Eye,
-  Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital,
+  Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital, ShieldCheck,
   Ambulance, Shield, Flame, Droplet, Baby, Pill, Stethoscope,
   BusFront, KeyRound, Zap, Paintbrush, HardHat, RefreshCw, Truck, Hammer, House, Flower2, Sprout, Layers, BriefcaseBusiness
 } from "lucide-react";
@@ -21,7 +21,7 @@ type Row = {
 type Category = { id: string; name: string; slug: string };
 
 const categoryIcons: Record<string, LucideIcon> = {
-  hospital: Hospital, ambulance: Ambulance, "police-station": Shield,
+  hospital: Hospital, ambulance: Ambulance, women: ShieldCheck, "police-station": Shield,
   "fire-station": Flame, "blood-banks": Droplet, "child-line": Baby,
   "medical-shop": Pill, "doctors-clinic": Stethoscope, kseb: Zap, cars: CarFront,
   auto: CarFront, "tourist-bus": BusFront, "rent-a-car": KeyRound, "goods-lorry": Truck,
