@@ -36,6 +36,7 @@ export function ListingCard({
     "rent-a-car": "rent-a-car",
     "goods-lorry": "goods-lorry",
     kseb: "kseb",
+    women: "women",
     "plumbing-wiring": "plumbing-wiring",
     "masonry-work": "masonry-work",
     carpenter: "carpenter",
