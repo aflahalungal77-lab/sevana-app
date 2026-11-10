@@ -7,7 +7,6 @@ import {
   Navigation,
   HeartPulse,
   ShieldCheck,
-  Utensils,
 } from "lucide-react";
 
 import type { ServiceListing, Donor } from "@/lib/types";
@@ -40,7 +39,6 @@ export function ListingCard({
     kseb: "kseb",
     women: "women",
     "cyber-crime": "cyber",
-    restaurants: "restaurants",
     "plumbing-wiring": "plumbing-wiring",
     "masonry-work": "masonry-work",
     carpenter: "carpenter",
@@ -83,6 +81,10 @@ export function ListingCard({
 
       <div className="listing-main premium-listing-main">
         <h3>{item.name}</h3>
+
+        {(slug === "hotels" || slug === "restaurants") && (
+          <span className="hospitality-type-label">{slug === "hotels" ? "Hotel" : "Restaurant"}</span>
+        )}
 
         {item.description && (
           <p className="premium-listing-description">
