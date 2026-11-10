@@ -17,6 +17,7 @@ export const hotlineCategories: ServiceCategory[] = [
 
 export const hotelCategories: ServiceCategory[] = [
   { id: "hotels", name: "Hotels", slug: "hotels", kind: "hotel" },
+  { id: "restaurants", name: "Restaurants", slug: "restaurants", kind: "hotel" },
 ];
 
 export const transportCategories: ServiceCategory[] = [
