@@ -21,7 +21,7 @@ type Row = {
 type Category = { id: string; name: string; slug: string };
 
 const categoryIcons: Record<string, LucideIcon> = {
-  hospital: Hospital, ambulance: Ambulance, women: ShieldCheck, "police-station": Shield,
+  hospital: Hospital, ambulance: Ambulance, women: ShieldCheck, "cyber-crime": ShieldCheck, "police-station": Shield,
   "fire-station": Flame, "blood-banks": Droplet, "child-line": Baby,
   "medical-shop": Pill, "doctors-clinic": Stethoscope, kseb: Zap, cars: CarFront,
   auto: CarFront, "tourist-bus": BusFront, "rent-a-car": KeyRound, "goods-lorry": Truck,
