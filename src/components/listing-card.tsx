@@ -7,6 +7,7 @@ import {
   Navigation,
   HeartPulse,
   ShieldCheck,
+  Utensils,
 } from "lucide-react";
 
 import type { ServiceListing, Donor } from "@/lib/types";
@@ -39,6 +40,7 @@ export function ListingCard({
     kseb: "kseb",
     women: "women",
     "cyber-crime": "cyber",
+    restaurants: "restaurants",
     "plumbing-wiring": "plumbing-wiring",
     "masonry-work": "masonry-work",
     carpenter: "carpenter",
