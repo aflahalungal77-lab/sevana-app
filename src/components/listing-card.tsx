@@ -6,6 +6,7 @@ import {
   Building2,
   Navigation,
   HeartPulse,
+  ShieldCheck,
 } from "lucide-react";
 
 import type { ServiceListing, Donor } from "@/lib/types";
@@ -72,6 +73,8 @@ export function ListingCard({
             height={48}
             className="listing-emoji"
           />
+        ) : slug === "cyber-crime" ? (
+          <ShieldCheck size={22} strokeWidth={2} />
         ) : (
           <Building2 size={22} strokeWidth={2} />
         )}
