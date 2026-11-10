@@ -28,6 +28,7 @@ export default async function HotlineCategoryPage({
   }
 
   const listings = await getListings("hotline", slug);
+  const categoryIcon = slug === "cyber-crime" ? "cyber" : slug;
 
   return (
     <div className="page">
@@ -41,7 +42,7 @@ export default async function HotlineCategoryPage({
         </Link>
 
         <Image
-          src={`/emojis/${slug}.png`}
+          src={`/emojis/${categoryIcon}.png`}
           alt={category.name}
           width={48}
           height={48}
@@ -64,7 +65,7 @@ export default async function HotlineCategoryPage({
         <div className="empty-state">
           <div className="empty-icon">
             <Image
-              src={`/emojis/${slug}.png`}
+              src={`/emojis/${categoryIcon}.png`}
               alt={category.name}
               width={56}
               height={56}
