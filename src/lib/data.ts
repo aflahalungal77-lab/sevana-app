@@ -12,6 +12,7 @@ export const hotlineCategories: ServiceCategory[] = [
   { id: "doctor", name: "Doctor's Clinic", slug: "doctors-clinic", kind: "hotline" },
   { id: "kseb", name: "KSEB", slug: "kseb", kind: "hotline" },
   { id: "women", name: "Women Help & Safety", slug: "women", kind: "hotline" },
+  { id: "cyber-crime", name: "Cyber Crime Help", slug: "cyber-crime", kind: "hotline" },
 ];
 
 export const transportCategories: ServiceCategory[] = [
