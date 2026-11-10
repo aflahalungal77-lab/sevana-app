@@ -38,6 +38,8 @@ export function ListingCard({
     "goods-lorry": "goods-lorry",
     kseb: "kseb",
     women: "women",
+    hotels: "hotel",
+    restaurants: "restaurant",
     "cyber-crime": "cyber",
     "plumbing-wiring": "plumbing-wiring",
     "masonry-work": "masonry-work",
