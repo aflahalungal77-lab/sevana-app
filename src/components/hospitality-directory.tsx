@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, Hotel, Utensils, SlidersHorizontal } from "lucide-react";
+import Image from "next/image";
+import { Search, SlidersHorizontal } from "lucide-react";
 import type { ServiceListing } from "@/lib/types";
 import { ListingCard } from "@/components/listing-card";
 
@@ -40,7 +41,7 @@ export function HospitalityDirectory({ listings }: { listings: ServiceListing[] 
           <button key={item.value} type="button" onClick={() => setFilter(item.value)}
             className={`directory-filter-chip ${filter === item.value ? "active" : ""}`}
             aria-pressed={filter === item.value}>
-            {item.value === "hotels" ? <Hotel size={15} /> : item.value === "restaurants" ? <Utensils size={15} /> : <SlidersHorizontal size={15} />}
+            {item.value === "hotels" ? <Image src="/emojis/hotel.png" alt="" width={20} height={20} /> : item.value === "restaurants" ? <Image src="/emojis/restaurant.png" alt="" width={20} height={20} /> : <SlidersHorizontal size={15} />}
             <span>{item.label}</span><small>{item.count}</small>
           </button>
         ))}
@@ -52,7 +53,7 @@ export function HospitalityDirectory({ listings }: { listings: ServiceListing[] 
         </div>
       ) : (
         <div className="empty-state">
-          <div className="empty-icon">{filter === "restaurants" ? <Utensils size={28} /> : <Hotel size={28} />}</div>
+          <div className="empty-icon">{filter === "restaurants" ? <Image src="/emojis/restaurant.png" alt="" width={40} height={40} /> : <Image src="/emojis/hotel.png" alt="" width={40} height={40} />}</div>
           <h2>{search ? "No matching places found" : filter === "restaurants" ? "No restaurants listed yet" : filter === "hotels" ? "No hotels listed yet" : "No listings yet"}</h2>
           <p>{search ? "Try another name, phone number or location." : "Listings added by the Sevana admin will appear here."}</p>
         </div>
