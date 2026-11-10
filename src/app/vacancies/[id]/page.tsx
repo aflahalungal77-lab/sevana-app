@@ -57,7 +57,7 @@ export default function VacancyDetailsPage() {
         : error || !job ? <div className="empty-state"><h2>Vacancy unavailable</h2><p>{error}</p><Link href="/vacancies" className="button button-primary">Browse vacancies</Link></div>
         : <>
           <section className="vacancy-detail-hero">
-            <span className="vacancy-card-icon"><img src="/emojis/vacancies.png" alt="" width={44} height={44} /></span>
+            <span className="vacancy-card-icon"><img src="/emojis/vacancy.png" alt="" width={44} height={44} /></span>
             <span className="vacancy-type">{job.job_type}</span>
             <h1>{job.title}</h1>
             <p>{job.company_name}</p>
