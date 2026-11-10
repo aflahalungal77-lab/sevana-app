@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft, Plus, Trash2, Pencil, Save, X, GripVertical, Eye,
-  Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital, ShieldCheck, Building2,
+  Search, ChevronRight, PhoneCall, CarFront, Wrench, Hospital, ShieldCheck, Building2, Utensils,
   Ambulance, Shield, Flame, Droplet, Baby, Pill, Stethoscope,
   BusFront, KeyRound, Zap, Paintbrush, HardHat, RefreshCw, Truck, Hammer, House, Flower2, Sprout, Layers, BriefcaseBusiness
 } from "lucide-react";
@@ -29,7 +29,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   "plumbing-wiring": Zap, "masonry-work": Layers, carpenter: Hammer, "tiles-marble": Layers,
   "painting-wood-polishing": Paintbrush, welders: Hammer, "curtain-carpet-works": House, "garden-services": Flower2,
   "agricultural-works": Sprout, "laterite-stone-quarrying": Hammer, "plastering-work": Layers,
-  others: BriefcaseBusiness, "mechanical-engineering": Wrench, "videography-editing": BriefcaseBusiness, hotels: Building2, repair: Wrench, construction: HardHat, painting: Paintbrush,
+  others: BriefcaseBusiness, "mechanical-engineering": Wrench, "videography-editing": BriefcaseBusiness, hotels: Building2, restaurants: Utensils, repair: Wrench, construction: HardHat, painting: Paintbrush,
 };
 
 export function AdminListingManager({
@@ -48,12 +48,12 @@ export function AdminListingManager({
   const [message, setMessage] = useState("");
   const [draggedId, setDraggedId] = useState<string | null>(null);
 
-  const title = kind === "hotline" ? "Hotlines" : kind === "transport" ? "Taxi & Transport" : kind === "hotel" ? "Hotels" : "Local Workers";
+  const title = kind === "hotline" ? "Hotlines" : kind === "transport" ? "Taxi & Transport" : kind === "hotel" ? "Hotels & Restaurants" : "Local Workers";
   const staticCategories = kind === "hotline" ? hotlineCategories : kind === "transport" ? transportCategories : kind === "hotel" ? hotelCategories : workerCategories;
   const displayCategories = kind === "worker" ? categories : staticCategories;
   const activeCategory = categories.find((c) => c.slug === selectedCategory);
   const filteredRows = useMemo(() => rows.filter((r) => {
-    const matchesSearch = `${r.name} ${r.phone} ${r.area || ""}`.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = `${r.name} ${r.phone} ${r.area || ""} ${r.address || ""} ${r.description || ""}`.toLowerCase().includes(search.toLowerCase());
     return matchesSearch && (!selectedCategory || categories.find((c) => c.id === r.category_id)?.slug === selectedCategory);
   }), [rows, search, selectedCategory, categories]);
 
@@ -172,7 +172,7 @@ export function AdminListingManager({
 
       {!selectedCategory ? (
         <>
-          <div className="admin-category-intro"><span className="admin-category-intro-icon">{kind === "hotline" ? <PhoneCall size={23}/> : kind === "transport" ? <CarFront size={23}/> : <Wrench size={23}/>}</span><div><h2>{title}</h2><p>Select a category to add, view, edit or reorder its records.</p></div></div>
+          <div className="admin-category-intro"><span className="admin-category-intro-icon">{kind === "hotline" ? <PhoneCall size={23}/> : kind === "transport" ? <CarFront size={23}/> : kind === "hotel" ? <Building2 size={23}/> : <Wrench size={23}/>}</span><div><h2>{title}</h2><p>Select a category to add, view, edit or reorder its records.</p></div></div>
           <div className="admin-category-grid">
             {displayCategories.map((cat) => {
               const Icon = categoryIcons[cat.slug] || PhoneCall;
