@@ -654,3 +654,16 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 .vacancy-admin-actions .danger{color:#b63b3b;}
 .vacancy-editor-section{scroll-margin-top:15px;}
 @media(max-width:480px){.vacancy-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr));}.vacancy-admin-card{align-items:flex-start;flex-direction:column;}.vacancy-admin-actions{width:100%;justify-content:flex-start;}.vacancy-admin-actions .icon-button{width:38px;height:38px;}}
+
+
+
+/* Hotels & Restaurants combined directory */
+.hospitality-directory { display: grid; gap: 14px; }
+.directory-search { display: flex; align-items: center; gap: 10px; width: 100%; padding: 13px 15px; border: 1px solid var(--border, #e3ebe5); border-radius: 14px; background: #fff; color: #718078; }
+.directory-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: #183126; font: inherit; font-size: 14px; }
+.directory-search input::placeholder { color: #98a49d; }
+.directory-filter-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.directory-filter-chip { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border: 1px solid var(--border, #e3ebe5); border-radius: 999px; background: #fff; color: #53645a; font: inherit; font-size: 13px; cursor: pointer; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.directory-filter-chip.active { border-color: #16834b; background: #eaf6ee; color: #11683c; font-weight: 650; }
+.directory-filter-chip small { display: inline-grid; min-width: 20px; height: 20px; place-items: center; padding: 0 5px; border-radius: 999px; background: rgba(20, 90, 52, .08); font-size: 11px; }
+.directory-result-count { margin: 0; color: #7b8980; font-size: 12px; }
