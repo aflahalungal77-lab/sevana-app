@@ -300,7 +300,7 @@ export default function HomePage() {
     href="/vacancies"
     className="sevana-service-item sevana-image-service sevana-service-vacancies"
   >
-    <ServiceImage src="/emojis/vacancies.png" alt="" />
+    <ServiceImage src="/emojis/vacancy.png" alt="" />
     <span>{t.vacancies}</span>
     <ChevronRight size={18} />
   </Link>
