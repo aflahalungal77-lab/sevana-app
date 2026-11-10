@@ -6,11 +6,11 @@ export default async function AdminListingsPage({
   searchParams: Promise<{ kind?: string; category?: string }>;
 }) {
   const { kind = "hotline", category } = await searchParams;
-  const allowed = ["hotline", "transport", "worker"];
+  const allowed = ["hotline", "transport", "worker", "hotel"];
   const safeKind = allowed.includes(kind) ? kind : "hotline";
   return (
     <AdminListingManager
-      kind={safeKind as "hotline" | "transport" | "worker"}
+      kind={safeKind as "hotline" | "transport" | "worker" | "hotel"}
       selectedCategory={category}
     />
   );
