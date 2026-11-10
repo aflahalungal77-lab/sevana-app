@@ -72,7 +72,7 @@ export default function VacanciesPage() {
       </header>
 
       <section className="intro-panel">
-        <div className="intro-icon"><img src="/emojis/vacancies.png" alt="" width={44} height={44} /></div>
+        <div className="intro-icon"><img src="/emojis/vacancy.png" alt="" width={44} height={44} /></div>
         <div><h2>Find your next opportunity</h2><p>Job listings published by the Sevana admin team.</p></div>
       </section>
 
@@ -83,13 +83,13 @@ export default function VacanciesPage() {
 
       {loading ? <div className="empty-inline"><LoaderCircle size={24} className="hotline-loading-spinner" /><span>Loading vacancies…</span></div>
         : error ? <div className="empty-state"><h2>Vacancies unavailable</h2><p>{error}</p></div>
-        : filtered.length === 0 ? <div className="empty-state"><div className="empty-icon"><img src="/emojis/vacancies.png" alt="" width={44} height={44} /></div><h2>No vacancies found</h2><p>{vacancies.length ? "Try another search." : "New local job opportunities will appear here when published."}</p></div>
+        : filtered.length === 0 ? <div className="empty-state"><div className="empty-icon"><img src="/emojis/vacancy.png" alt="" width={44} height={44} /></div><h2>No vacancies found</h2><p>{vacancies.length ? "Try another search." : "New local job opportunities will appear here when published."}</p></div>
         : <section className="vacancy-list" aria-label="Available vacancies">
           <p className="result-count">{filtered.length} {filtered.length === 1 ? "opportunity" : "opportunities"} available</p>
           {filtered.map((job) => (
             <Link href={"/vacancies/" + job.id} className="vacancy-card" key={job.id}>
               <div className="vacancy-card-top">
-                <span className="vacancy-card-icon"><img src="/emojis/vacancies.png" alt="" width={36} height={36} /></span>
+                <span className="vacancy-card-icon"><img src="/emojis/vacancy.png" alt="" width={36} height={36} /></span>
                 <span className="vacancy-type">{job.job_type}</span>
               </div>
               <h2>{job.title}</h2>
