@@ -303,7 +303,7 @@ export default function HomePage() {
     href="/hotels"
     className="sevana-service-item sevana-image-service sevana-service-hotels"
   >
-    <span className="sevana-service-icon"><Hotel size={25} /></span>
+    <ServiceImage src="/emojis/hotels.png" alt="" />
     <span>{t.hotels}</span>
     <ChevronRight size={18} />
   </Link>
