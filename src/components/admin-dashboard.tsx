@@ -13,7 +13,7 @@ type Counts = { listings: number; donors: number };
 
 const modules = [
   { title: "Hotlines", kind: "hotline", href: "/admin/listings?kind=hotline", Icon: PhoneCall, description: "Hospitals, doctors and emergency contacts", tone: "rose" },
-  { title: "Hotels", kind: "hotel", href: "/admin/listings?kind=hotel", Icon: Hotel, description: "Manage local hotel and accommodation listings", tone: "amber" },
+  { title: "Hotels & Restaurants", kind: "hotel", href: "/admin/listings?kind=hotel", Icon: Hotel, description: "Manage hotels, lodges and restaurants", tone: "amber" },
   { title: "Taxi & Transport", kind: "transport", href: "/admin/listings?kind=transport", Icon: CarFront, description: "Cars, autos, buses and rentals", tone: "amber" },
   { title: "Local Workers", kind: "worker", href: "/admin/listings?kind=worker", Icon: Wrench, description: "Manage worker listings", tone: "blue" },
   { title: "Categorization – Local Workers", kind: "worker-categories", href: "/admin/categorization/local-workers", Icon: LayoutGrid, description: "Create main categories, sub categories and icons", tone: "green" },
