@@ -2,7 +2,7 @@ export type ServiceCategory = {
   id: string;
   name: string;
   slug: string;
-  kind: "hotline" | "transport" | "worker";
+  kind: "hotline" | "transport" | "worker" | "hotel";
   icon?: string | null;
 };
 
