@@ -11,6 +11,7 @@ export const hotlineCategories: ServiceCategory[] = [
   { id: "medical-shop", name: "Medical Shops", slug: "medical-shop", kind: "hotline" },
   { id: "doctor", name: "Doctor's Clinic", slug: "doctors-clinic", kind: "hotline" },
   { id: "kseb", name: "KSEB", slug: "kseb", kind: "hotline" },
+  { id: "women", name: "Women Help & Safety", slug: "women", kind: "hotline" },
 ];
 
 export const transportCategories: ServiceCategory[] = [
