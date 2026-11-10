@@ -13,6 +13,7 @@ import {
   Sparkles,
   Languages,
   Heart,
+  Hotel,
 } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 
@@ -38,6 +39,7 @@ const translations = {
     workers: "Local Workers",
     members: "Members",
     vacancies: "Vacancies",
+    hotels: "Hotels",
     emergencyTitle: "Need urgent help?",
     emergencyDescription: "Find emergency contacts quickly.",
     charity: "MEENARKUZHI SHIHAB THANGAL CHARITY",
@@ -74,6 +76,7 @@ const translations = {
     workers: "പ്രാദേശിക തൊഴിലാളികൾ",
     members: "ജനപ്രതിനിധികൾ",
     vacancies: "തൊഴിൽ അവസരങ്ങൾ",
+    hotels: "ഹോട്ടലുകൾ",
     emergencyTitle: "അടിയന്തര സഹായം വേണോ?",
     emergencyDescription: "അടിയന്തര കോൺടാക്ടുകൾ വേഗത്തിൽ കണ്ടെത്താം.",
     charity: "മീനാർകുഴി ശിഹാബ് തങ്ങൾ ചാരിറ്റി",
@@ -293,6 +296,15 @@ export default function HomePage() {
   >
     <ServiceImage src="/emojis/members.png" alt="" />
     <span>{t.members}</span>
+    <ChevronRight size={18} />
+  </Link>
+
+  <Link
+    href="/hotels"
+    className="sevana-service-item sevana-image-service sevana-service-hotels"
+  >
+    <span className="sevana-service-icon"><Hotel size={25} /></span>
+    <span>{t.hotels}</span>
     <ChevronRight size={18} />
   </Link>
 
