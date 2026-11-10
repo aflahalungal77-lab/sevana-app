@@ -180,7 +180,7 @@ export function AdminListingManager({
               const count = category ? rows.filter((r) => r.category_id === category.id).length : 0;
               return (
                 <Link key={cat.slug} href={`/admin/listings?kind=${kind}&category=${cat.slug}`} className="admin-category-card">
-                  <span className={`admin-category-icon icon-${cat.slug}`}>{cat.slug === "cyber-crime" ? <Image src="/emojis/cyber.png" alt="" width={40} height={40} /> : <Icon size={22}/>}</span>
+                  <span className={`admin-category-icon icon-${cat.slug}`}>{cat.slug === "cyber-crime" ? <Image src="/emojis/cyber.png" alt="" width={40} height={40} /> : cat.slug === "hotels" ? <Image src="/emojis/hotel.png" alt="" width={40} height={40} /> : cat.slug === "restaurants" ? <Image src="/emojis/restaurant.png" alt="" width={40} height={40} /> : <Icon size={22}/>}</span>
                   <span className="admin-category-card-copy"><strong>{cat.name}</strong><small>{count} {count === 1 ? "listing" : "listings"}</small></span>
                   <ChevronRight size={18} className="admin-category-chevron"/>
                 </Link>
@@ -200,7 +200,7 @@ export function AdminListingManager({
           </div>
 
           <div className="admin-category-summary">
-            <span className="admin-category-icon">{selectedCategory === "cyber-crime" ? <Image src="/emojis/cyber.png" alt="" width={40} height={40} /> : <CategoryIcon size={22}/>}</span>
+            <span className="admin-category-icon">{selectedCategory === "cyber-crime" ? <Image src="/emojis/cyber.png" alt="" width={40} height={40} /> : selectedCategory === "hotels" ? <Image src="/emojis/hotel.png" alt="" width={40} height={40} /> : selectedCategory === "restaurants" ? <Image src="/emojis/restaurant.png" alt="" width={40} height={40} /> : <CategoryIcon size={22}/>}</span>
             <div><strong>{activeCategory?.name || selectedCategory}</strong><small>Changes here also update the public Sevana listing.</small></div>
           </div>
 
@@ -242,7 +242,7 @@ export function AdminListingManager({
                     onDragEnd={() => setDraggedId(null)}
                   >
                     <span className="admin-drag-handle" aria-label={`Position ${index + 1}`} title="Drag to reorder"><GripVertical size={20}/></span>
-                    <span className="admin-record-icon">{activeCategory?.slug === "cyber-crime" ? <Image src="/emojis/cyber.png" alt="" width={36} height={36} /> : <Icon size={20}/>}</span>
+                    <span className="admin-record-icon">{activeCategory?.slug === "cyber-crime" ? <Image src="/emojis/cyber.png" alt="" width={36} height={36} /> : activeCategory?.slug === "hotels" ? <Image src="/emojis/hotel.png" alt="" width={36} height={36} /> : activeCategory?.slug === "restaurants" ? <Image src="/emojis/restaurant.png" alt="" width={36} height={36} /> : <Icon size={20}/>}</span>
                     <div className="admin-record-main"><strong>{row.name}</strong><p>{row.phone} · {row.area || "Area not set"}</p><small><span className={row.is_active ? "admin-status-dot active" : "admin-status-dot"} />{row.is_active ? "Visible to users" : "Hidden from users"} · Position {index + 1}</small></div>
                     <div className="record-actions"><button className="icon-button" onClick={() => setEditing(row)} aria-label={`Edit ${row.name}`} title="Edit"><Pencil size={16}/></button><button className="icon-button danger-icon" onClick={() => remove(row.id)} aria-label={`Delete ${row.name}`} title="Delete"><Trash2 size={16}/></button></div>
                   </article>
