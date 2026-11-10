@@ -15,6 +15,10 @@ export const hotlineCategories: ServiceCategory[] = [
   { id: "cyber-crime", name: "Cyber Crime Help", slug: "cyber-crime", kind: "hotline" },
 ];
 
+export const hotelCategories: ServiceCategory[] = [
+  { id: "hotels", name: "Hotels", slug: "hotels", kind: "hotel" },
+];
+
 export const transportCategories: ServiceCategory[] = [
   { id: "cars", name: "Cars", slug: "cars", kind: "transport" },
   { id: "auto", name: "Auto", slug: "auto", kind: "transport" },
@@ -41,7 +45,7 @@ export const workerCategories: ServiceCategory[] = [
   { id: "videography-editing", name: "Videography & Editing", slug: "videography-editing", kind: "worker" },
 ];
 
-export async function getListings(kind: "hotline" | "transport" | "worker", categorySlug?: string): Promise<ServiceListing[]> {
+export async function getListings(kind: "hotline" | "transport" | "worker" | "hotel", categorySlug?: string): Promise<ServiceListing[]> {
   if (!supabaseConfigured || !supabase) return [];
   let query = supabase
     .from("service_listings")
