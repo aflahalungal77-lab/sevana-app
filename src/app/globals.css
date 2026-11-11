@@ -819,3 +819,73 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
   .sh-service-icon{width:34px;height:34px;flex-basis:34px;}
   .sh-service-copy strong{font-size:10px;}
 }
+
+
+/* Sevana home — refined quick actions and premium lower-page rhythm */
+.sh-services{margin-top:42px}
+.sh-section-heading{margin-bottom:20px}
+.sh-section-heading h2{font-family:Inter,"Noto Sans Malayalam",ui-sans-serif,system-ui,sans-serif;font-size:clamp(24px,3.2vw,32px);font-weight:820;letter-spacing:-.7px}
+.sh-section-heading p{font-size:13px}
+.sh-service-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.sh-service-card{
+  display:flex;align-items:center;gap:13px;min-height:104px;min-width:0;
+  padding:15px 34px 15px 14px;border-radius:20px;
+  border:1px solid var(--service-border,#e4ebe5);
+  background:linear-gradient(135deg,var(--service-bg,#fff) 0%,#fff 100%);
+  box-shadow:0 5px 18px rgba(25,55,35,.045);
+}
+.sh-service-card:hover{transform:translateY(-3px);border-color:var(--service-border-hover,#c9ddce);box-shadow:0 13px 28px rgba(25,55,35,.09)}
+.sh-service-icon{
+  display:grid;place-items:center;flex:0 0 52px;width:52px;height:52px;
+  overflow:hidden;border-radius:16px;background:var(--service-icon-bg,#edf6ef);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);
+}
+.sh-service-icon img{display:block;width:100%;height:100%;padding:5px;object-fit:contain}
+.sh-service-fallback{display:none!important}
+.sh-service-copy{display:block;flex:1;min-width:0;padding:0}
+.sh-service-copy strong{
+  display:block;min-width:0;color:var(--service-ink,#203d2b);
+  font-family:Inter,"Noto Sans Malayalam",ui-sans-serif,system-ui,sans-serif;
+  font-size:13px;font-weight:800;line-height:1.55;letter-spacing:-.12px;
+  white-space:normal;overflow-wrap:anywhere;word-break:normal;
+}
+.sh-service-copy small{display:none}
+.sh-service-arrow{top:50%;right:11px;bottom:auto;width:16px;height:16px;transform:translateY(-50%);color:var(--service-arrow,#9aab9f)}
+.sh-service-card:hover .sh-service-arrow{color:var(--service-ink,#287a48)}
+.sh-tone-rose{--service-bg:#fff5f4;--service-border:#f2dfdd;--service-border-hover:#e7c4c1;--service-icon-bg:#ffe7e4;--service-ink:#853d3d;--service-arrow:#bd7772}
+.sh-tone-amber{--service-bg:#fff9ed;--service-border:#f0e5cc;--service-border-hover:#e6d4aa;--service-icon-bg:#fff0ce;--service-ink:#78551f;--service-arrow:#b18a4c}
+.sh-tone-red{--service-bg:#fff4f3;--service-border:#f1ddda;--service-border-hover:#e8c3bf;--service-icon-bg:#ffe6e2;--service-ink:#8a3835;--service-arrow:#bc7771}
+.sh-tone-blue{--service-bg:#f2f7ff;--service-border:#dfe8f5;--service-border-hover:#c4d6ee;--service-icon-bg:#e3edff;--service-ink:#355783;--service-arrow:#7b97bc}
+.sh-tone-green{--service-bg:#f0f8f1;--service-border:#dcebdd;--service-border-hover:#c1ddc5;--service-icon-bg:#e0f1e2;--service-ink:#28623b;--service-arrow:#75a17d}
+.sh-tone-violet{--service-bg:#f7f4ff;--service-border:#e8e1f5;--service-border-hover:#d6c9ed;--service-icon-bg:#ece5fb;--service-ink:#65508b;--service-arrow:#9a87bd}
+.sh-emergency{margin-top:27px;padding:19px 21px;border-radius:20px;box-shadow:0 8px 24px rgba(166,53,48,.06)}
+.sh-community-card{margin-top:18px;padding:23px 24px;border-radius:22px;box-shadow:0 8px 22px rgba(22,75,40,.035)}
+.sh-community-card h2{font-family:Inter,"Noto Sans Malayalam",ui-sans-serif,system-ui,sans-serif;font-size:20px;font-weight:820;line-height:1.4}
+.sh-community-card p{font-size:12px;line-height:1.75}
+.sh-bottom-links{gap:13px;margin-top:16px}
+.sh-bottom-links>a{min-height:68px;padding:14px 15px;border-radius:17px;box-shadow:0 4px 14px rgba(22,62,37,.035);transition:transform .18s,border-color .18s,box-shadow .18s}
+.sh-bottom-links>a:hover{transform:translateY(-2px);border-color:#c8ddce;box-shadow:0 9px 20px rgba(22,62,37,.07)}
+.sh-footer{margin-top:24px}
+@media(max-width:900px){.sh-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(max-width:560px){
+ .sh-services{margin-top:31px}
+ .sh-section-heading{align-items:flex-end;gap:9px}
+ .sh-section-heading h2{font-size:22px;line-height:1.4}
+ .sh-section-heading p{max-width:290px;font-size:11px;line-height:1.7}
+ .sh-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .sh-service-card{min-height:88px;gap:8px;padding:11px 24px 11px 9px;border-radius:16px}
+ .sh-service-icon{width:39px;height:39px;flex-basis:39px;border-radius:12px}
+ .sh-service-icon img{padding:3px}
+ .sh-service-copy strong{font-size:11px;line-height:1.55;letter-spacing:0}
+ .sh-service-arrow{right:7px;width:13px;height:13px}
+ .sh-emergency{margin-top:19px;padding:13px 11px;border-radius:16px}
+ .sh-community-card{margin-top:14px;padding:16px 13px;border-radius:17px}
+ .sh-community-card h2{font-size:16px;line-height:1.5}
+ .sh-community-card p{font-size:10px;line-height:1.75}
+ .sh-bottom-links>a{min-height:64px;padding:10px 8px}
+}
+@media(max-width:360px){
+ .sh-service-card{min-height:84px;gap:6px;padding:9px 21px 9px 7px}
+ .sh-service-icon{width:33px;height:33px;flex-basis:33px}
+ .sh-service-copy strong{font-size:10px;line-height:1.6}
+}
