@@ -64,7 +64,7 @@ export default function HotlinesPage() {
                 className={`category-icon icon-${category.slug}`}
               >
                 <Image
-                  src={category.slug === "cyber-crime" ? "/emojis/cyber.png" : `/emojis/${category.slug}.png`}
+                  src={category.icon || (category.slug === "cyber-crime" ? "/emojis/cyber.png" : `/emojis/${category.slug}.png`)}
                   alt={category.name}
                   width={40}
                   height={40}
