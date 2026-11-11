@@ -18,7 +18,7 @@ export default function HotlinesPage() {
   );
 
   return (
-    <div className="page">
+    <div className="page premium-directory">
       <header className="back-header">
         <Link
           href="/"
