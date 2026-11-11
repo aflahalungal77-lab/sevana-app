@@ -1,6 +1,7 @@
 "use client";
 
 import { Languages } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const enToMl: Record<string, string> = {
@@ -383,7 +384,14 @@ export function LanguageToggle() {
     translateDom(next);
   }, []);
 
+  const pathname = usePathname();
+
   useEffect(() => {
+    const handleLanguageChange = (event: Event) => {
+      const next = (event as CustomEvent<"en" | "ml">).detail;
+      if (next === "en" || next === "ml") applyLanguage(next);
+    };
+    window.addEventListener("sevana:language-change", handleLanguageChange);
     const saved = localStorage.getItem("sevana-language");
     const initial: "en" | "ml" = saved === "ml" ? "ml" : "en";
     setLanguage(initial);
@@ -400,8 +408,13 @@ export function LanguageToggle() {
       });
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("sevana:language-change", handleLanguageChange);
+    };
+  }, [applyLanguage]);
+
+  if (pathname === "/") return null;
 
   return (
     <button
