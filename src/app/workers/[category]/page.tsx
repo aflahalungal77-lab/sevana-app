@@ -21,7 +21,7 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
     ? await client.from("service_categories").select("id,name,slug,icon_path").eq("kind", "worker").eq("slug", slug).maybeSingle()
     : { data: null };
 
-  if (!category) return <div className="page"><h1>Category not found</h1><Link href="/workers">Back to Workers</Link></div>;
+  if (!category) return <div className="page premium-directory"><h1>Category not found</h1><Link href="/workers">Back to Workers</Link></div>;
 
   const listings = await getListings("worker", slug);
   const categoryKey = (slug + " " + category.name).toLowerCase().replace(/[_-]+/g, " ");
@@ -32,7 +32,7 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
       : normalizeIconPath(category.icon_path || ("/emojis/" + slug + ".png"));
 
   return (
-    <div className="page">
+    <div className="page premium-directory">
       <header className="back-header">
         <Link href="/workers" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link>
         <img src={categoryIcon} alt={category.name} width={48} height={48} className="transport-emoji" />

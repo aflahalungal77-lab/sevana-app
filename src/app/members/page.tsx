@@ -49,7 +49,7 @@ export default function MembersPage() {
     ))}</div>;
   }
 
-  return <main className="page members-page">
+  return <main className="page members-page premium-directory">
     <header className="back-header"><Link href="/" className="back-button" aria-label="Back to home"><ArrowLeft size={20} /></Link><div><h1>Members</h1><p>Local Panchayat & Ward representatives</p></div></header>
     <section className="intro-panel"><div className="intro-icon"><Users size={22} /></div><div><h2>Your local representatives</h2><p>Find a representative and contact them directly.</p></div></section>
     {loading ? <div className="empty-inline"><LoaderCircle className="hotline-loading-spinner" size={25} /><span>Loading members…</span></div>

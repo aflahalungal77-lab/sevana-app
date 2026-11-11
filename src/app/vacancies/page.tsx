@@ -65,7 +65,7 @@ export default function VacanciesPage() {
   }, [vacancies, search]);
 
   return (
-    <main className="page vacancies-page">
+    <main className="page vacancies-page premium-directory">
       <header className="back-header">
         <Link href="/" className="back-button" aria-label="Back to home"><ArrowLeft size={20} /></Link>
         <div><h1>Vacancies</h1><p>Local job opportunities around your community</p></div>
