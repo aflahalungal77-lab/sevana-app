@@ -248,17 +248,6 @@ export default function HomePage() {
 
       <footer className="sh-footer"><ShieldCheck size={15} /><span>{t.footer}</span></footer>
 
-      <button
-        type="button"
-        className="sh-language-toggle sh-language-floating"
-        onClick={toggleLanguage}
-        aria-label={language === "en" ? "Switch to Malayalam" : "Switch to English"}
-        aria-pressed={language === "ml"}
-      >
-        <Languages size={20} />
-        <span>{t.language}</span>
-        <span className="sh-language-current">{language === "en" ? "EN" : "മലയാളം"}</span>
-      </button>
     </main>
   );
 }
