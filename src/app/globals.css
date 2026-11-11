@@ -1205,3 +1205,48 @@ body{background:linear-gradient(180deg,#f8fbf8 0%,#f4f8f4 100%);}
  .premium-vacancy-content>strong{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.premium-category-card,.premium-worker-card,.premium-vacancy-card,.service-hero{transition:none!important}}
+
+
+/* Compact directory cards and clearer donor contact action */
+.service-page .premium-category-grid{gap:10px}
+.service-page .premium-category-card{grid-template-columns:52px minmax(0,1fr) 18px;min-height:94px;gap:10px;padding:13px;border-radius:16px}
+.service-page .premium-card-icon{width:52px;height:52px;border-radius:15px}
+.service-page .premium-card-icon img{width:39px;height:39px}
+.service-page .premium-card-copy strong{font-size:12px}
+.service-page .premium-card-copy small{font-size:9px;line-height:1.4}
+.service-page .premium-worker-grid{gap:8px}
+.service-page .premium-worker-card{grid-template-columns:42px minmax(0,1fr) 16px;min-height:70px;gap:8px;padding:9px;border-radius:14px}
+.service-page .premium-worker-icon{width:42px;height:42px;border-radius:12px}
+.service-page .premium-worker-icon img{width:33px;height:33px}
+.service-page .premium-worker-card strong{font-size:11px}
+.service-page .worker-parent-card{padding:15px}
+.service-page .premium-vacancy-list{gap:9px}
+.service-page .premium-vacancy-card{grid-template-columns:44px minmax(0,1fr) 17px;gap:10px;padding:12px;border-radius:16px}
+.service-page .premium-vacancy-icon{width:44px;height:44px;border-radius:13px}
+.service-page .premium-vacancy-content>strong{font-size:13px}
+.service-page .premium-vacancy-meta{gap:7px}
+.service-page .premium-member-grid{gap:10px}
+.service-page .premium-member-card{gap:10px;padding:12px;border-radius:16px}
+.service-page .premium-member-photo{width:55px;height:55px;flex-basis:55px;border-radius:14px}
+.service-page .premium-member-info h3{font-size:13px}
+.service-page .premium-donor-card{grid-template-columns:48px minmax(0,1fr) auto;gap:10px;min-height:88px;padding:12px;border-radius:16px}
+.service-page .premium-donor-card .premium-blood-badge{display:flex;width:48px;height:48px;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px;font-size:11px}
+.service-page .premium-donor-card .premium-blood-badge svg{width:17px;height:17px}
+.service-page .premium-donor-card .premium-listing-main h3{font-size:13px}
+.service-page .premium-donor-card .premium-listing-meta{margin-top:5px}
+.service-page .premium-donor-card .premium-privacy-note{margin:5px 0 0;font-size:10px;line-height:1.4}
+.service-page .premium-donor-card .premium-donor-call{min-width:78px;min-height:39px;grid-column:auto;justify-self:auto;border:0;border-radius:12px;background:linear-gradient(135deg,#e34b55 0%,#c51f3c 55%,#9f1736 100%);color:#fff;box-shadow:0 5px 13px rgba(190,35,61,.2)}
+.service-page .premium-donor-card .premium-donor-call:hover{transform:translateY(-2px);box-shadow:0 8px 17px rgba(190,35,61,.27)}
+.service-page .premium-donor-card .premium-donor-call span{font-size:11px;font-weight:850}
+@media(max-width:620px){
+ .service-page .premium-category-card{grid-template-columns:47px minmax(0,1fr) 17px;min-height:79px;gap:9px;padding:10px 11px}
+ .service-page .premium-card-icon{width:47px;height:47px;border-radius:13px}
+ .service-page .premium-card-icon img{width:35px;height:35px}
+ .service-page .premium-card-copy strong{font-size:12px}
+ .service-page .premium-worker-card{grid-template-columns:39px minmax(0,1fr) 16px;min-height:64px;padding:8px}
+ .service-page .premium-worker-icon{width:39px;height:39px}
+ .service-page .premium-donor-card{grid-template-columns:43px minmax(0,1fr) auto;gap:8px;padding:10px}
+ .service-page .premium-donor-card .premium-blood-badge{width:43px;height:43px}
+ .service-page .premium-donor-card .premium-donor-call{min-width:68px;min-height:36px;padding:0 9px}
+ .service-page .premium-donor-card .premium-donor-call svg{width:14px;height:14px}
+}
