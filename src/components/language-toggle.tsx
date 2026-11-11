@@ -413,8 +413,6 @@ export function LanguageToggle() {
     };
   }, [applyLanguage]);
 
-  if (pathname === "/") return null;
-
   return (
     <button
       type="button"
