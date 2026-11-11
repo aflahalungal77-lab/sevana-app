@@ -1,106 +1,12 @@
 "use client";
-
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import { ArrowLeft, BriefcaseBusiness, MapPin, Search, CalendarDays, LoaderCircle } from "lucide-react";
-import { supabase } from "@/lib/supabase/client";
-
-type Vacancy = {
-  id: string;
-  title: string;
-  company_name: string;
-  category: string;
-  job_type: string;
-  location: string;
-  salary_min: number | null;
-  salary_max: number | null;
-  expires_at: string | null;
-  created_at: string;
-};
-
-function salaryLabel(min: number | null, max: number | null) {
-  if (min == null && max == null) return "Salary not specified";
-  const format = (value: number) => "₹" + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(value);
-  if (min != null && max != null) return format(min) + " – " + format(max);
-  return (min != null ? "From " + format(min) : "Up to " + format(max!));
-}
-
-export default function VacanciesPage() {
-  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    let active = true;
-    async function load() {
-      if (!supabase) {
-        setError("Vacancies are not configured yet.");
-        setLoading(false);
-        return;
-      }
-      const now = new Date().toISOString();
-      const { data, error: queryError } = await supabase
-        .from("vacancies")
-        .select("id,title,company_name,category,job_type,location,salary_min,salary_max,expires_at,created_at")
-        .eq("status", "published")
-        .or("expires_at.is.null,expires_at.gt." + now)
-        .order("created_at", { ascending: false });
-      if (!active) return;
-      if (queryError) setError("Unable to load vacancies right now. Please try again later.");
-      else setVacancies((data || []) as Vacancy[]);
-      setLoading(false);
-    }
-    void load();
-    return () => { active = false; };
-  }, []);
-
-  const filtered = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    return vacancies.filter((job) => {
-      const matchesSearch = !query || [job.title, job.company_name, job.location, job.category]
-        .some((value) => value?.toLowerCase().includes(query));
-      return matchesSearch;
-    });
-  }, [vacancies, search]);
-
-  return (
-    <main className="page vacancies-page premium-directory">
-      <header className="back-header">
-        <Link href="/" className="back-button" aria-label="Back to home"><ArrowLeft size={20} /></Link>
-        <div><h1>Vacancies</h1><p>Local job opportunities around your community</p></div>
-      </header>
-
-      <section className="intro-panel">
-        <div className="intro-icon"><img src="/emojis/vacancy.png" alt="" width={44} height={44} /></div>
-        <div><h2>Find your next opportunity</h2><p>Job listings published by the Sevana admin team.</p></div>
-      </section>
-
-      <label className="vacancy-search">
-        <Search size={18} />
-        <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search job, company or location" aria-label="Search vacancies" />
-      </label>
-
-      {loading ? <div className="empty-inline"><LoaderCircle size={24} className="hotline-loading-spinner" /><span>Loading vacancies…</span></div>
-        : error ? <div className="empty-state"><h2>Vacancies unavailable</h2><p>{error}</p></div>
-        : filtered.length === 0 ? <div className="empty-state"><div className="empty-icon"><img src="/emojis/vacancy.png" alt="" width={44} height={44} /></div><h2>No vacancies found</h2><p>{vacancies.length ? "Try another search." : "New local job opportunities will appear here when published."}</p></div>
-        : <section className="vacancy-list" aria-label="Available vacancies">
-          <p className="result-count">{filtered.length} {filtered.length === 1 ? "opportunity" : "opportunities"} available</p>
-          {filtered.map((job) => (
-            <Link href={"/vacancies/" + job.id} className="vacancy-card" key={job.id}>
-              <div className="vacancy-card-top">
-                <span className="vacancy-card-icon"><img src="/emojis/vacancy.png" alt="" width={36} height={36} /></span>
-                <span className="vacancy-type">{job.job_type}</span>
-              </div>
-              <h2>{job.title}</h2>
-              <p className="vacancy-company">{job.company_name}</p>
-              <div className="vacancy-meta"><span><MapPin size={14} />{job.location}</span><span><CalendarDays size={14} />{new Date(job.created_at).toLocaleDateString("en-IN")}</span></div>
-              <div className="vacancy-card-bottom"><strong>{salaryLabel(job.salary_min, job.salary_max)}</strong><span>View details →</span></div>
-            </Link>
-          ))}
-        </section>}
-
-      <p className="notice">Please verify the employer and job details independently before sharing personal information or accepting an offer. Never pay money to secure a job.</p>
-    </main>
-  );
-}
+import{useEffect,useMemo,useState}from"react";import Link from"next/link";import{ArrowLeft,BriefcaseBusiness,MapPin,Search,CalendarDays,LoaderCircle,ChevronRight,Building2}from"lucide-react";import{supabase}from"@/lib/supabase/client";
+type Vacancy={id:string;title:string;company_name:string;category:string;job_type:string;location:string;salary_min:number|null;salary_max:number|null;expires_at:string|null;created_at:string};
+function salaryLabel(min:number|null,max:number|null){if(min==null&&max==null)return"Salary not specified";const f=(v:number)=>"₹"+new Intl.NumberFormat("en-IN",{maximumFractionDigits:0}).format(v);if(min!=null&&max!=null)return f(min)+" – "+f(max);return min!=null?"From "+f(min):"Up to "+f(max!)}
+export default function VacanciesPage(){const[vacancies,setVacancies]=useState<Vacancy[]>([]);const[search,setSearch]=useState("");const[filter,setFilter]=useState("All");const[loading,setLoading]=useState(true);const[error,setError]=useState("");
+useEffect(()=>{let active=true;async function load(){if(!supabase){setError("Vacancies are not configured yet.");setLoading(false);return;}const now=new Date().toISOString();const{data,error:queryError}=await supabase.from("vacancies").select("id,title,company_name,category,job_type,location,salary_min,salary_max,expires_at,created_at").eq("status","published").or("expires_at.is.null,expires_at.gt."+now).order("created_at",{ascending:false});if(!active)return;if(queryError)setError("Unable to load vacancies right now. Please try again later.");else setVacancies((data||[])as Vacancy[]);setLoading(false)}void load();return()=>{active=false}},[]);
+const filters=useMemo(()=>["All",...Array.from(new Set(vacancies.map(v=>v.job_type).filter(Boolean)))], [vacancies]);
+const filtered=useMemo(()=>{const q=search.trim().toLowerCase();return vacancies.filter(j=>(filter==="All"||j.job_type===filter)&&(!q||[j.title,j.company_name,j.location,j.category].some(v=>v?.toLowerCase().includes(q))))},[vacancies,search,filter]);
+return <main className="page premium-directory service-page"><header className="back-header"><Link href="/" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link><div><span className="page-kicker">LOCAL OPPORTUNITIES</span><h1>Vacancies</h1><p>Work opportunities shared with your community</p></div></header><section className="service-hero service-hero-violet"><div className="service-hero-icon"><BriefcaseBusiness size={27}/></div><div><span className="service-hero-label">YOUR NEXT STEP</span><h2>Explore opportunities near you.</h2><p>Browse published openings and check the details before applying.</p></div><Building2 className="service-hero-watermark" size={104}/></section><label className="premium-directory-search"><Search size={19}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search role, company or location" aria-label="Search vacancies"/>{search&&<button type="button" onClick={()=>setSearch("")}>Clear</button>}</label>
+{!loading&&!error&&vacancies.length>0&&<div className="premium-filter-row" aria-label="Filter by job type">{filters.map(f=><button key={f} type="button" className={filter===f?"active":""} onClick={()=>setFilter(f)}>{f}</button>)}</div>}
+{loading?<div className="empty-inline"><LoaderCircle size={24} className="hotline-loading-spinner"/>Loading vacancies…</div>:error?<div className="empty-state"><h2>Vacancies unavailable</h2><p>{error}</p></div>:!filtered.length?<div className="empty-state"><div className="empty-icon"><BriefcaseBusiness size={28}/></div><h2>No vacancies found</h2><p>{vacancies.length?"Try another search or filter.":"New local job opportunities will appear here when published."}</p></div>:<section className="premium-vacancy-list"><div className="service-section-heading"><div><span className="page-kicker">OPEN POSITIONS</span><h2>Available opportunities</h2></div><span className="category-count">{filtered.length} found</span></div>{filtered.map(job=><Link href={"/vacancies/"+job.id} className="premium-vacancy-card" key={job.id}><span className="premium-vacancy-icon"><BriefcaseBusiness size={22}/></span><span className="premium-vacancy-content"><span className="vacancy-type">{job.job_type||"Opportunity"}</span><strong>{job.title}</strong><small>{job.company_name}</small><span className="premium-vacancy-meta"><span><MapPin size={13}/>{job.location}</span><span><CalendarDays size={13}/>{new Date(job.created_at).toLocaleDateString("en-IN")}</span></span><b>{salaryLabel(job.salary_min,job.salary_max)}</b></span><ChevronRight size={19} className="row-chevron"/></Link>)}</section>}
+<p className="notice">Please verify the employer and job details independently before sharing personal information or accepting an offer. Never pay money to secure a job.</p></main>}
