@@ -363,7 +363,7 @@ function translateDom(language: "en" | "ml") {
     const translated = map[trimmed];
     if (translated) node.nodeValue = raw.replace(trimmed, translated);
   }
-  const attrs = ["placeholder", "aria-label", "title"];
+  const attrs = ["placeholder", "aria-label", "title", "alt"];
   document.querySelectorAll<HTMLElement>("input,textarea,button,a,[title],[aria-label]").forEach((el) => {
     if (el.closest("[data-no-translate]")) return;
     for (const attr of attrs) {
