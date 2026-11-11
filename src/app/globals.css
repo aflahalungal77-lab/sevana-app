@@ -1015,3 +1015,56 @@ body{background:linear-gradient(180deg,#f8fbf8 0%,#f4f8f4 100%);}
 .premium-directory :is(a,button,input,select):focus-visible{outline:3px solid rgba(35,128,69,.3);outline-offset:3px;}
 @media(max-width:600px){.premium-directory{padding:13px 12px 22px;}.premium-directory .back-header{gap:11px;margin-bottom:17px;padding:14px 13px;border-radius:18px;}.premium-directory .back-header h1{font-size:21px;}.premium-directory .back-header p{font-size:12px;}.premium-directory .back-button{width:42px;height:42px;flex-basis:42px;border-radius:13px;}.premium-directory .intro-panel{gap:12px;margin-bottom:16px;padding:15px;border-radius:17px;}.premium-directory .intro-panel .intro-icon{width:48px;height:48px;flex-basis:48px;border-radius:15px;}.premium-directory .intro-panel h2{font-size:15px;}.premium-directory .intro-panel p{font-size:12px;}.premium-directory .category-row{min-height:72px;padding:12px;border-radius:16px;}.premium-directory .category-icon{width:46px;height:46px;flex-basis:46px;}.premium-directory .worker-parent-card{padding:14px;border-radius:18px;}.premium-directory .worker-child-grid{grid-template-columns:1fr;}.premium-directory .worker-child-card{min-height:72px;}.premium-directory .form-card{padding:15px;border-radius:18px;}.premium-directory .vacancy-card{padding:15px;border-radius:17px;}.premium-directory .member-card{padding:12px;border-radius:16px;}}
 @media(prefers-reduced-motion:reduce){.premium-directory *{transition:none!important;animation:none!important;}}
+
+
+/* Stronger service page layout — targets the real components used by each route */
+.premium-directory .listing-list{display:grid;gap:14px;margin-top:4px}
+.premium-directory .premium-listing-card{position:relative;display:grid;grid-template-columns:58px minmax(0,1fr) auto;align-items:center;gap:15px;padding:17px;border:1px solid #dfeae2;border-radius:21px;background:linear-gradient(145deg,#fff 0%,#f9fcfa 100%);box-shadow:0 7px 22px rgba(21,67,39,.055)}
+.premium-directory .premium-listing-icon{display:grid;width:58px;height:58px;place-items:center;border:1px solid #e1eee4;border-radius:18px;background:#edf7ef}
+.premium-directory .premium-listing-icon img{width:42px;height:42px;object-fit:contain}
+.premium-directory .premium-listing-main{min-width:0}
+.premium-directory .premium-listing-main h3{margin:0;color:#183d29;font-size:16px;font-weight:850;line-height:1.35}
+.premium-directory .premium-listing-description{margin:6px 0 0;color:#68796e;font-size:12px;line-height:1.65}
+.premium-directory .premium-listing-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.premium-directory .premium-listing-meta span{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border:1px solid #e5eee7;border-radius:9px;background:#f5faf6;color:#617367;font-size:11px}
+.premium-directory .premium-listing-address{display:flex;gap:5px;margin-top:8px;color:#718078;font-size:11px;line-height:1.5}
+.premium-directory .premium-listing-address svg{flex:0 0 auto;margin-top:2px}
+.premium-directory .premium-call-button{display:inline-flex;min-width:86px;min-height:43px;align-items:center;justify-content:center;gap:7px;padding:0 13px;border:0;border-radius:13px;background:linear-gradient(135deg,#197345,#105331);color:#fff;font-size:12px;font-weight:850;box-shadow:0 5px 13px rgba(18,99,54,.17)}
+.premium-directory .premium-call-button:hover{transform:translateY(-2px);box-shadow:0 9px 18px rgba(18,99,54,.23)}
+.premium-directory .hospitality-type-label{display:inline-flex;margin-top:5px;padding:3px 8px;border-radius:8px;background:#edf6ef;color:#276a41;font-size:10px;font-weight:800}
+.premium-directory .vacancy-detail-hero{position:relative;display:grid;gap:10px;margin-bottom:15px;padding:24px;border:1px solid #d8e9dd;border-radius:24px;background:radial-gradient(circle at 100% 0%,rgba(156,214,171,.25),transparent 38%),linear-gradient(140deg,#f0f8f2,#fff 75%);box-shadow:0 10px 28px rgba(22,73,42,.06)}
+.premium-directory .vacancy-detail-hero h1{margin:2px 0 0;color:#173d29;font-size:clamp(24px,5vw,32px);font-weight:900;line-height:1.2}
+.premium-directory .vacancy-detail-hero>p{margin:0;color:#617568;font-size:14px;font-weight:700}
+.premium-directory .vacancy-detail-hero .vacancy-card-icon{display:grid;width:58px;height:58px;place-items:center;border-radius:18px;background:#e0f1e4}
+.premium-directory .vacancy-detail-hero .vacancy-salary{display:inline-flex;width:max-content;max-width:100%;padding:9px 13px;border:1px solid #d8eadc;border-radius:12px;background:#fff;color:#17643c;font-size:15px}
+.premium-directory .vacancy-detail-section{margin-top:13px;padding:19px;border:1px solid #e1ebe3;border-radius:19px;background:#fff;box-shadow:0 5px 16px rgba(22,67,40,.04)}
+.premium-directory .vacancy-detail-section h2{margin:0 0 9px;color:#20442f;font-size:16px;font-weight:850}
+.premium-directory .vacancy-detail-section p{margin:0;color:#617268;font-size:13px;line-height:1.8;white-space:pre-line}
+.premium-directory .vacancy-contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
+.premium-directory .vacancy-contact-actions .button{display:inline-flex;min-height:47px;align-items:center;justify-content:center;gap:8px;padding:0 15px;border-radius:13px;font-size:12px;font-weight:850}
+.premium-directory .vacancy-contact-actions .button-secondary{border:1px solid #cfe5d5;background:#eff8f1;color:#17643c}
+.premium-directory .vacancy-contact-actions .button-ghost{border:1px solid #e0e9e2;background:#fff;color:#405b49}
+.premium-directory .members-group-title{display:flex;align-items:center;gap:9px;padding-bottom:10px;border-bottom:1px solid #e1ebe3}
+.premium-directory .members-grid{display:grid;gap:12px}
+.premium-directory .member-card{display:flex;align-items:center;gap:14px}
+.premium-directory .member-details{min-width:0;flex:1}
+.premium-directory .member-details>p{display:flex;align-items:center;gap:6px;margin:7px 0;color:#68796e;font-size:12px}
+.premium-directory .member-ward{display:inline-flex;align-items:center;gap:5px;margin-bottom:5px;padding:4px 8px;border-radius:8px;background:#edf6ef;color:#276a41;font-size:10px;font-weight:800}
+.premium-directory .member-designation{margin:2px 0!important;color:#829087!important;font-size:11px!important}
+.premium-directory .vacancy-search{display:flex;align-items:center;gap:10px;margin:0 0 16px}
+.premium-directory .vacancy-search input{width:100%;min-height:48px;border:0;background:transparent;box-shadow:none}
+.premium-directory .result-count{margin:0 0 10px;color:#718078;font-size:12px;font-weight:750}
+.premium-directory .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;text-align:center}
+.premium-directory .empty-state h2{margin:12px 0 5px;color:#244433;font-size:17px}
+.premium-directory .empty-state p{max-width:360px;margin:0;color:#718078;font-size:12px;line-height:1.7}
+@media(max-width:600px){
+ .premium-directory .premium-listing-card{grid-template-columns:46px minmax(0,1fr);gap:11px;padding:13px;border-radius:17px}
+ .premium-directory .premium-listing-icon{width:46px;height:46px;border-radius:14px}
+ .premium-directory .premium-listing-icon img{width:34px;height:34px}
+ .premium-directory .premium-listing-main h3{font-size:14px}
+ .premium-directory .premium-call-button{grid-column:2;justify-self:start;min-width:100px;min-height:40px}
+ .premium-directory .vacancy-detail-hero{padding:18px;border-radius:19px}
+ .premium-directory .vacancy-detail-section{padding:15px}
+ .premium-directory .member-card{align-items:flex-start}
+ .premium-directory .member-photo{width:62px;height:62px;flex-basis:62px}
+}
