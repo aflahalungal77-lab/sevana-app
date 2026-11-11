@@ -2,7 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const enToMl: Record<string, string> = {
   "Home": "ഹോം", "Services": "സേവനങ്ങൾ", "Blood": "രക്തം", "About": "ആമുഖം",
@@ -348,27 +348,41 @@ Object.assign(enToMl, {
 });
 
 const mlToEn = Object.fromEntries(Object.entries(enToMl).map(([en, ml]) => [ml, en]));
+const translationEntries = (map: Record<string, string>) =>
+  Object.entries(map).sort(([a], [b]) => b.length - a.length);
 
 function translateDom(language: "en" | "ml") {
   const map = language === "ml" ? enToMl : mlToEn;
+  const entries = translationEntries(map);
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   const nodes: Text[] = [];
   while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+
   for (const node of nodes) {
     const parent = node.parentElement;
     if (!parent || parent.closest("script,style,noscript,[data-no-translate]")) continue;
     const raw = node.nodeValue ?? "";
-    const trimmed = raw.trim();
-    if (!trimmed) continue;
-    const translated = map[trimmed];
-    if (translated && translated !== trimmed) node.nodeValue = raw.replace(trimmed, translated);
+    if (!raw.trim()) continue;
+
+    // Support a phrase inside a larger text node too (for example labels with counts).
+    let next = raw;
+    for (const [source, target] of entries) {
+      if (next.includes(source)) next = next.split(source).join(target);
+    }
+    if (next !== raw) node.nodeValue = next;
   }
+
   const attrs = ["placeholder", "aria-label", "title", "alt"];
   document.querySelectorAll<HTMLElement>("input,textarea,button,a,[title],[aria-label]").forEach((el) => {
     if (el.closest("[data-no-translate]")) return;
     for (const attr of attrs) {
       const value = el.getAttribute(attr);
-      if (value && map[value]) el.setAttribute(attr, map[value]);
+      if (!value) continue;
+      let next = value;
+      for (const [source, target] of entries) {
+        if (next.includes(source)) next = next.split(source).join(target);
+      }
+      if (next !== value) el.setAttribute(attr, next);
     }
   });
 }
@@ -380,17 +394,24 @@ export function LanguageToggle() {
 
   const applyLanguage = useCallback((next: "en" | "ml") => {
     languageRef.current = next;
-    setLanguage(next);
     document.documentElement.lang = next;
     document.documentElement.dataset.language = next;
     try {
       localStorage.setItem("sevana-language", next);
     } catch {}
-    // Translate immediately, then once more after React has completed the current render.
-    translateDom(next);
-    requestAnimationFrame(() => translateDom(next));
+    setLanguage(next);
     window.dispatchEvent(new CustomEvent("sevana:language-applied", { detail: next }));
   }, []);
+
+  // Run after React commits so React cannot immediately overwrite the translated DOM.
+  useLayoutEffect(() => {
+    languageRef.current = language;
+    document.documentElement.lang = language;
+    document.documentElement.dataset.language = language;
+    translateDom(language);
+    const frame = requestAnimationFrame(() => translateDom(language));
+    return () => cancelAnimationFrame(frame);
+  }, [language, pathname]);
 
   useEffect(() => {
     const saved = (() => {
@@ -399,10 +420,6 @@ export function LanguageToggle() {
     const initial: "en" | "ml" = saved === "ml" ? "ml" : "en";
     languageRef.current = initial;
     setLanguage(initial);
-    document.documentElement.lang = initial;
-    document.documentElement.dataset.language = initial;
-    translateDom(initial);
-    requestAnimationFrame(() => translateDom(initial));
 
     const handleLanguageChange = (event: Event) => {
       const next = (event as CustomEvent<"en" | "ml">).detail;
@@ -432,12 +449,6 @@ export function LanguageToggle() {
       window.removeEventListener("storage", handleStorage);
     };
   }, [applyLanguage]);
-
-  // App Router navigation replaces page content without a full reload.
-  useEffect(() => {
-    const current = languageRef.current;
-    requestAnimationFrame(() => translateDom(current));
-  }, [pathname]);
 
   return (
     <button
