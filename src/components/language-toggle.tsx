@@ -290,6 +290,63 @@ Object.assign(enToMl, {
   "Unable to load members. Please try again later.": "ജനപ്രതിനിധികളുടെ വിവരങ്ങൾ ലോഡ് ചെയ്യാനായില്ല. പിന്നീട് ശ്രമിക്കുക."
 });
 
+
+// Admin tools and small dynamic labels used by the newer modules.
+Object.assign(enToMl, {
+  "Ward": "വാർഡ്",
+  "of": "ൽ",
+  "Showing": "കാണിക്കുന്നത്",
+  "places": "സ്ഥാപനങ്ങൾ",
+  "Total": "ആകെ",
+  "Published": "പ്രസിദ്ധീകരിച്ചത്",
+  "Filled": "ഒഴിവ് നികഞ്ഞു",
+  "Simple local job listings": "ലളിതമായ പ്രാദേശിക തൊഴിൽ വിവരങ്ങൾ",
+  "ADMIN ONLY": "അഡ്മിന് മാത്രം",
+  "Edit vacancy": "തൊഴിൽ വിവരം തിരുത്തുക",
+  "Add a vacancy": "പുതിയ തൊഴിൽ വിവരം ചേർക്കുക",
+  "Job title *": "ജോലിയുടെ പേര് *",
+  "Company / employer *": "കമ്പനി / തൊഴിലുടമ *",
+  "Location *": "സ്ഥലം *",
+  "Short description *": "ചുരുക്ക വിവരണം *",
+  "e.g. Sales Assistant": "ഉദാ. സെയിൽസ് അസിസ്റ്റന്റ്",
+  "Employer name": "തൊഴിലുടമയുടെ പേര്",
+  "e.g. Koottilangadi": "ഉദാ. കൂട്ടിലങ്ങാടി",
+  "What is the work? Add the important details…": "ജോലി എന്താണ്? പ്രധാന വിവരങ്ങൾ ചേർക്കുക…",
+  "Contact phone": "ബന്ധപ്പെടാനുള്ള ഫോൺ",
+  "Save vacancy": "തൊഴിൽ വിവരം സേവ് ചെയ്യുക",
+  "Vacancy updated.": "തൊഴിൽ വിവരം പുതുക്കി.",
+  "Vacancy published and is now live.": "തൊഴിൽ വിവരം പ്രസിദ്ധീകരിച്ചു.",
+  "Marked as filled.": "ഒഴിവ് നികഞ്ഞതായി അടയാളപ്പെടുത്തി.",
+  "Vacancy published.": "തൊഴിൽ വിവരം പ്രസിദ്ധീകരിച്ചു.",
+  "Moved to draft.": "ഡ്രാഫ്റ്റിലേക്ക് മാറ്റി.",
+  "Vacancy deleted.": "തൊഴിൽ വിവരം നീക്കം ചെയ്തു.",
+  "Delete this vacancy permanently?": "ഈ തൊഴിൽ വിവരം സ്ഥിരമായി നീക്കം ചെയ്യണോ?",
+  "Could not load donors. Check admin permissions.": "രക്തദാതാക്കളുടെ വിവരങ്ങൾ ലോഡ് ചെയ്യാനായില്ല. അഡ്മിൻ അനുമതി പരിശോധിക്കുക.",
+  "Could not save donor. Check fields and permissions.": "ദാതാവിന്റെ വിവരം സേവ് ചെയ്യാനായില്ല. വിവരങ്ങളും അനുമതികളും പരിശോധിക്കുക.",
+  "Donor saved.": "ദാതാവിന്റെ വിവരം സേവ് ചെയ്തു.",
+  "Could not delete donor.": "ദാതാവിന്റെ വിവരം നീക്കം ചെയ്യാനായില്ല.",
+  "Donor analytics": "രക്തദാതാക്കളുടെ കണക്ക്",
+  "Search name, place, area or phone number...": "പേര്, സ്ഥലം, പ്രദേശം അല്ലെങ്കിൽ ഫോൺ നമ്പർ തിരയുക...",
+  "Your password": "നിങ്ങളുടെ പാസ്‌വേഡ്",
+  "admin@example.com": "admin@example.com",
+  "Close": "അടയ്ക്കുക",
+  "Sign out": "സൈൻ ഔട്ട്",
+  "Back to Sevana": "സേവനയിലേക്ക് മടങ്ങുക",
+  "Add donor": "രക്തദാതാവിനെ ചേർക്കുക",
+  "Donors": "രക്തദാതാക്കൾ",
+  "No donors added yet": "രക്തദാതാക്കളെ ഇതുവരെ ചേർത്തിട്ടില്ല",
+  "Add donors only with their permission.": "അനുമതിയുള്ളവരെ മാത്രം രക്തദാതാക്കളായി ചേർക്കുക.",
+  "Available for requests": "അഭ്യർത്ഥനകൾക്കായി ലഭ്യമാണ്",
+  "Delete this donor record?": "ഈ രക്തദാതാവിന്റെ വിവരം നീക്കം ചെയ്യണോ?",
+  "Donor saved.": "രക്തദാതാവിന്റെ വിവരം സേവ് ചെയ്തു.",
+  "Donor deleted.": "രക്തദാതാവിന്റെ വിവരം നീക്കം ചെയ്തു.",
+  "Panchayat & Ward representatives": "പഞ്ചായത്ത്, വാർഡ് ജനപ്രതിനിധികൾ",
+  "Members Management": "ജനപ്രതിനിധികളുടെ നിയന്ത്രണം",
+  "Manage panchayat and ward representatives": "പഞ്ചായത്ത്, വാർഡ് ജനപ്രതിനിധികളുടെ വിവരങ്ങൾ നിയന്ത്രിക്കുക",
+  "Delete ": "നീക്കം ചെയ്യുക ",
+  " from the directory?": " ഡയറക്ടറിയിൽ നിന്ന്?"
+});
+
 const mlToEn = Object.fromEntries(Object.entries(enToMl).map(([en, ml]) => [ml, en]));
 
 function translateDom(language: "en" | "ml") {
