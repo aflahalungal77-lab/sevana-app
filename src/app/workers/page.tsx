@@ -48,7 +48,7 @@ export default function WorkersPage() {
   }, []);
 
   return (
-    <main className="page workers-page">
+    <main className="page workers-page premium-directory">
       <header className="back-header">
         <Link href="/" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link>
         <div><h1>Local Workers</h1><p>Find skilled help around you</p></div>
