@@ -48,7 +48,7 @@ export default function VacancyDetailsPage() {
   const whatsapp = job?.contact_whatsapp?.replace(/\D/g, "");
 
   return (
-    <main className="page vacancy-detail-page">
+    <main className="page vacancy-detail-page premium-directory">
       <header className="back-header">
         <Link href="/vacancies" className="back-button" aria-label="Back to vacancies"><ArrowLeft size={20} /></Link>
         <div><h1>Job details</h1><p>Sevana Vacancies</p></div>
