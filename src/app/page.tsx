@@ -165,6 +165,8 @@ export default function HomePage() {
     const nextLanguage: Language = language === "en" ? "ml" : "en";
     setLanguage(nextLanguage);
     window.localStorage.setItem("sevana-language", nextLanguage);
+    document.documentElement.lang = nextLanguage;
+    window.dispatchEvent(new CustomEvent("sevana:language-change", { detail: nextLanguage }));
   }
 
   const t = translations[language];
