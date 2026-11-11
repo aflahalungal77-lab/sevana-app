@@ -41,6 +41,8 @@ export function ListingCard({
     hotels: "hotel",
     restaurants: "restaurant",
     "cyber-crime": "cyber",
+    "mental-health-counselling": "counselling",
+    "senior-citizen-support": "citizen",
     "plumbing-wiring": "plumbing-wiring",
     "masonry-work": "masonry-work",
     carpenter: "carpenter",
