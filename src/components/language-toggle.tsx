@@ -324,7 +324,6 @@ Object.assign(enToMl, {
   "Delete this vacancy permanently?": "ഈ തൊഴിൽ വിവരം സ്ഥിരമായി നീക്കം ചെയ്യണോ?",
   "Could not load donors. Check admin permissions.": "രക്തദാതാക്കളുടെ വിവരങ്ങൾ ലോഡ് ചെയ്യാനായില്ല. അഡ്മിൻ അനുമതി പരിശോധിക്കുക.",
   "Could not save donor. Check fields and permissions.": "ദാതാവിന്റെ വിവരം സേവ് ചെയ്യാനായില്ല. വിവരങ്ങളും അനുമതികളും പരിശോധിക്കുക.",
-  "Donor saved.": "ദാതാവിന്റെ വിവരം സേവ് ചെയ്തു.",
   "Could not delete donor.": "ദാതാവിന്റെ വിവരം നീക്കം ചെയ്യാനായില്ല.",
   "Donor analytics": "രക്തദാതാക്കളുടെ കണക്ക്",
   "Search name, place, area or phone number...": "പേര്, സ്ഥലം, പ്രദേശം അല്ലെങ്കിൽ ഫോൺ നമ്പർ തിരയുക...",
