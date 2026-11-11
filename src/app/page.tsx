@@ -130,14 +130,14 @@ const serviceKeywords: Record<string, string> = {
 };
 
 const serviceItems = [
-  { id: "hotlines", href: "/hotlines", image: "/images/hotlines-3d.webp", Icon: HeartPulse, tone: "rose" },
-  { id: "transport", href: "/transport", image: "/images/transport-3d.webp", Icon: CarFront, tone: "amber" },
-  { id: "findDonor", href: "/donors", image: "/images/donor-3d.webp", Icon: Droplet, tone: "red" },
-  { id: "needBlood", href: "/blood-request", image: "/images/blood-3d.webp", Icon: HandHeart, tone: "red" },
-  { id: "workers", href: "/workers", image: "/images/localworkers-3d.webp", Icon: Wrench, tone: "blue" },
-  { id: "members", href: "/members", image: "/emojis/members.png", Icon: Users, tone: "green" },
-  { id: "hotels", href: "/hotels", image: "/emojis/hotels.png", Icon: Hotel, tone: "amber" },
-  { id: "vacancies", href: "/vacancies", image: "/emojis/vacancy.png", Icon: BriefcaseBusiness, tone: "violet" },
+  { id: "hotlines", href: "/hotlines", image: "/images/hotlines-3d.webp", tone: "rose" },
+  { id: "transport", href: "/transport", image: "/images/transport-3d.webp", tone: "amber" },
+  { id: "findDonor", href: "/donors", image: "/images/donor-3d.webp", tone: "red" },
+  { id: "needBlood", href: "/blood-request", image: "/images/blood-3d.webp", tone: "red" },
+  { id: "workers", href: "/workers", image: "/images/localworkers-3d.webp", tone: "blue" },
+  { id: "members", href: "/members", image: "/emojis/members.png", tone: "green" },
+  { id: "hotels", href: "/hotels", image: "/emojis/hotels.png", tone: "amber" },
+  { id: "vacancies", href: "/vacancies", image: "/emojis/vacancy.png", tone: "violet" },
 ] as const;
 
 export default function HomePage() {
@@ -221,9 +221,9 @@ export default function HomePage() {
 
         {filteredServices.length > 0 ? (
           <div className="sh-service-grid">
-            {filteredServices.map(({ id, href, image, Icon, tone }) => (
+            {filteredServices.map(({ id, href, image, tone }) => (
               <Link key={id} href={href} className={`sh-service-card sh-tone-${tone}`}>
-                <span className="sh-service-icon"><img src={image} alt="" loading="lazy" /><Icon className="sh-service-fallback" size={24} /></span>
+                <span className="sh-service-icon"><img src={image} alt="" loading="lazy" /></span>
                 <span className="sh-service-copy"><strong>{t[id]}</strong><small>{t[`${id}Desc` as keyof typeof t]}</small></span>
                 <ArrowUpRight className="sh-service-arrow" size={17} />
               </Link>
