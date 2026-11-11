@@ -55,11 +55,6 @@ const translations = {
     hotelsDesc: "Find places to stay and eat",
     vacancies: "Job opportunities",
     vacanciesDesc: "Explore local job listings",
-    supportTitle: "Support for every generation",
-    supportDescription: "Quick access to dedicated community support.",
-    women: "Women & safety",
-    counselling: "Mental health",
-    senior: "Senior citizens",
     emergencyTitle: "Need urgent help?",
     emergencyDescription: "Open the help directory to find important emergency contacts.",
     emergencyAction: "Find help",
@@ -105,11 +100,6 @@ const translations = {
     hotelsDesc: "താമസിക്കാനും ഭക്ഷണം കഴിക്കാനുമുള്ള ഇടങ്ങൾ",
     vacancies: "തൊഴിൽ അവസരങ്ങൾ",
     vacanciesDesc: "പ്രാദേശിക തൊഴിൽ വിവരങ്ങൾ കണ്ടെത്താം",
-    supportTitle: "എല്ലാ തലമുറകൾക്കും സഹായം",
-    supportDescription: "പ്രത്യേക സഹായ വിഭാഗങ്ങളിലേക്ക് വേഗത്തിൽ എത്താം.",
-    women: "വനിതാ സഹായം",
-    counselling: "മാനസികാരോഗ്യം",
-    senior: "മുതിർന്ന പൗരന്മാർ",
     emergencyTitle: "അടിയന്തര സഹായം വേണോ?",
     emergencyDescription: "പ്രധാനപ്പെട്ട അടിയന്തര കോൺടാക്ടുകൾ ഇവിടെ കണ്ടെത്താം.",
     emergencyAction: "സഹായം കണ്ടെത്തുക",
@@ -242,15 +232,6 @@ export default function HomePage() {
         ) : (
           <div className="sh-no-results"><Search size={24} /><strong>{t.noResults}</strong><span>{t.noResultsDescription}</span><button type="button" onClick={() => setSearch("")}>{t.clearSearch}</button></div>
         )}
-      </section>
-
-      <section className="sh-support">
-        <div className="sh-support-heading"><span className="sh-eyebrow">{language === "en" ? "DEDICATED COMMUNITY CARE" : "പ്രത്യേക സമൂഹ സഹായം"}</span><h2>{t.supportTitle}</h2><p>{t.supportDescription}</p></div>
-        <div className="sh-support-links">
-          <Link href="/hotlines/women" className="sh-support-link"><img src="/emojis/women.png" alt="" /><span>{t.women}</span><ChevronRight size={17} /></Link>
-          <Link href="/hotlines/mental-health-counselling" className="sh-support-link"><img src="/emojis/counselling.png" alt="" /><span>{t.counselling}</span><ChevronRight size={17} /></Link>
-          <Link href="/hotlines/senior-citizen-support" className="sh-support-link"><img src="/emojis/citizen.png" alt="" /><span>{t.senior}</span><ChevronRight size={17} /></Link>
-        </div>
       </section>
 
       <Link href="/hotlines" className="sh-emergency">
