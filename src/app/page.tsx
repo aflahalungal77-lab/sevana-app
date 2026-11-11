@@ -128,6 +128,17 @@ const translations = {
   },
 } as const;
 
+const serviceKeywords: Record<string, string> = {
+  hotlines: "ambulance hospital police fire women safety counselling senior citizen helpline അടിയന്തര ആശുപത്രി പോലീസ് വനിതാ സുരക്ഷ മാനസികാരോഗ്യം മുതിർന്ന പൗരന്മാർ",
+  transport: "taxi car auto bus travel driver ടാക്സി കാർ ഓട്ടോ ബസ് യാത്ര",
+  findDonor: "blood donor group രക്തം രക്തദാതാവ് ബ്ലഡ്",
+  needBlood: "blood request patient hospital രക്തം അഭ്യർത്ഥന രോഗി ആശുപത്രി",
+  workers: "worker plumber electrician carpenter mason repair തൊഴിലാളി പ്ലംബർ ഇലക്ട്രീഷ്യൻ മരപ്പണി കൽപ്പണി",
+  members: "panchayat ward president representative പഞ്ചായത്ത് വാർഡ് പ്രസിഡന്റ് ജനപ്രതിനിധി",
+  hotels: "hotel restaurant food stay ഹോട്ടൽ റെസ്റ്റോറന്റ് ഭക്ഷണം താമസം",
+  vacancies: "job vacancy employment work career ജോലി തൊഴിൽ അവസരം",
+};
+
 const serviceItems = [
   { id: "hotlines", href: "/hotlines", image: "/images/hotlines-3d.webp", Icon: HeartPulse, tone: "rose" },
   { id: "transport", href: "/transport", image: "/images/transport-3d.webp", Icon: CarFront, tone: "amber" },
@@ -163,7 +174,7 @@ export default function HomePage() {
     return serviceItems.filter(({ id }) => {
       const item = t[id];
       const description = t[`${id}Desc` as keyof typeof t];
-      return `${item} ${description} ${id}`.toLocaleLowerCase().includes(query);
+      return `${item} ${description} ${id} ${serviceKeywords[id]}`.toLocaleLowerCase().includes(query);
     });
   }, [search, t]);
 
