@@ -20,7 +20,7 @@ export default async function HotlineCategoryPage({
 
   if (!category) {
     return (
-      <div className="page">
+      <div className="page premium-directory">
         <h1>Category not found</h1>
         <Link href="/hotlines">Back to Hotlines</Link>
       </div>
