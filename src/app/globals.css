@@ -923,3 +923,39 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
  .sh-service-copy strong{font-size:11px;line-height:1.55}
  .sh-language-floating{right:11px;bottom:calc(78px + env(safe-area-inset-bottom));min-height:50px;padding:0 12px}
 }
+
+
+/* Sevana shared premium system — consistent, accessible treatment across routes */
+:root{--page:#f5f8f5;--surface:#fff;--line:#e1eae3;--shadow-sm:0 3px 12px rgba(20,55,33,.045);--shadow:0 10px 28px rgba(20,55,33,.075);--shadow-lg:0 18px 46px rgba(20,55,33,.11);}
+body{background:linear-gradient(180deg,#f8fbf8 0%,#f4f8f4 100%);}
+.app-shell{isolation:isolate;}
+.page{padding-bottom:22px;}
+.page :is(h1,h2,h3){letter-spacing:-.025em;}
+.page :is(input,textarea,select){min-height:44px;border-radius:12px;border-color:#dce7de;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;}
+.page :is(input,textarea,select):focus{border-color:#6eae80;box-shadow:0 0 0 4px rgba(35,128,69,.09);outline:0;}
+.page :is(button,a){transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease;}
+.page :is(button,a):focus-visible{outline:3px solid rgba(35,128,69,.3);outline-offset:3px;}
+.page :is(article,.card,.panel,.directory-card,.contact-card,.worker-card,.member-card,.donor-card,.vacancy-card){border-color:#e2ebe4;box-shadow:0 4px 16px rgba(20,55,33,.045);}
+.page :is(.section-heading,.page-heading){margin-bottom:18px;}
+.page :is(.section-heading h1,.section-heading h2,.page-heading h1,.page-heading h2){line-height:1.3;}
+.global-language-toggle{
+ position:fixed;z-index:120;top:max(12px,env(safe-area-inset-top));right:max(14px,calc((100vw - 760px)/2 + 26px));
+ display:inline-flex;min-height:46px;align-items:center;justify-content:center;gap:9px;padding:0 15px;
+ border:1px solid rgba(255,255,255,.2);border-radius:15px;background:linear-gradient(135deg,#176b3e 0%,#104a2b 100%);
+ color:#fff;box-shadow:0 8px 22px rgba(14,73,39,.24);font-size:13px;font-weight:800;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.global-language-toggle:hover{transform:translateY(-1px);box-shadow:0 11px 26px rgba(14,73,39,.3);}
+.global-language-toggle svg{width:19px;height:19px;}
+.global-language-toggle:focus-visible{outline:3px solid #e5bd55;outline-offset:3px;}
+.topbar{padding-right:112px;}
+.sh-header-actions{padding-right:126px;}
+.bottom-nav{z-index:90;}
+@media(max-width:560px){
+ .global-language-toggle{top:max(9px,env(safe-area-inset-top));right:10px;min-height:43px;padding:0 12px;border-radius:14px;font-size:12px;}
+ .global-language-toggle svg{width:18px;height:18px;}
+ .topbar{padding-right:100px;gap:8px;}
+ .sh-header-actions{padding-right:108px;}
+ .page{padding-bottom:18px;}
+}
+@media(prefers-reduced-motion:reduce){.page,.page *,.global-language-toggle{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
