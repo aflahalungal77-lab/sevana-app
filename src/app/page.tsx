@@ -181,10 +181,6 @@ export default function HomePage() {
           </span>
         </Link>
         <div className="sh-header-actions">
-          <button type="button" className="sh-language-toggle" onClick={toggleLanguage} aria-label={language === "en" ? "Switch to Malayalam" : "Switch to English"} aria-pressed={language === "ml"}>
-            <Languages size={17} />
-            <span>{t.language}</span>
-          </button>
           <Link href="/about" className="sh-about-link"><Building2 size={17} /><span>{t.about}</span></Link>
         </div>
       </header>
@@ -224,7 +220,7 @@ export default function HomePage() {
             {filteredServices.map(({ id, href, image, tone }) => (
               <Link key={id} href={href} className={`sh-service-card sh-tone-${tone}`}>
                 <span className="sh-service-icon"><img src={image} alt="" loading="lazy" /></span>
-                <span className="sh-service-copy"><strong>{t[id]}</strong><small>{t[`${id}Desc` as keyof typeof t]}</small></span>
+                <span className="sh-service-copy"><strong>{t[id]}</strong></span>
                 <ArrowUpRight className="sh-service-arrow" size={17} />
               </Link>
             ))}
@@ -251,6 +247,18 @@ export default function HomePage() {
       </section>
 
       <footer className="sh-footer"><ShieldCheck size={15} /><span>{t.footer}</span></footer>
+
+      <button
+        type="button"
+        className="sh-language-toggle sh-language-floating"
+        onClick={toggleLanguage}
+        aria-label={language === "en" ? "Switch to Malayalam" : "Switch to English"}
+        aria-pressed={language === "ml"}
+      >
+        <Languages size={20} />
+        <span>{t.language}</span>
+        <span className="sh-language-current">{language === "en" ? "EN" : "മലയാളം"}</span>
+      </button>
     </main>
   );
 }
