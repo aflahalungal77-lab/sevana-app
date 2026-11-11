@@ -768,3 +768,54 @@ a{touch-action:manipulation;}.app-shell{width:100%;max-width:var(--container);mi
 .directory-result-count { margin: 0; color: #7b8980; font-size: 12px; }
 
 .hospitality-type-label { display: inline-flex; width: fit-content; margin: 0 0 5px; padding: 3px 8px; border-radius: 999px; background: #eef6f0; color: #286443; font-size: 10px; font-weight: 650; letter-spacing: .02em; }
+
+
+/* Homepage quick actions: simpler cards with a clear, premium hierarchy */
+.sh-service-card{
+  min-height:88px;
+  gap:12px;
+  align-items:center;
+  padding:13px 38px 13px 13px;
+  border-radius:16px;
+  box-shadow:0 3px 12px rgba(22,62,37,.035);
+}
+.sh-service-icon{
+  width:46px;
+  height:46px;
+  flex-basis:46px;
+  border-radius:14px;
+}
+.sh-service-icon img{padding:5px;}
+.sh-service-copy{gap:0;padding:0;}
+.sh-service-copy strong{font-size:13px;line-height:1.4;}
+.sh-service-copy small{display:none;}
+.sh-service-arrow{
+  top:50%;
+  right:12px;
+  bottom:auto;
+  transform:translateY(-50%);
+  color:#91a197;
+}
+.sh-service-card:hover .sh-service-arrow{color:#287a48;}
+@media(max-width:560px){
+  .sh-service-grid{gap:9px;}
+  .sh-service-card{
+    min-height:76px;
+    gap:9px;
+    padding:10px 27px 10px 10px;
+    border-radius:14px;
+  }
+  .sh-service-icon{
+    width:38px;
+    height:38px;
+    flex-basis:38px;
+    border-radius:12px;
+  }
+  .sh-service-copy strong{font-size:11px;line-height:1.35;}
+  .sh-service-arrow{right:8px;width:14px;height:14px;}
+}
+@media(max-width:360px){
+  .sh-service-card{gap:7px;padding-left:8px;}
+  .sh-service-icon{width:34px;height:34px;flex-basis:34px;}
+  .sh-service-copy strong{font-size:10px;}
+}
