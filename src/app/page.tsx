@@ -66,6 +66,7 @@ const translations = {
     charity: "MEENARKUZHI SHIHAB THANGAL CHARITABLE SOCIETY",
     charityTitle: "Our community. Connected.",
     charityDescription: "A simple way to discover useful services and support around Meenarkuzhi.",
+    exploreDescription: "Discover available services",
     aboutSevana: "About Sevana",
     aboutDescription: "Our purpose and the people behind it",
     footer: "Please confirm contact details and service availability before relying on them.",
@@ -115,6 +116,7 @@ const translations = {
     charity: "മീനാർകുഴി ശിഹാബ് തങ്ങൾ ചാരിറ്റബിൾ സൊസൈറ്റി",
     charityTitle: "നമ്മുടെ നാട്, ഒരുമിച്ച്.",
     charityDescription: "മീനാർകുഴിയിലെയും സമീപ പ്രദേശങ്ങളിലെയും സേവനങ്ങൾ കണ്ടെത്താനുള്ള ലളിതമായ മാർഗം.",
+    exploreDescription: "ലഭ്യമായ സേവനങ്ങൾ കണ്ടെത്താം",
     aboutSevana: "സേവനയെക്കുറിച്ച്",
     aboutDescription: "നമ്മുടെ ലക്ഷ്യവും ഇതിന് പിന്നിലുള്ളവരും",
     footer: "ബന്ധപ്പെടുന്നതിന് മുമ്പ് ഫോൺ നമ്പറും സേവനലഭ്യതയും ഉറപ്പാക്കുക.",
@@ -250,7 +252,7 @@ export default function HomePage() {
       </section>
 
       <section className="sh-bottom-links">
-        <Link href="/services"><span className="sh-bottom-link-icon"><Building2 size={20} /></span><span><strong>{t.all}</strong><small>{t.exploreDescription || (language === "en" ? "Discover available services" : "ലഭ്യമായ സേവനങ്ങൾ കണ്ടെത്താം")}</small></span><ChevronRight size={18} /></Link>
+        <Link href="/services"><span className="sh-bottom-link-icon"><Building2 size={20} /></span><span><strong>{t.all}</strong><small>{t.exploreDescription}</small></span><ChevronRight size={18} /></Link>
         <Link href="/about"><span className="sh-bottom-link-icon"><Users size={20} /></span><span><strong>{t.aboutSevana}</strong><small>{t.aboutDescription}</small></span><ChevronRight size={18} /></Link>
       </section>
 
