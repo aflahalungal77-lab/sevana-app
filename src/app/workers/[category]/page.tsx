@@ -32,7 +32,7 @@ export default async function WorkerCategoryPage({ params }: { params: Promise<{
       : normalizeIconPath(category.icon_path || ("/emojis/" + slug + ".png"));
 
   return (
-    <div className="page">
+    <div className="page premium-directory">
       <header className="back-header">
         <Link href="/workers" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link>
         <img src={categoryIcon} alt={category.name} width={48} height={48} className="transport-emoji" />
