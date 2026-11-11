@@ -24,7 +24,7 @@ export default function TransportPage() {
   const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
 
   return (
-    <div className="page">
+    <div className="page premium-directory">
       <header className="back-header">
         <Link href="/" className="back-button" aria-label="Back">
           <ArrowLeft size={20} />
