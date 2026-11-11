@@ -23,7 +23,7 @@ export default async function TransportCategoryPage({
 
   if (!category) {
     return (
-      <div className="page">
+      <div className="page premium-directory">
         <h1>Category not found</h1>
         <Link href="/transport">Back to Taxi</Link>
       </div>
