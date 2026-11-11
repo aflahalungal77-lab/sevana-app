@@ -33,7 +33,7 @@ export default async function TransportCategoryPage({
   const listings = await getListings("transport", slug);
 
   return (
-    <div className="page">
+    <div className="page premium-directory">
 
 <header className="back-header">
   <Link
