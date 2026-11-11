@@ -2,7 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const enToMl: Record<string, string> = {
   "Home": "ഹോം", "Services": "സേവനങ്ങൾ", "Blood": "രക്തം", "About": "ആമുഖം",
@@ -361,7 +361,7 @@ function translateDom(language: "en" | "ml") {
     const trimmed = raw.trim();
     if (!trimmed) continue;
     const translated = map[trimmed];
-    if (translated) node.nodeValue = raw.replace(trimmed, translated);
+    if (translated && translated !== trimmed) node.nodeValue = raw.replace(trimmed, translated);
   }
   const attrs = ["placeholder", "aria-label", "title", "alt"];
   document.querySelectorAll<HTMLElement>("input,textarea,button,a,[title],[aria-label]").forEach((el) => {
@@ -375,27 +375,46 @@ function translateDom(language: "en" | "ml") {
 
 export function LanguageToggle() {
   const [language, setLanguage] = useState<"en" | "ml">("en");
-
-  const applyLanguage = useCallback((next: "en" | "ml") => {
-    setLanguage(next);
-    document.documentElement.lang = next;
-    localStorage.setItem("sevana-language", next);
-    translateDom(next);
-  }, []);
-
+  const languageRef = useRef<"en" | "ml">("en");
   const pathname = usePathname();
 
+  const applyLanguage = useCallback((next: "en" | "ml") => {
+    languageRef.current = next;
+    setLanguage(next);
+    document.documentElement.lang = next;
+    document.documentElement.dataset.language = next;
+    try {
+      localStorage.setItem("sevana-language", next);
+    } catch {}
+    // Translate immediately, then once more after React has completed the current render.
+    translateDom(next);
+    requestAnimationFrame(() => translateDom(next));
+    window.dispatchEvent(new CustomEvent("sevana:language-applied", { detail: next }));
+  }, []);
+
   useEffect(() => {
+    const saved = (() => {
+      try { return localStorage.getItem("sevana-language"); } catch { return null; }
+    })();
+    const initial: "en" | "ml" = saved === "ml" ? "ml" : "en";
+    languageRef.current = initial;
+    setLanguage(initial);
+    document.documentElement.lang = initial;
+    document.documentElement.dataset.language = initial;
+    translateDom(initial);
+    requestAnimationFrame(() => translateDom(initial));
+
     const handleLanguageChange = (event: Event) => {
       const next = (event as CustomEvent<"en" | "ml">).detail;
       if (next === "en" || next === "ml") applyLanguage(next);
     };
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === "sevana-language" && (event.newValue === "en" || event.newValue === "ml")) {
+        applyLanguage(event.newValue);
+      }
+    };
     window.addEventListener("sevana:language-change", handleLanguageChange);
-    const saved = localStorage.getItem("sevana-language");
-    const initial: "en" | "ml" = saved === "ml" ? "ml" : "en";
-    setLanguage(initial);
-    document.documentElement.lang = initial;
-    translateDom(initial);
+    window.addEventListener("storage", handleStorage);
 
     let scheduled = false;
     const observer = new MutationObserver(() => {
@@ -403,22 +422,29 @@ export function LanguageToggle() {
       scheduled = true;
       requestAnimationFrame(() => {
         scheduled = false;
-        translateDom(document.documentElement.lang === "ml" ? "ml" : "en");
+        translateDom(languageRef.current);
       });
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     return () => {
       observer.disconnect();
       window.removeEventListener("sevana:language-change", handleLanguageChange);
+      window.removeEventListener("storage", handleStorage);
     };
   }, [applyLanguage]);
+
+  // App Router navigation replaces page content without a full reload.
+  useEffect(() => {
+    const current = languageRef.current;
+    requestAnimationFrame(() => translateDom(current));
+  }, [pathname]);
 
   return (
     <button
       type="button"
       className="global-language-toggle"
       data-no-translate="true"
-      onClick={() => applyLanguage(language === "en" ? "ml" : "en")}
+      onClick={() => applyLanguage(languageRef.current === "en" ? "ml" : "en")}
       aria-label={language === "en" ? "Switch to Malayalam" : "Switch to English"}
       title={language === "en" ? "Switch to Malayalam" : "Switch to English"}
     >
