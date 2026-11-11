@@ -13,6 +13,8 @@ export const hotlineCategories: ServiceCategory[] = [
   { id: "kseb", name: "KSEB", slug: "kseb", kind: "hotline" },
   { id: "women", name: "Women Help & Safety", slug: "women", kind: "hotline" },
   { id: "cyber-crime", name: "Cyber Crime Help", slug: "cyber-crime", kind: "hotline" },
+  { id: "mental-health-counselling", name: "Mental Health & Counselling", slug: "mental-health-counselling", kind: "hotline", icon: "/emojis/counselling.png" },
+  { id: "senior-citizen-support", name: "Senior Citizen Support", slug: "senior-citizen-support", kind: "hotline", icon: "/emojis/citizen.png" },
 ];
 
 export const hotelCategories: ServiceCategory[] = [
