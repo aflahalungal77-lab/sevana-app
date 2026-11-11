@@ -32,7 +32,7 @@ export default async function HotlineCategoryPage({
   const categoryImage = category.icon || `/emojis/${categoryIcon}.png`;
 
   return (
-    <div className="page">
+    <div className="page premium-directory">
       <header className="back-header">
         <Link
           href="/hotlines"
