@@ -149,15 +149,28 @@ export default function HomePage() {
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem("sevana-language");
     if (savedLanguage === "ml" || savedLanguage === "en") setLanguage(savedLanguage);
-  }, []);
 
-  function toggleLanguage() {
-    const nextLanguage: Language = language === "en" ? "ml" : "en";
-    setLanguage(nextLanguage);
-    window.localStorage.setItem("sevana-language", nextLanguage);
-    document.documentElement.lang = nextLanguage;
-    window.dispatchEvent(new CustomEvent("sevana:language-change", { detail: nextLanguage }));
-  }
+    // The fixed global toggle lives in the root layout. Keep this page's
+    // React-rendered copy in sync immediately, without requiring a refresh.
+    const syncLanguage = (event: Event) => {
+      const next = (event as CustomEvent<Language>).detail;
+      if (next === "ml" || next === "en") setLanguage(next);
+    };
+    const syncStorage = (event: StorageEvent) => {
+      if (event.key === "sevana-language" && (event.newValue === "ml" || event.newValue === "en")) {
+        setLanguage(event.newValue);
+      }
+    };
+
+    window.addEventListener("sevana:language-applied", syncLanguage);
+    window.addEventListener("sevana:language-change", syncLanguage);
+    window.addEventListener("storage", syncStorage);
+    return () => {
+      window.removeEventListener("sevana:language-applied", syncLanguage);
+      window.removeEventListener("sevana:language-change", syncLanguage);
+      window.removeEventListener("storage", syncStorage);
+    };
+  }, []);
 
   const t = translations[language];
   const filteredServices = useMemo(() => {
