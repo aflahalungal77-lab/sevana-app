@@ -1,36 +1,6 @@
 "use client";
-
-import { useState } from "react";
-import { Search, Droplet } from "lucide-react";
-import { findDonors } from "@/lib/data";
-import type { Donor } from "@/lib/types";
-import { DonorCard } from "@/components/listing-card";
-import { DonorResultsSkeleton } from "@/components/donor-results-skeleton";
-
-const groups = ["All", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-
-export function DonorSearch() {
-  const [group, setGroup] = useState("All");
-  const [donors, setDonors] = useState<Donor[]>([]);
-  const [searched, setSearched] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  async function search() {
-    setLoading(true);
-    const results = await findDonors(group === "All" ? undefined : group);
-    setDonors(results);
-    setSearched(true);
-    setLoading(false);
-  }
-
-  return <section className="form-card">
-    <label className="field-label" htmlFor="blood-group">Blood group</label>
-    <select id="blood-group" className="field-control" value={group} onChange={(e) => setGroup(e.target.value)}>
-      {groups.map((value) => <option key={value} value={value}>{value === "All" ? "All blood groups" : value}</option>)}
-    </select>
-    <button className="button button-primary button-full" onClick={search} disabled={loading}><Search size={17}/>{loading ? "Searching..." : "Find Donors"}</button>
-    {loading && <DonorResultsSkeleton />}
-    {searched && !loading && (donors.length ? <div className="result-list"><p className="result-count">{donors.length} donor{donors.length === 1 ? "" : "s"} found</p>{donors.map((donor) => <DonorCard key={donor.id} donor={donor}/>)}</div> :
-      <div className="empty-inline"><Droplet size={21}/><strong>No donors found</strong><p>No matching donors are listed yet. Try another group later.</p></div>)}
-  </section>;
-}
+import{useState}from"react";import{Search,Droplet,SlidersHorizontal}from"lucide-react";import{findDonors}from"@/lib/data";import type{Donor}from"@/lib/types";import{DonorCard}from"@/components/listing-card";import{DonorResultsSkeleton}from"@/components/donor-results-skeleton";
+const groups=["All","A+","A-","B+","B-","AB+","AB-","O+","O-"];
+export function DonorSearch(){const[group,setGroup]=useState("All");const[donors,setDonors]=useState<Donor[]>([]);const[searched,setSearched]=useState(false);const[loading,setLoading]=useState(false);
+async function search(){setLoading(true);try{const results=await findDonors(group==="All"?undefined:group);setDonors(results);setSearched(true)}finally{setLoading(false)}}
+return <section className="premium-donor-panel"><div className="premium-donor-heading"><span><SlidersHorizontal size={18}/></span><div><h2>Choose blood group</h2><p>Select one option to find matching donors.</p></div></div><div className="blood-group-grid" role="group" aria-label="Blood group">{groups.map(value=><button type="button" key={value} aria-pressed={group===value} className={group===value?"selected":""} onClick={()=>setGroup(value)}>{value==="All"?"All groups":value}</button>)}</div><button className="premium-donor-search-button" onClick={search} disabled={loading}><Search size={18}/>{loading?"Searching…":"Find matching donors"}</button>{loading&&<DonorResultsSkeleton/>}{searched&&!loading&&(donors.length?<div className="result-list"><div className="service-section-heading"><div><span className="page-kicker">MATCHING RESULTS</span><h2>Available donors</h2></div><span className="category-count">{donors.length} found</span></div>{donors.map(d=><DonorCard key={d.id} donor={d}/>)}</div>:<div className="empty-inline"><Droplet size={22}/><strong>No donors found</strong><p>No matching donors are listed yet. Try another group later.</p></div>)}</section>}

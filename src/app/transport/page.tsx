@@ -1,106 +1,13 @@
-
 "use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  ArrowLeft,
-  CarFront,
-  ChevronRight,
-  LoaderCircle,
-} from "lucide-react";
-import { transportCategories } from "@/lib/data";
-
-const descriptions: Record<string, string> = {
-  cars: "Local trips and longer journeys",
-  auto: "Nearby rides and short trips",
-  "tourist-bus": "Group travel and tours",
-  "rent-a-car": "Rental vehicle services",
-  "goods-lorry": "Goods transport, pickups and lorry services",
-};
-
-export default function TransportPage() {
-  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
-
-  return (
-    <div className="page premium-directory">
-      <header className="back-header">
-        <Link href="/" className="back-button" aria-label="Back">
-          <ArrowLeft size={20} />
-        </Link>
-
-        <div>
-          <h1>Taxi Services</h1>
-          <p>
-            {process.env.NEXT_PUBLIC_APP_LOCATION ||
-              "Meenarkuzhi, Malappuram"}
-          </p>
-        </div>
-      </header>
-
-      <div className="intro-panel">
-        <div className="intro-icon">
-          <CarFront size={22} />
-        </div>
-
-        <div>
-          <h2>Where do you need to go?</h2>
-          <p>Choose a transport category to find local contacts.</p>
-        </div>
-      </div>
-
-      <div className="category-list">
-        {transportCategories.map((category) => {
-          const isLoading = loadingSlug === category.slug;
-
-          return (
-            <Link
-              key={category.id}
-              href={`/transport/${category.slug}`}
-              prefetch={true}
-              onClick={() => setLoadingSlug(category.slug)}
-              aria-busy={isLoading}
-              className={`category-row ${
-                isLoading ? "category-row-loading" : ""
-              }`}
-            >
-              <span className={`category-icon icon-${category.slug}`}>
-                <Image
-                  src={`/emojis/${category.slug}.png`}
-                  alt={category.name}
-                  width={40}
-                  height={40}
-                  className="transport-emoji"
-                />
-              </span>
-
-              <span className="category-text">
-                <strong>{category.name}</strong>
-                <small>
-                  {descriptions[category.slug] ||
-                    "Local transport services"}
-                </small>
-              </span>
-
-              {isLoading ? (
-                <LoaderCircle
-                  size={20}
-                  className="hotline-loading-spinner"
-                  aria-label="Loading"
-                />
-              ) : (
-                <ChevronRight size={18} className="row-chevron" />
-              )}
-            </Link>
-          );
-        })}
-      </div>
-
-      <p className="notice">
-        Driver listings are added by the local admin. Confirm
-        fares and availability directly with the driver.
-      </p>
-    </div>
-  );
-}
+import {useState} from "react"; import Image from "next/image"; import Link from "next/link";
+import {ArrowLeft,CarFront,ChevronRight,LoaderCircle,MapPin,Route} from "lucide-react";
+import {transportCategories} from "@/lib/data";
+const descriptions:Record<string,string>={cars:"Local trips and longer journeys",auto:"Nearby rides and short trips","tourist-bus":"Group travel and tours","rent-a-car":"Rental vehicle services","goods-lorry":"Goods transport, pickups and lorry services"};
+export default function TransportPage(){const [loadingSlug,setLoadingSlug]=useState<string|null>(null);
+return <main className="page premium-directory service-page">
+<header className="back-header"><Link href="/" className="back-button" aria-label="Back"><ArrowLeft size={20}/></Link><div><span className="page-kicker">LOCAL TRAVEL DIRECTORY</span><h1>Taxi Services</h1><p>{process.env.NEXT_PUBLIC_APP_LOCATION||"Meenarkuzhi, Malappuram"}</p></div></header>
+<section className="service-hero service-hero-amber"><div className="service-hero-icon"><CarFront size={27}/></div><div><span className="service-hero-label">PLAN YOUR RIDE</span><h2>Where would you like to go?</h2><p>Choose the type of transport you need and contact a local provider.</p></div><Route className="service-hero-watermark" size={104}/></section>
+<div className="service-section-heading"><div><span className="page-kicker">CHOOSE A RIDE</span><h2>Transport categories</h2></div><span className="category-count">{transportCategories.length} options</span></div>
+<div className="premium-category-grid">{transportCategories.map((category,index)=>{const busy=loadingSlug===category.slug;return <Link key={category.id} href={"/transport/"+category.slug} onClick={()=>setLoadingSlug(category.slug)} aria-busy={busy} className="premium-category-card"><span className="premium-card-index">{String(index+1).padStart(2,"0")}</span><span className="premium-card-icon"><Image src={"/emojis/"+category.slug+".png"} alt="" width={48} height={48}/></span><span className="premium-card-copy"><strong>{category.name}</strong><small>{descriptions[category.slug]||"Local transport services"}</small></span><span className="premium-card-action">{busy?<LoaderCircle size={18} className="hotline-loading-spinner"/>:<ChevronRight size={19}/>}</span></Link>})}</div>
+<p className="notice"><MapPin size={14}/> Driver listings are added by the local admin. Confirm fares and availability directly with the driver.</p>
+</main>}

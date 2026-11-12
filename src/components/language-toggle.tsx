@@ -2,7 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const enToMl: Record<string, string> = {
   "Home": "ഹോം", "Services": "സേവനങ്ങൾ", "Blood": "രക്തം", "About": "ആമുഖം",
@@ -348,54 +348,90 @@ Object.assign(enToMl, {
 });
 
 const mlToEn = Object.fromEntries(Object.entries(enToMl).map(([en, ml]) => [ml, en]));
+const translationEntries = (map: Record<string, string>) =>
+  Object.entries(map).sort(([a], [b]) => b.length - a.length);
 
 function translateDom(language: "en" | "ml") {
   const map = language === "ml" ? enToMl : mlToEn;
+  const entries = translationEntries(map);
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   const nodes: Text[] = [];
   while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+
   for (const node of nodes) {
     const parent = node.parentElement;
     if (!parent || parent.closest("script,style,noscript,[data-no-translate]")) continue;
     const raw = node.nodeValue ?? "";
-    const trimmed = raw.trim();
-    if (!trimmed) continue;
-    const translated = map[trimmed];
-    if (translated) node.nodeValue = raw.replace(trimmed, translated);
+    if (!raw.trim()) continue;
+
+    // Support a phrase inside a larger text node too (for example labels with counts).
+    let next = raw;
+    for (const [source, target] of entries) {
+      if (next.includes(source)) next = next.split(source).join(target);
+    }
+    if (next !== raw) node.nodeValue = next;
   }
+
   const attrs = ["placeholder", "aria-label", "title", "alt"];
   document.querySelectorAll<HTMLElement>("input,textarea,button,a,[title],[aria-label]").forEach((el) => {
     if (el.closest("[data-no-translate]")) return;
     for (const attr of attrs) {
       const value = el.getAttribute(attr);
-      if (value && map[value]) el.setAttribute(attr, map[value]);
+      if (!value) continue;
+      let next = value;
+      for (const [source, target] of entries) {
+        if (next.includes(source)) next = next.split(source).join(target);
+      }
+      if (next !== value) el.setAttribute(attr, next);
     }
   });
 }
 
 export function LanguageToggle() {
   const [language, setLanguage] = useState<"en" | "ml">("en");
-
-  const applyLanguage = useCallback((next: "en" | "ml") => {
-    setLanguage(next);
-    document.documentElement.lang = next;
-    localStorage.setItem("sevana-language", next);
-    translateDom(next);
-  }, []);
-
+  const languageRef = useRef<"en" | "ml">("en");
   const pathname = usePathname();
 
+  const applyLanguage = useCallback((next: "en" | "ml") => {
+    languageRef.current = next;
+    document.documentElement.lang = next;
+    document.documentElement.dataset.language = next;
+    try {
+      localStorage.setItem("sevana-language", next);
+    } catch {}
+    setLanguage(next);
+    window.dispatchEvent(new CustomEvent("sevana:language-applied", { detail: next }));
+  }, []);
+
+  // Run after React commits so React cannot immediately overwrite the translated DOM.
+  useLayoutEffect(() => {
+    languageRef.current = language;
+    document.documentElement.lang = language;
+    document.documentElement.dataset.language = language;
+    translateDom(language);
+    const frame = requestAnimationFrame(() => translateDom(language));
+    return () => cancelAnimationFrame(frame);
+  }, [language, pathname]);
+
   useEffect(() => {
+    const saved = (() => {
+      try { return localStorage.getItem("sevana-language"); } catch { return null; }
+    })();
+    const initial: "en" | "ml" = saved === "ml" ? "ml" : "en";
+    languageRef.current = initial;
+    setLanguage(initial);
+
     const handleLanguageChange = (event: Event) => {
       const next = (event as CustomEvent<"en" | "ml">).detail;
       if (next === "en" || next === "ml") applyLanguage(next);
     };
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === "sevana-language" && (event.newValue === "en" || event.newValue === "ml")) {
+        applyLanguage(event.newValue);
+      }
+    };
     window.addEventListener("sevana:language-change", handleLanguageChange);
-    const saved = localStorage.getItem("sevana-language");
-    const initial: "en" | "ml" = saved === "ml" ? "ml" : "en";
-    setLanguage(initial);
-    document.documentElement.lang = initial;
-    translateDom(initial);
+    window.addEventListener("storage", handleStorage);
 
     let scheduled = false;
     const observer = new MutationObserver(() => {
@@ -403,13 +439,14 @@ export function LanguageToggle() {
       scheduled = true;
       requestAnimationFrame(() => {
         scheduled = false;
-        translateDom(document.documentElement.lang === "ml" ? "ml" : "en");
+        translateDom(languageRef.current);
       });
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     return () => {
       observer.disconnect();
       window.removeEventListener("sevana:language-change", handleLanguageChange);
+      window.removeEventListener("storage", handleStorage);
     };
   }, [applyLanguage]);
 
@@ -418,7 +455,7 @@ export function LanguageToggle() {
       type="button"
       className="global-language-toggle"
       data-no-translate="true"
-      onClick={() => applyLanguage(language === "en" ? "ml" : "en")}
+      onClick={() => applyLanguage(languageRef.current === "en" ? "ml" : "en")}
       aria-label={language === "en" ? "Switch to Malayalam" : "Switch to English"}
       title={language === "en" ? "Switch to Malayalam" : "Switch to English"}
     >
